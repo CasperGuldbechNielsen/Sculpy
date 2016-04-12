@@ -2,6 +2,9 @@
 {
     public class MainPageViewModel
     {
-         
+        public MainPageViewModel()
+        {
+            
+        }
     }
 }
