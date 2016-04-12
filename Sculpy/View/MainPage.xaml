@@ -19,8 +19,8 @@
             <PivotItem Header="Map">
                 <maps:MapControl 
 					x:Name="Map"
-                    Location="{Binding MapPoint}"
-                    ZoomLevel="5"/>
+                    Center="{Binding MapPoint}"
+                    ZoomLevel="11"/>
             </PivotItem>
             <PivotItem Header="Reports"/>
         </Pivot>

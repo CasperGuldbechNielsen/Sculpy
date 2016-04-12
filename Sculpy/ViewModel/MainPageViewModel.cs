@@ -8,7 +8,7 @@ namespace Sculpy.ViewModel
 
         public MainPageViewModel()
         {
-            BasicGeoposition cityPosition = new BasicGeoposition() { Latitude = 55.682599, Longitude = 12.499265 };
+            BasicGeoposition cityPosition = new BasicGeoposition() { Latitude = 55.690241, Longitude = 12.508998 };
             _cityCenter = new Geopoint(cityPosition);
 
             
