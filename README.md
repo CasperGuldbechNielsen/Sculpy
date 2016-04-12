@@ -1,0 +1,3 @@
+# Sculpy
+
+Sencond semester project
