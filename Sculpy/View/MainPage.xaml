@@ -14,7 +14,8 @@
 
             </PivotItem>
             <PivotItem Header="Map">
-                <maps:MapControl />
+                <maps:MapControl 
+                    x:Name="Map"/>
             </PivotItem>
             <PivotItem Header="Reports">
                 
