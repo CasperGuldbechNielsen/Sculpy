@@ -15,7 +15,17 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot x:Name="MainPivot">
-            <PivotItem Header="Sculptures"/>
+            <PivotItem Header="Sculptures">
+                <RelativePanel>
+                    <ListView 
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        Margin="0,40,0,0"
+                        Height="600"
+                        Width="400">
+                        
+                    </ListView>
+                </RelativePanel>
+            </PivotItem>
             <PivotItem Header="Map">
                 <maps:MapControl 
 					x:Name="Map"
