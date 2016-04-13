@@ -1,4 +1,6 @@
-﻿namespace Sculpy.Model
+﻿using System;
+
+namespace Sculpy.Model
 {
     public class Sculpture
     {
@@ -24,6 +26,13 @@
         public Sculpture()
         {
             
-        } 
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Id: {0}\nName: {1}\nAddress: {2}\nDescription: {3}\nPlacement: {4}\nInspection Frequency: {5}\nPicture: {6}", 
+            ID, Sculpture_Name, Sculpture_Address, Sculpture_Description, 
+            Sculpture_Placement, Sculpture_Inspection_Frequency, Sculpture_Picture);
+        }
     }
 }

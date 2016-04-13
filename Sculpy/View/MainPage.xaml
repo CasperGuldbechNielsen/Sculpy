@@ -17,7 +17,6 @@
         <Pivot x:Name="MainPivot">
             <PivotItem Header="Sculptures">
                 <RelativePanel>
-                    
                     <Button
                         x:Name="Filter"
                         RelativePanel.AlignTopWith="SculptureListView"
@@ -36,8 +35,9 @@
                         RelativePanel.Below=""
                         Margin="0,45,0,0"
                         Height="600"
-                        Width="400">
-                        
+                        Width="400"
+                        ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}">
+                       
                     </ListView>
                 </RelativePanel>
             </PivotItem>
