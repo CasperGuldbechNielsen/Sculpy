@@ -8,7 +8,7 @@
     xmlns:ViewModel="using:Sculpy.ViewModel"
     x:Class="Sculpy.View.MainPage"
     mc:Ignorable="d">
-
+    
     <Page.DataContext>
         <ViewModel:MainPageViewModel/>
     </Page.DataContext>
@@ -17,9 +17,24 @@
         <Pivot x:Name="MainPivot">
             <PivotItem Header="Sculptures">
                 <RelativePanel>
+                    
+                    <Button
+                        x:Name="Filter"
+                        RelativePanel.AlignTopWith="SculptureListView"
+                        RelativePanel.AlignLeftWith="SculptureListView"
+                        Margin="0,10,0,0"
+                        Content="Filter"/>
+                    <Button 
+                        x:Name="Sort"
+                        RelativePanel.AlignTopWith="SculptureListView"
+                        RelativePanel.AlignRightWith="SculptureListView"
+                        Margin="0,10,0,0"
+                        Content="Sort"/>
                     <ListView 
+                        x:Name="SculptureListView"
                         RelativePanel.AlignHorizontalCenterWithPanel="True"
-                        Margin="0,40,0,0"
+                        RelativePanel.Below=""
+                        Margin="0,45,0,0"
                         Height="600"
                         Width="400">
                         
