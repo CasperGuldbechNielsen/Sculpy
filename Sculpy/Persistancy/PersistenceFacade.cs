@@ -42,8 +42,8 @@ namespace Sculpy.Persistancy
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var hotelList = response.Content.ReadAsAsync<IEnumerable<Sculpture>>().Result;
-                        return hotelList.ToList();
+                        var sculptureList = response.Content.ReadAsAsync<IEnumerable<Sculpture>>().Result;
+                        return sculptureList.ToList();
                     }
 
                 }
