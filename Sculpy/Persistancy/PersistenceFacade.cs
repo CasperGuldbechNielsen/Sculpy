@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Sculpy.Model;
 
@@ -16,19 +17,18 @@ namespace Sculpy.Persistancy
     {
 
         private const string ServerUrl = "http://localhost:50000";
-        private HttpClientHandler handler;
+        private readonly HttpClientHandler handler;
 
         public PersistenceFacade()
         {
-            handler = new HttpClientHandler();
-            handler.UseDefaultCredentials = true;
+            handler = new HttpClientHandler {UseDefaultCredentials = true};
         }
 
         /// <summary>
         /// This method contacts the database and retrieves all sculptures in the database
         /// </summary>
         /// <returns>A list of sculptures</returns>
-        public List<Sculpture> GetAllSculptures()
+        public async Task<List<Sculpture>> GetAllSculptures()
         {
             using (var client = new HttpClient(handler))
             {
@@ -42,7 +42,7 @@ namespace Sculpy.Persistancy
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var hotelList = response.Content.ReadAsAsync<IEnumerable<Sculpture>>().Result;
+                        var hotelList = await response.Content.ReadAsAsync<IEnumerable<Sculpture>>();
                         return hotelList.ToList();
                     }
 
