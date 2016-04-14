@@ -8,37 +8,75 @@
     xmlns:ViewModel="using:Sculpy.ViewModel"
     x:Class="Sculpy.View.MainPage"
     mc:Ignorable="d">
-    
+
     <Page.DataContext>
-        <ViewModel:MainPageViewModel/>
+        <ViewModel:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Name="ListViewTextBlock">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+        <Style TargetType="AppBarButton" x:Name="ListViewButton">
+            <Setter Property="FontSize" Value="28"></Setter>
+            <Setter Property="Background" Value="{ThemeResource SystemControlForegroundAccentBrush}"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="IsCompact" Value="True"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+        </Style>
+        <Style TargetType="StackPanel" x:Name="WindowListViewButton">
+            <Setter Property="Height" Value="500"></Setter>
+            <Setter Property="Width" Value="250"></Setter>
+            <Setter Property="Background" Value="{ThemeResource SystemControlForegroundAccentBrush}"></Setter>
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot x:Name="MainPivot">
             <PivotItem Header="Sculptures">
                 <RelativePanel>
-                    <Button
-                        x:Name="Filter"
-                        RelativePanel.AlignTopWith="SculptureListView"
+                    <AppBarButton
+                        Name="FilterButton" Icon="Filter"
                         RelativePanel.AlignLeftWith="SculptureListView"
-                        Margin="0,10,0,0"
-                        Content="Filter"/>
-                    <Button 
-                        x:Name="Sort"
-                        RelativePanel.AlignTopWith="SculptureListView"
+                        Style="{StaticResource ListViewButton}"
+                        Click="FilterButton_OnClick"/>
+                    <AppBarButton 
+                        Name="SortButton" Icon="Sort"
                         RelativePanel.AlignRightWith="SculptureListView"
-                        Margin="0,10,0,0"
-                        Content="Sort"/>
-                    <ListView 
-                        x:Name="SculptureListView"
+                        Style="{StaticResource ListViewButton}"
+                        Click="SortButton_OnClick"/>
+                    <ListView x:Name="SculptureListView"
                         RelativePanel.AlignHorizontalCenterWithPanel="True"
-                        RelativePanel.Below=""
-                        Margin="0,45,0,0"
-                        Height="600"
-                        Width="400"
+                        
+                        Margin="0,50,0,0"
                         ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}">
-                       
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                        Text="{Binding ID}" Style="{StaticResource ListViewTextBlock}" />
+                                    <TextBlock Grid.Column="1"
+                                        Text="{Binding Sculpture_Name}" Style="{StaticResource ListViewTextBlock}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
+                    <StackPanel Name="FilterWindow"
+                          RelativePanel.LeftOf="SculptureListView"
+                          Style="{StaticResource WindowListViewButton}">
+                    </StackPanel>
+                    <StackPanel Name="SortingWindow"
+                          RelativePanel.RightOf="SculptureListView"
+                          Style="{StaticResource WindowListViewButton}">
+                    </StackPanel>
                 </RelativePanel>
             </PivotItem>
             <PivotItem Header="Map">
@@ -51,3 +89,6 @@
         </Pivot>
     </Grid>
 </Page>
+
+
+

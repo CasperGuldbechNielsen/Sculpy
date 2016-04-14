@@ -32,9 +32,9 @@ namespace Sculpy.Model
         }
 
         /// <summary>
-        /// This method overrides ToString() method in order to display the sculpure the way we want
+        /// This method overrides ToString() method in order to display the sculpture the way we want
         /// </summary>
-        /// <returns>A string of the sculpture properties</returns>
+        /// <returns>A string with the properties of a sculpture.</returns>
         public override string ToString()
         {
             return string.Format("Id: {0}\nName: {1}\nAddress: {2}\nDescription: {3}\nPlacement: {4}\nInspection Frequency: {5}\nPicture: {6}", 

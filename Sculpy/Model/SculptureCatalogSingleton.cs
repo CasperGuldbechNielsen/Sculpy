@@ -16,12 +16,17 @@ namespace Sculpy.Model
 
         private SculptureCatalogSingleton()
         {
-            Sculptures = new ObservableCollection<Sculpture>();
-            Sculptures.Add(new Sculpture(1, "Yngling til Hest", "Jord", "Rødkilde Plads", "NULL", "NULL", "NULL"));
-            Sculptures.Add(new Sculpture(2, "Arkæologen Georg Zoëga", "Jord", "Glyptotekets anlæg", "Ved Tietgensgade", "NULL", "NULL"));
-            Sculptures.Add(new Sculpture(3, "Kains efterkommere", "Jord", "Lyshøj Allé", "Mod Toftegårds Allé", "NULL", "NULL"));
-            Sculptures.Add(new Sculpture(4, "Mindetavle for Københavns belejring 1658 - 60", "Bygning", "Stormgade", "På Nationalmuseets mur under søjlegalleriet mod Vester Voldgade", "NULL", "NULL"));
-            Sculptures.Add(new Sculpture(5, "Maleren Asmus Jacob Carstens", "Jord", "Glyptotekets anlæg", "Ved Niels Brocksgade", "NULL", "NULL"));
+            Sculptures = new ObservableCollection<Sculpture>
+            {
+                new Sculpture(1, "Yngling til Hest", "Jord", "Rødkilde Plads", "NULL", "NULL", "NULL"),
+                new Sculpture(2, "Arkæologen Georg Zoëga", "Jord", "Glyptotekets anlæg", "Ved Tietgensgade", "NULL",
+                    "NULL"),
+                new Sculpture(3, "Kains efterkommere", "Jord", "Lyshøj Allé", "Mod Toftegårds Allé", "NULL", "NULL"),
+                new Sculpture(4, "Mindetavle for Københavns belejring 1658 - 60", "Bygning", "Stormgade",
+                    "På Nationalmuseets mur under søjlegalleriet mod Vester Voldgade", "NULL", "NULL"),
+                new Sculpture(5, "Maleren Asmus Jacob Carstens", "Jord", "Glyptotekets anlæg", "Ved Niels Brocksgade",
+                    "NULL", "NULL")
+            };
 
             //Sculptures = new ObservableCollection<Sculptures>(new PersistenceFacade().GetAllSculptures());
         }

@@ -26,5 +26,19 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
+
+        private void FilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            FilterWindow.Visibility = FilterWindow.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void SortButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SortingWindow.Visibility = SortingWindow.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
     }
 }
