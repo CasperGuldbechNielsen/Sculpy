@@ -15,7 +15,7 @@ namespace Sculpy.Persistancy
     public class PersistenceFacade
     {
 
-        private const string ServerUrl = "http://localhost:50000";
+        private const string ServerUrl = "http://localhost:57671";
         private HttpClientHandler handler;
 
         public PersistenceFacade()
