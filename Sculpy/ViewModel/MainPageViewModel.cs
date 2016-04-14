@@ -3,6 +3,10 @@ using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
+    /// <summary>
+    /// This class is the ViewModel for our program. It will handle all the communication
+    /// between the business logic and the View
+    /// </summary>
     public class MainPageViewModel
     {
         private Geopoint _cityCenter;
@@ -18,6 +22,9 @@ namespace Sculpy.ViewModel
 
         }
 
+        /// <summary>
+        /// This property is for localising the map where it is wanted on startup
+        /// </summary>
         public Geopoint MapPoint
         {
             get { return _cityCenter; }

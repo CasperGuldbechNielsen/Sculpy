@@ -2,6 +2,9 @@
 
 namespace Sculpy.Model
 {
+    /// <summary>
+    /// This class represents the sculptures from the database
+    /// </summary>
     public class Sculpture
     {
         public int ID { get; set; }
@@ -28,9 +31,13 @@ namespace Sculpy.Model
             
         }
 
+        /// <summary>
+        /// This method overrides ToString() method in order to display the sculpure the way we want
+        /// </summary>
+        /// <returns>A string of the sculpture properties</returns>
         public override string ToString()
         {
-            return String.Format("Id: {0}\nName: {1}\nAddress: {2}\nDescription: {3}\nPlacement: {4}\nInspection Frequency: {5}\nPicture: {6}", 
+            return string.Format("Id: {0}\nName: {1}\nAddress: {2}\nDescription: {3}\nPlacement: {4}\nInspection Frequency: {5}\nPicture: {6}", 
             ID, Sculpture_Name, Sculpture_Address, Sculpture_Description, 
             Sculpture_Placement, Sculpture_Inspection_Frequency, Sculpture_Picture);
         }
