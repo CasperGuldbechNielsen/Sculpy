@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Model\Inspection.cs" />
+    <Compile Include="Model\InspectionCatalogSingleton.cs" />
     <Compile Include="Model\SculptureCatalogSingleton.cs" />
     <Compile Include="Model\Sculpture.cs" />
     <Compile Include="Persistancy\PersistenceFacade.cs" />
