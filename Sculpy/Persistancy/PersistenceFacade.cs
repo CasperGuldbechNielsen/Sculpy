@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Windows.UI.Popups;
+using Windows.Web.Http;
 using Sculpy.Model;
 
 namespace Sculpy.Persistancy
@@ -30,7 +31,7 @@ namespace Sculpy.Persistancy
         /// <returns>A list of sculptures</returns>
         public List<Sculpture> GetAllSculptures()
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new System.Net.Http.HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();

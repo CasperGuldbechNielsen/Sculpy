@@ -22,7 +22,7 @@ namespace Sculpy.Model
             //Sculptures.Add(new Sculpture(4, "Mindetavle for Københavns belejring 1658 - 60", "Bygning", "Stormgade", "På Nationalmuseets mur under søjlegalleriet mod Vester Voldgade", "NULL", "NULL"));
             //Sculptures.Add(new Sculpture(5, "Maleren Asmus Jacob Carstens", "Jord", "Glyptotekets anlæg", "Ved Niels Brocksgade", "NULL", "NULL"));
 
-            LoadSculptures();
+            //LoadSculptures();
         }
 
         private void LoadSculptures()
