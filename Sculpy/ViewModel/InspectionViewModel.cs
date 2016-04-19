@@ -12,10 +12,22 @@ namespace Sculpy.ViewModel
         /// </summary>
         public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
 
+        private Inspection _newInspection;
+
+        // TODO: The controls for adding a new inspection should be bound to the properties in NewInspection
+        public Inspection NewInspection
+        { 
+            get { return _newInspection; }
+            set { _newInspection = value; OnPropertyChanged(); }
+        }
+
         public InspectionViewModel()
         {
             // Creates an instance of InspectionCatalogSingleton
             InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
+
+            // Creates an instance of NewInspection
+            NewInspection = new Inspection();
         }
 
 
