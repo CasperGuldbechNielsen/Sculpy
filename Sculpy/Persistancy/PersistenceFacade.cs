@@ -55,5 +55,36 @@ namespace Sculpy.Persistancy
                 return null;
             }
         }
+
+        /// <summary>
+        /// This method contacst the database and retrieves all inspections
+        /// </summary>
+        /// <returns>A list of inspections</returns>
+        public List<Inspection> GetAllInspections()
+        {
+            using (var client = new System.Net.Http.HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync("api/Inspections").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var inspectionList = response.Content.ReadAsAsync<IEnumerable<Inspection>>().Result;
+                        return inspectionList.ToList();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
     }
 }

@@ -16,12 +16,12 @@ namespace Sculpy.Model
 
         private InspectionCatalogSingleton()
         {
-            LoadSculptures();
+            LoadInspections();
         }
 
-        private void LoadSculptures()
+        private void LoadInspections()
         {
-            Inspections = new ObservableCollection<Sculpture>(new PersistenceFacade().GetAllInspections());
+            Inspections = new ObservableCollection<Inspection>(new PersistenceFacade().GetAllInspections());
 
         }
 
