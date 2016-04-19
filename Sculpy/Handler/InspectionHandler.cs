@@ -37,5 +37,19 @@ namespace Sculpy.Handler
                 InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
             }
         }
+
+        //TODO Not finished as we need to decide if we will have a SelectedInspection property in InspectionViewModel
+        public void DeleteInspection()
+        {
+            //new PersistenceFacade().RemoveInspection(InspectionViewModel.SelectedInspection);
+
+            //var inspections = new PersistenceFacade().GetAllInspections();
+
+            //InspectionViewModel.InspectionCatalogSingleton.Inspections.Clear();
+            //foreach (var inspection1 in inspections)
+            //{
+            //    InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
+            //}
+        }
     }
 }

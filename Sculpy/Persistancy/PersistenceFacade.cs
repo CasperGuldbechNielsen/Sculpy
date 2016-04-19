@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using Windows.Web.Http;
 using Newtonsoft.Json;
 using Sculpy.Model;
+using HttpClient = System.Net.Http.HttpClient;
 
 namespace Sculpy.Persistancy
 {
@@ -96,7 +97,7 @@ namespace Sculpy.Persistancy
         /// <param name="inspection"></param>
         public void SaveInspection(Inspection inspection)
         {
-            using (var client = new System.Net.Http.HttpClient(handler))
+            using (var client = new HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -107,6 +108,24 @@ namespace Sculpy.Persistancy
                     var response =
                         client.PostAsync("api/Inspections", new StringContent(postBody, Encoding.UTF8, "application/json"))
                             .Result;
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public void RemoveInspection(Inspection inspection)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = client.DeleteAsync("api/Inspections/" + inspection.ID).Result;
                 }
                 catch (Exception ex)
                 {

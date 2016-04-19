@@ -7,6 +7,7 @@ using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
+    // TODO NOTE THAT NO ICOMMANDS HAS BEEN CREATED AS DANIEL IS PRETTY SURE THAT WE WONT EVEN NEED RelayCommand
     public class InspectionViewModel:INotifyPropertyChanged
     {
 
