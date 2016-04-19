@@ -25,7 +25,7 @@ namespace Sculpy.Model
 
         }
 
-        public void Add(int iD, string inspection_Date, string inspection_Note, string sculpture_ID, string damage_Picture)
+        public void Add(int iD, string inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture)
         {
             Inspections.Add(new Inspection(iD, inspection_Date, inspection_Note, sculpture_ID, damage_Picture));
         }

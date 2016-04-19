@@ -8,10 +8,10 @@
         public int ID { get; set; }
         public string Inspection_Date { get; set; }
         public string Inspection_Note { get; set; }
-        public string Sculpture_ID { get; set; }
+        public int Sculpture_ID { get; set; }
         public string Damage_Picture { get; set; }
 
-        public Inspection(int iD, string inspection_Date, string inspection_Note, string sculpture_ID, string damage_Picture)
+        public Inspection(int iD, string inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture)
         {
             ID = iD;
             Inspection_Date = inspection_Date;
