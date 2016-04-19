@@ -1,4 +1,6 @@
-﻿using Sculpy.ViewModel;
+﻿using Sculpy.Model;
+using Sculpy.Persistancy;
+using Sculpy.ViewModel;
 
 namespace Sculpy.Handler
 {
@@ -17,7 +19,23 @@ namespace Sculpy.Handler
         /// </summary>
         public void CreateInspection()
         {
-            
+            Inspection inspection = new Inspection();
+            inspection.ID = InspectionViewModel.NewInspection.ID;
+            inspection.Inspection_Date = InspectionViewModel.NewInspection.Inspection_Date;
+            inspection.Inspection_Note = InspectionViewModel.NewInspection.Inspection_Note;
+            inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
+            inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
+
+            //new PersistenceFacade().SaveHotel(hotel);
+
+            var inspections = new PersistenceFacade().GetAllInspections();
+
+            InspectionViewModel.InspectionCatalogSingleton.Inspections.Clear();
+
+            foreach (var inspection1 in inspections)
+            {
+                InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
+            }
         }
     }
 }
