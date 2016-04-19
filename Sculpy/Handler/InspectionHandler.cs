@@ -26,7 +26,7 @@ namespace Sculpy.Handler
             inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
             inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
 
-            //new PersistenceFacade().SaveHotel(hotel);
+            new PersistenceFacade().SaveInspection(inspection);
 
             var inspections = new PersistenceFacade().GetAllInspections();
 
