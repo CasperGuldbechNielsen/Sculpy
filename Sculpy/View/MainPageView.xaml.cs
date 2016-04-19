@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,6 +33,10 @@ namespace Sculpy.View
             FilterWindow.Visibility = FilterWindow.Visibility == Visibility.Collapsed
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+            
+            FilterButton.Foreground = FilterWindow.Visibility == Visibility.Collapsed
+                ? SortButton.Foreground
+                :FilterWindow.BorderBrush ;
         }
 
         private void SortButton_OnClick(object sender, RoutedEventArgs e)
@@ -39,6 +44,10 @@ namespace Sculpy.View
             SortingWindow.Visibility = SortingWindow.Visibility == Visibility.Collapsed
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+
+            SortButton.Foreground = SortingWindow.Visibility == Visibility.Collapsed
+               ? FilterButton.Foreground
+               : SortingWindow.BorderBrush;
         }
     }
 }

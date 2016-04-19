@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <ViewModel:SculpturesViewModel x:Name="ViewModel"/>
+        <ViewModel:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
     <Page.Resources>
@@ -26,13 +26,14 @@
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="70"></Setter>
-        </Style> 
+            <Setter Property="IsHoldingEnabled" Value="False"></Setter>
+        </Style>
         <Style TargetType="StackPanel" x:Name="WindowListViewButton">
-            <Setter Property="Background" Value="#404040"></Setter>
-            <Setter Property="Visibility" Value="Visible"></Setter>
+            <Setter Property="Background" Value="#FF2B2B2B"></Setter>
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>
-            <Setter Property="BorderBrush" Value="DimGray"></Setter>
-            <Setter Property="Height" Value="300"></Setter>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"></Setter>
+            <Setter Property="Height" Value="400"></Setter>
         </Style>
         <Style TargetType="MenuFlyoutItem" x:Name="FilterWindowItem">
             <Setter Property="FontFamily" Value="Calibri Light"></Setter>
@@ -45,13 +46,22 @@
             <Setter Property="FontFamily" Value="Calibri Light"></Setter>
             <Setter Property="FontWeight" Value="ExtraLight"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="10,0,10,0"></Setter>
+            <Setter Property="Margin" Value="0"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </Page.Resources>
 
     <Grid Background="#1A1A1A">
         <Pivot x:Name="MainPivot">
+
+            <Pivot.RightHeader >
+                <Grid>
+                    <AutoSuggestBox x:Name="SearchBox" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
+                                VerticalAlignment="Center" Width="250" Margin="4,4,8,4" 
+                                QueryIcon="Find" PlaceholderText="enter a search term"/>
+                </Grid>
+            </Pivot.RightHeader>
+
             <PivotItem Header="Sculptures">
                 <RelativePanel>
                     <Button Name="FilterButton"
@@ -81,7 +91,7 @@
                                         <RowDefinition></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    
+
                                     <TextBlock Text="{Binding Sculpture_Name}" Style="{StaticResource TextBlockStyle}" />
                                     <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Sculpture_Address}" Style="{StaticResource TextBlockStyle}" 
                                                Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="16"
@@ -97,13 +107,23 @@
                     <StackPanel Name="FilterWindow"
                           RelativePanel.LeftOf="SculptureListView"
                           Style="{StaticResource WindowListViewButton}">
-                        <StackPanel HorizontalAlignment="Center" Padding="10,10,10,10">
-                            <TextBlock Text="Materials:" Style="{StaticResource TextBlockStyle}" Margin="0,0,0,10" FontSize="22"></TextBlock>
+                        <StackPanel HorizontalAlignment="Center" Padding="20">
+                            <TextBlock Text="Materials:" Style="{StaticResource TextBlockStyle}" Margin="0,0,0,10"></TextBlock>
                             <CheckBox Content="Metal" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
                             <CheckBox Content="Stone" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
-                            <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10" FontSize="22"></TextBlock>
+                            <CheckBox Content="Others" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                            <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10"></TextBlock>
                             <ComboBox PlaceholderText="choose placement" Width="170">
                                 <ComboBoxItem Content="Ground"></ComboBoxItem>
+                                <ComboBoxItem Content="Building"></ComboBoxItem>
+                                <ComboBoxItem Content="Facade"></ComboBoxItem>
+                            </ComboBox>
+                            <TextBlock Text="Type:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10"></TextBlock>
+                            <ComboBox PlaceholderText="choose placement" Width="170">
+                                <ComboBoxItem Content="Sculpture"></ComboBoxItem>
+                                <ComboBoxItem Content="Base"></ComboBoxItem>
+                                <ComboBoxItem Content="Fountain"></ComboBoxItem>
+                                <ComboBoxItem Content="Relief"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                     </StackPanel>
