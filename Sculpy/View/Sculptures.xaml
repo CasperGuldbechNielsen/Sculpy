@@ -1,0 +1,131 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sculpy.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:ViewModel="using:Sculpy.ViewModel"
+    x:Class="Sculpy.View.MainPage"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <ViewModel:SculpturesViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Name="TextBlockStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Name="ListViewButton">
+            <Setter Property="FontSize" Value="40"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="70"></Setter>
+        </Style> 
+        <Style TargetType="StackPanel" x:Name="WindowListViewButton">
+            <Setter Property="Background" Value="#404040"></Setter>
+            <Setter Property="Visibility" Value="Visible"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="DimGray"></Setter>
+            <Setter Property="Height" Value="300"></Setter>
+        </Style>
+        <Style TargetType="MenuFlyoutItem" x:Name="FilterWindowItem">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Name="FilterWindowCheckBox">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10,0,10,0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#1A1A1A">
+        <Pivot x:Name="MainPivot">
+            <PivotItem Header="Sculptures">
+                <RelativePanel>
+                    <Button Name="FilterButton"
+                        Content="&#xE71C;" FontFamily="Segoe MDL2 Assets"
+                        RelativePanel.AlignLeftWith="SculptureListView"
+                        Style="{StaticResource ListViewButton}"
+                        Click="FilterButton_OnClick">
+                    </Button>
+                    <Button Name="SortButton" 
+                        Content="&#xE8CB;" FontFamily="Segoe MDL2 Assets"
+                        RelativePanel.AlignRightWith="SculptureListView"
+                        Style="{StaticResource ListViewButton}"
+                        Click="SortButton_OnClick">
+                    </Button>
+                    <ListView Name="SculptureListView"
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        Margin="0,50,0,0"
+                        ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="500"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <TextBlock Text="{Binding Sculpture_Name}" Style="{StaticResource TextBlockStyle}" />
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Sculpture_Address}" Style="{StaticResource TextBlockStyle}" 
+                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="16"
+                                               Margin="10,0,10,10"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Last inspection" Style="{StaticResource TextBlockStyle}" ></TextBlock>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="14-04-2016" Style="{StaticResource TextBlockStyle}"  
+                                               FontSize="16" HorizontalAlignment="Center" Margin="10,0,10,10"
+                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Name="FilterWindow"
+                          RelativePanel.LeftOf="SculptureListView"
+                          Style="{StaticResource WindowListViewButton}">
+                        <StackPanel HorizontalAlignment="Center" Padding="10,10,10,10">
+                            <TextBlock Text="Materials:" Style="{StaticResource TextBlockStyle}" Margin="0,0,0,10" FontSize="22"></TextBlock>
+                            <CheckBox Content="Metal" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                            <CheckBox Content="Stone" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                            <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10" FontSize="22"></TextBlock>
+                            <ComboBox PlaceholderText="choose placement" Width="170">
+                                <ComboBoxItem Content="Ground"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Name="SortingWindow"
+                          RelativePanel.RightOf="SculptureListView"
+                          Style="{StaticResource WindowListViewButton}">
+                        <MenuFlyoutItem Text="Name" Style="{StaticResource FilterWindowItem}"></MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Inspection Date" Style="{StaticResource FilterWindowItem}"></MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Zipcode" Style="{StaticResource FilterWindowItem}"></MenuFlyoutItem>
+                    </StackPanel>
+                </RelativePanel>
+            </PivotItem>
+            <PivotItem Header="Map">
+                <maps:MapControl 
+					x:Name="Map"
+                    Center="{Binding MapPoint}"
+                    ZoomLevel="11"/>
+            </PivotItem>
+            <PivotItem Header="Reports"/>
+        </Pivot>
+    </Grid>
+</Page>
+
+
+

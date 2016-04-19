@@ -7,13 +7,13 @@ namespace Sculpy.ViewModel
     /// This class is the ViewModel for our program. It will handle all the communication
     /// between the business logic and the View
     /// </summary>
-    public class MainPageViewModel
+    public class SculpturesViewModel
     {
         private Geopoint _cityCenter;
 
         public SculptureCatalogSingleton SculptureCatalogSingleton { get; set; }
 
-        public MainPageViewModel()
+        public SculpturesViewModel()
         {
             BasicGeoposition cityPosition = new BasicGeoposition() { Latitude = 55.690241, Longitude = 12.508998 };
             _cityCenter = new Geopoint(cityPosition);
