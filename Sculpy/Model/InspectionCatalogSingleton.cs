@@ -19,10 +19,12 @@ namespace Sculpy.Model
             LoadInspections();
         }
 
+        /// <summary>
+        /// Creates and instance of PersistenceFacade and gets all inspections
+        /// </summary>
         private void LoadInspections()
         {
             Inspections = new ObservableCollection<Inspection>(new PersistenceFacade().GetAllInspections());
-
         }
 
         public void Add(int iD, string inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture)

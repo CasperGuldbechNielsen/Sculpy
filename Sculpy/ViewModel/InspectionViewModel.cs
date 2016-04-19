@@ -1,16 +1,18 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.Devices.Bluetooth.Background;
 using Sculpy.Annotations;
+using Sculpy.Handler;
 using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
     public class InspectionViewModel:INotifyPropertyChanged
     {
-        /// <summary>
-        /// Property that refers to InspectionCatalogSingleton
-        /// </summary>
+
         public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
+
+        public Handler.InspectionHandler InspectionHandler { get; set; }
 
         private Inspection _newInspection;
 
@@ -21,6 +23,7 @@ namespace Sculpy.ViewModel
             set { _newInspection = value; OnPropertyChanged(); }
         }
 
+
         public InspectionViewModel()
         {
             // Creates an instance of InspectionCatalogSingleton
@@ -28,6 +31,9 @@ namespace Sculpy.ViewModel
 
             // Creates an instance of NewInspection
             NewInspection = new Inspection();
+
+            // Creates an instance of InspectionHandler
+            InspectionHandler = new Handler.InspectionHandler(this);
         }
 
 
