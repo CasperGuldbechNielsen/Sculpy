@@ -35,7 +35,7 @@
                         RelativePanel.Below=""
                         Margin="0,45,0,0"
                         Height="600"
-                        Width="400"
+                        Width="Auto"
                         ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}">
                        
                     </ListView>
