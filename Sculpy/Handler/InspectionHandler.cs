@@ -26,16 +26,16 @@ namespace Sculpy.Handler
             inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
             inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
 
-            new PersistenceFacade().SaveInspection(inspection);
+            //new PersistenceFacade().SaveInspection(inspection);
 
-            var inspections = new PersistenceFacade().GetAllInspections();
+            //var inspections = new PersistenceFacade().GetAllInspections();
 
             InspectionViewModel.InspectionCatalogSingleton.Inspections.Clear();
 
-            foreach (var inspection1 in inspections)
-            {
-                InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
-            }
+            //foreach (var inspection1 in inspections)
+            //{
+            //    InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
+            //}
         }
 
         //TODO Not finished as we need to decide if we will have a SelectedInspection property in InspectionViewModel
