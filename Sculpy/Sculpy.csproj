@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Model\SculptureCatalogSingleton.cs" />
     <Compile Include="Model\Sculpture.cs" />
     <Compile Include="Persistancy\PersistenceFacade.cs" />
