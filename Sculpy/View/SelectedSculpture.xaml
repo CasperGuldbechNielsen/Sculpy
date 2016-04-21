@@ -8,8 +8,41 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+<UserControl.Resources>
+        <Style TargetType="TextBlock" x:Name="TextBlockTitleStyle">
+            <Setter Property="FontFamily" Value="Sergoe"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <RelativePanel Name="LeftContent" HorizontalAlignment="Center">
+            <Rectangle Name="ImagePlaceholder" Fill="DimGray" Width="75" Height="75"></Rectangle>
+            <TextBlock Name="PlacementHeader" Text="Placement:" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Placement" Text="Ground" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="PlacementHeader"></TextBlock>
+            <TextBlock Name="MaterialsHeader" Text="Materials:" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="Placement"></TextBlock>
+            <TextBlock Name="StoneHeader" Text="Stone:" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="MaterialsHeader"></TextBlock>
+            <TextBlock Name="Stone" Text="Marble" Style="{StaticResource CaptionTextBlockStyle}"  RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader"></TextBlock>
+            <TextBlock Name="MetalHeader" Text="Metal:" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="StoneHeader"></TextBlock>
+            <TextBlock Name="Metal" Text="Bronze" Style="{StaticResource CaptionTextBlockStyle}"  RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
+            <TextBlock Name="TypeHeader" Text="Type:" Style="{StaticResource CaptionTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="Metal"></TextBlock>
+            <TextBlock Name="Type" Text="Sculpture" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="TypeHeader"></TextBlock>
+        </RelativePanel>
 
+        <RelativePanel Name="CenterContent" Grid.Column="1">
+            <TextBlock Name="Title" Text="Rytterstatuen" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+            <TextBlock Name="Subtitle" Text="Amalienborg Slotsplads" Style="{StaticResource SubtitleTextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
+            <TextBlock Name="Description" Text="Lorem ipsim for nownownownownownownow nownownwonwonwonow nownonownownow" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
+        </RelativePanel>
+    
     </Grid>
 </UserControl>
