@@ -109,8 +109,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InspectionViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="View\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sculptures.xaml.cs">
+      <DependentUpon>Sculptures.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TabHeader.xaml.cs">
+      <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +143,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Sculptures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
