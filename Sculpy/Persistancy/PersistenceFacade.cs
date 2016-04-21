@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -28,7 +29,7 @@ namespace Sculpy.Persistancy
         /// This method contacts the database and retrieves all sculptures in the database
         /// </summary>
         /// <returns>A list of sculptures</returns>
-        public async Task<List<Sculpture>> GetAllSculptures()
+        public async Task<ObservableCollection<Sculpture>> GetAllSculptures()
         {
             using (var client = new HttpClient(handler))
             {
@@ -42,8 +43,8 @@ namespace Sculpy.Persistancy
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var hotelList = await response.Content.ReadAsAsync<IEnumerable<Sculpture>>();
-                        return hotelList.ToList();
+                        var hotelList = await response.Content.ReadAsAsync<ObservableCollection<Sculpture>>();
+                        return hotelList;
                     }
 
                 }
