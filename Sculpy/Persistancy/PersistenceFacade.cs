@@ -116,6 +116,10 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// Removes an inspection from the database
+        /// </summary>
+        /// <param name="inspection"></param>
         public void RemoveInspection(Inspection inspection)
         {
             using (var client = new HttpClient())
