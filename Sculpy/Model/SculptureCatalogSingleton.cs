@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Sculpy.Persistancy;
 
 namespace Sculpy.Model
@@ -14,7 +16,12 @@ namespace Sculpy.Model
 
         public ObservableCollection<Sculpture> Sculptures { get; set; }
 
-        private SculptureCatalogSingleton()
+        public SculptureCatalogSingleton()
+        {
+            LoadSculptures();
+        }
+
+        private async Task LoadSculptures()
         {
             Sculptures = new ObservableCollection<Sculpture>
             {
@@ -28,7 +35,8 @@ namespace Sculpy.Model
                     "NULL", "NULL")
             };
 
-            //Sculptures = new ObservableCollection<Sculptures>(new PersistenceFacade().GetAllSculptures());
+            //Sculptures = await new PersistenceFacade().GetAllSculptures();
+
         }
     }
 }
