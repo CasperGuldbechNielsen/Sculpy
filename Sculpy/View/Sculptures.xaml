@@ -6,9 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:Sculpy.ViewModel"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    mc:Ignorable="d">
 
     <UserControl.DataContext>
         <viewModel:MainPageViewModel x:Name="ViewModel"/>
@@ -28,6 +26,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="70"></Setter>
             <Setter Property="IsHoldingEnabled" Value="False"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
         </Style>
         <Style TargetType="StackPanel" x:Name="WindowListViewButton">
             <Setter Property="Background" Value="#FF2B2B2B"></Setter>
@@ -52,7 +51,52 @@
         </Style>
     </UserControl.Resources>
 
-    <RelativePanel>
+    <RelativePanel MinWidth="600">
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Tablet">
+                    <VisualState.Setters>
+                        <Setter Target="FilterButton.(FrameworkElement.Width)" Value="49"/>
+                        <Setter Target="SortButton.(FrameworkElement.Width)" Value="50"/>
+                        <Setter Target="FilterButton.(Control.FontSize)" Value="24"/>
+                        <Setter Target="SortButton.(Control.FontSize)" Value="24"/>
+                        <Setter Target="FilterButton.(Control.BorderThickness)">
+                            <Setter.Value>
+                                <Thickness>4</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="FilterButton.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>10,3,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="SortButton.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,3,10,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="FilterWindow.(RelativePanel.LeftOf)" Value=""/>
+                        <Setter Target="FilterWindow.(RelativePanel.RightOf)" Value=""/>
+                        <Setter Target="FilterWindow.(RelativePanel.AlignLeftWith)" Value="SculptureListView"/>
+                        <Setter Target="SortingWindow.(RelativePanel.RightOf)" Value=""/>
+                        <Setter Target="SortingWindow.(RelativePanel.AlignLeftWith)" Value=""/>
+                        <Setter Target="SortingWindow.(RelativePanel.AlignRightWith)" Value="SculptureListView"/>
+                        <Setter Target="FilterWindow.(RelativePanel.Below)" Value="FilterButton"/>
+                        <Setter Target="SortingWindow.(RelativePanel.Below)" Value="SortButton"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <Button Name="FilterButton"
                         Content="&#xE71C;" FontFamily="Segoe MDL2 Assets"
                         RelativePanel.AlignLeftWith="SculptureListView"
@@ -68,28 +112,10 @@
         <ListView Name="SculptureListView"
                         RelativePanel.AlignHorizontalCenterWithPanel="True"
                         Margin="0,50,0,0"
-                        ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}">
+                        ItemsSource="{x:Bind ViewModel.SculptureCatalogSingleton.Sculptures}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0,0,0,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="500"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="{Binding Sculpture_Name}" Style="{StaticResource TextBlockStyle}" />
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Sculpture_Address}" Style="{StaticResource TextBlockStyle}" 
-                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="16"
-                                               Margin="10,0,10,10"/>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Last inspection" Style="{StaticResource TextBlockStyle}" ></TextBlock>
-                        <TextBlock Grid.Column="1" Grid.Row="1" Text="14-04-2016" Style="{StaticResource TextBlockStyle}"  
-                                               FontSize="16" HorizontalAlignment="Center" Margin="10,0,10,10"
-                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}"></TextBlock>
-                    </Grid>
+                    <local:ListItemUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

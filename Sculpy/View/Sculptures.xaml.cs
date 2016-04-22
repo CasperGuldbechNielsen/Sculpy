@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,7 +31,7 @@ namespace Sculpy.View
                 : Visibility.Collapsed;
 
             FilterButton.Foreground = FilterWindow.Visibility == Visibility.Collapsed
-                ? SortButton.Foreground
+                ? FilterButton.Foreground = new SolidColorBrush(Colors.White)
                 : FilterWindow.BorderBrush;
         }
 
@@ -41,7 +42,7 @@ namespace Sculpy.View
                 : Visibility.Collapsed;
 
             SortButton.Foreground = SortingWindow.Visibility == Visibility.Collapsed
-               ? FilterButton.Foreground
+               ? SortButton.Foreground = new SolidColorBrush(Colors.White)
                : SortingWindow.BorderBrush;
         }
     }
