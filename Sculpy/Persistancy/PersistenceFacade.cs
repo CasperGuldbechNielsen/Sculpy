@@ -17,7 +17,7 @@ namespace Sculpy.Persistancy
     public class PersistenceFacade
     {
 
-        private const string ServerUrl = "http://localhost:50000";
+        private const string ServerUrl = "http://sculpywebapi.azurewebsites.net";
         private readonly HttpClientHandler handler;
 
         public PersistenceFacade()
