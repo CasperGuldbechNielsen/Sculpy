@@ -31,7 +31,7 @@
         </Grid.ColumnDefinitions>
         
         <RelativePanel Name="LeftContent" Padding="0,40">
-            <Rectangle Name="ImagePlaceholder" Fill="DimGray" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True"></Rectangle>
+            <Rectangle Name="ImagePlaceholder" Fill="DarkGray" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True"></Rectangle>
             <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="Placement" Text="Ground" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
