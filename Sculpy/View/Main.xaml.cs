@@ -40,8 +40,6 @@ namespace Sculpy.View
             {
                 case 0:
                     return new Sculptures();
-                case 1:
-                    return new SelectedSculpture();
                 default:
                     throw new ArgumentOutOfRangeException("selectedIndex");
             }
