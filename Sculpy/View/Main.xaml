@@ -340,17 +340,17 @@
         <Pivot Style="{StaticResource TabsStylePivotStyle}" PivotItemLoading="Pivot_OnPivotItemLoading">
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 1" Glyph="&#xE719;" />
+                    <local:TabHeader Label="Sculptures" Glyph="&#xE719;" />
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 2" Glyph="&#xE721;" />
+                    <local:TabHeader Label="Map" Glyph="&#xE707;" />
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 3" Glyph="&#xE723;" />
+                    <local:TabHeader Label="Reports" Glyph="&#xE8E5;" />
                 </PivotItem.Header>
             </PivotItem>
         </Pivot>
