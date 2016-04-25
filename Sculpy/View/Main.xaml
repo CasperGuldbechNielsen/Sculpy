@@ -265,6 +265,7 @@
                                                 x:Name="HeaderClipper"
                                                 Grid.Column="0"
                                                 HorizontalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Center"
                                                 UseSystemFocusVisuals="True">
                                                 <ContentControl.Clip>
                                                     <RectangleGeometry x:Name="HeaderClipperGeometry" />
