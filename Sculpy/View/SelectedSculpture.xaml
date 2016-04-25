@@ -32,15 +32,15 @@
         
         <RelativePanel Name="LeftContent" Padding="0,40">
             <Rectangle Name="ImagePlaceholder" Fill="DarkGray" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True"></Rectangle>
-            <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Placement" Text="Ground" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Stone" Text="Marble" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
-            <TextBlock Name="MetalHeader" Text="Metal:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="StoneHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Metal" Text="Bronze" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
-            <TextBlock Name="TypeHeader" Text="Type:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" RelativePanel.Below="Metal" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Type" Text="Sculpture" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Placement" Text="Ground" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Stone" Text=" Marble" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
+            <TextBlock Name="MetalHeader" Text="Metal:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="StoneHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Metal" Text=" Bronze" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  FontSize="18" RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
+            <TextBlock Name="TypeHeader" Text="Type:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Metal" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Type" Text="Sculpture" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
         </RelativePanel>
 
         <RelativePanel Name="CenterContent" Grid.Column="1" Padding="0,40">
