@@ -115,11 +115,11 @@
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Sculptures.xaml.cs">
-      <DependentUpon>Sculptures.xaml</DependentUpon>
+    <Compile Include="View\SculpturesView.xaml.cs">
+      <DependentUpon>SculpturesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SelectedSculpture.xaml.cs">
-      <DependentUpon>SelectedSculpture.xaml</DependentUpon>
+    <Compile Include="View\SelectedSculptureView.xaml.cs">
+      <DependentUpon>SelectedSculptureView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -151,11 +151,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Sculptures.xaml">
+    <Page Include="View\SculpturesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SelectedSculpture.xaml">
+    <Page Include="View\SelectedSculptureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
