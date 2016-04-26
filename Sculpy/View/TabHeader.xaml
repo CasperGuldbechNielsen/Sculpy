@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel Background="{ThemeResource SystemControlBackgroundAccentBrush}">
+    <StackPanel>
         <FontIcon
                             HorizontalAlignment="Center"
                             Margin="0,0,0,0"
