@@ -252,7 +252,8 @@
                                                 Grid.ColumnSpan="3"
                                                 Background="{ThemeResource SystemControlPageBackgroundChromeMediumBrush}"
                                                 BorderBrush="{ThemeResource SystemControlForegroundChromeMediumBrush}"
-                                                BorderThickness="0,0,0,1" />
+                                                BorderThickness="0,0,0,1" 
+                                                Height="90"/>
 
                                             <ContentPresenter
                                                 x:Name="LeftHeaderPresenter"
@@ -262,8 +263,9 @@
                                                 ContentTemplate="{TemplateBinding LeftHeaderTemplate}" />
                                             <ContentControl
                                                 x:Name="HeaderClipper"
-                                                Grid.Column="1"
+                                                Grid.Column="0"
                                                 HorizontalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Center"
                                                 UseSystemFocusVisuals="True">
                                                 <ContentControl.Clip>
                                                     <RectangleGeometry x:Name="HeaderClipperGeometry" />
@@ -338,21 +340,25 @@
  
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="MainGrid">
         <Pivot Style="{StaticResource TabsStylePivotStyle}" PivotItemLoading="Pivot_OnPivotItemLoading">
+            <Pivot.RightHeader>
+                <AutoSuggestBox PlaceholderText="Search" QueryIcon="find" VerticalAlignment="Center" HorizontalAlignment="Right" Width="400" Margin="0,0,50,0"/>
+            </Pivot.RightHeader>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 1" Glyph="&#xE719;" />
+                    <local:TabHeader Label="Sculptures" Glyph="&#xE719;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 2" Glyph="&#xE721;" />
+                    <local:TabHeader Label="Map" Glyph="&#xE707;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="item 3" Glyph="&#xE723;" />
+                    <local:TabHeader Label="Reports" Glyph="&#xE8E5;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
+            
         </Pivot>
 
     </Grid>
