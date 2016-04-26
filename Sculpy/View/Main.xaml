@@ -336,7 +336,7 @@
 
 
  
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="MainGrid">
         <Pivot Style="{StaticResource TabsStylePivotStyle}" PivotItemLoading="Pivot_OnPivotItemLoading">
             <PivotItem>
                 <PivotItem.Header>

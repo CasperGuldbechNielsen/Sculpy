@@ -26,7 +26,7 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
-        private void Pivot_OnPivotItemLoading(Pivot sender, PivotItemEventArgs args)
+        public void Pivot_OnPivotItemLoading(Pivot sender, PivotItemEventArgs args)
         {
 
             var pivotItemContentControl = CreateUserControlForPivotItem(((Pivot)sender).SelectedIndex);
@@ -40,6 +40,8 @@ namespace Sculpy.View
             {
                 case 0:
                     return new Sculptures();
+                case 1:
+                    return new SelectedSculpture();
                 default:
                     throw new ArgumentOutOfRangeException("selectedIndex");
             }

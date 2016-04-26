@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactions.Core;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -23,7 +24,11 @@ namespace Sculpy.View
         public Sculptures()
         {
             this.InitializeComponent();
+
+            var frameworkElement = this.Content as FrameworkElement;
+            if (frameworkElement != null) frameworkElement.DataContext = this;
         }
+
         private void FilterButton_OnClick(object sender, RoutedEventArgs e)
         {
             FilterWindow.Visibility = FilterWindow.Visibility == Visibility.Collapsed
@@ -45,5 +50,15 @@ namespace Sculpy.View
                ? SortButton.Foreground = new SolidColorBrush(Colors.White)
                : SortingWindow.BorderBrush;
         }
+        
+
+        private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+
+
+        }
+
+        
     }
 }

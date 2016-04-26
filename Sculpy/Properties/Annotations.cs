@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global
@@ -498,7 +499,7 @@ namespace Sculpy.Annotations
   /// </summary>
   /// <remarks>
   /// You can apply the attribute on the whole method or on any of its additional parameters. The macro expression
-  /// is defined in the <see cref="MacroAttribute.Expression"/> property. When applied on a method, the target
+  /// is defined in the <see cref="System.Linq.Expressions.Expression"/> property. When applied on a method, the target
   /// template parameter is defined in the <see cref="MacroAttribute.Target"/> property. To apply the macro silently
   /// for the parameter, set the <see cref="MacroAttribute.Editable"/> property value = -1.
   /// </remarks>
