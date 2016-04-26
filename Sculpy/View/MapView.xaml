@@ -5,6 +5,7 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -17,6 +18,15 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <maps:MapControl 
+            x:Name="sculptureMap" 
+            MapServiceToken="QeLz32DxSNyF19VtizMv~dRnLRZKAEMEEGxV-4y5QxQ~An-7hyW97IOfT6BPFS0eVjruAHc-kLJT25BBhmhFRQRybVs41Pzvncm3o2Or6NZa" 
+            ZoomInteractionMode="GestureAndControl" 
+            LandmarksVisible="True" 
+            IsRightTapEnabled="true"
+            ZoomLevel="14"
+            Loaded="SculptureMap_OnLoaded">
+        </maps:MapControl>
 
     </Grid>
 </Page>
