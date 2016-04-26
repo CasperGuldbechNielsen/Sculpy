@@ -8,6 +8,7 @@ using Windows.Devices.Geolocation;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactions.Core;
 using Sculpy.Annotations;
 using Sculpy.Model;
 using Sculpy.View;
@@ -18,7 +19,7 @@ namespace Sculpy.ViewModel
     /// This class is the ViewModel for our program. It will handle all the communication
     /// between the business logic and the View
     /// </summary>
-    public class MainPageViewModel : UserControl
+    public class MainPageViewModel
     {
 
         public SculptureCatalogSingleton SculptureCatalogSingleton { get; set; }
@@ -37,27 +38,6 @@ namespace Sculpy.ViewModel
         /// </summary>
         public Geopoint MapPoint { get; set; }
 
-
-
-        // text property:
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValueDp(TextProperty, value); }
-        }
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text",typeof(string),
-                typeof(Sculptures),null);
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void SetValueDp(DependencyProperty property, object value,
-            [System.Runtime.CompilerServices.CallerMemberName] String p = null)
-        {
-            SetValue(property, value);
-            if(PropertyChanged!=null)
-                PropertyChanged(this,new PropertyChangedEventArgs(p));
-        }
-        
 
 
         

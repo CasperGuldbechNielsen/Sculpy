@@ -1,28 +1,93 @@
 ﻿<Page
-    x:Class="Sculpy.View.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="Sculpy.View.MainView"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style TargetType="StackPanel" x:Name="HeaderStackPanel">
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="#FF1E1E1E"/>
+        </Style>
+
+        <Style TargetType="Button" x:Name="HeaderButton">
+            <Setter Property="FontSize" Value="45"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Name="HeaderTextBlock">
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+        </Style>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModel:MainPageViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <RelativePanel Grid.Row="0">
+        <RelativePanel Grid.Row="0" BorderBrush="{ThemeResource SystemControlBackgroundAccentBrush}" BorderThickness="0,0,0,1" Background="#FF1E1E1E">
+            <StackPanel x:Name="SculpturesButton"
+				Style="{StaticResource HeaderStackPanel}" RelativePanel.AlignLeftWithPanel="True">
+                <Button Content="&#xEB68;" Tag="1" Click="ButtonHeader_OnClick"
+					Style="{StaticResource HeaderButton}"
+					FontFamily="Segoe MDL2 Assets" >
+                </Button>
+                <TextBlock Text="sculptures" Style="{StaticResource HeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="MapButton"
+				RelativePanel.RightOf="SculpturesButton" Style= "{StaticResource HeaderStackPanel}" >
+
+                <Button Content="&#xE1C4;" Tag="2" Click="ButtonHeader_OnClick"
+					Style="{StaticResource HeaderButton}"
+					FontFamily="Segoe MDL2 Assets" />
+                <TextBlock Text="map" Style="{StaticResource HeaderTextBlock}"/>
+            </StackPanel>
+
+            <StackPanel x:Name="ReportsButton" 
+				Style="{StaticResource HeaderStackPanel}" RelativePanel.RightOf="MapButton">
+                <Button Content="&#xE12A;" Tag="3" Click="ButtonHeader_OnClick"
+					Style="{StaticResource HeaderButton}"
+					FontFamily="Segoe MDL2 Assets" />
+                <TextBlock Text="reports" Style="{StaticResource HeaderTextBlock}"/>
+            </StackPanel>
+
+
 
             <AutoSuggestBox x:Name="SearchBox" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
-                                VerticalAlignment="Center" Width="250" Margin="4,4,8,4" RelativePanel.AlignRightWithPanel="True"
-                                QueryIcon="Find" PlaceholderText="enter a search term"/>
+				FontSize="25"
+				VerticalAlignment="Center" Width="300" VerticalContentAlignment="Center" 
+				
+				RelativePanel.AlignRightWithPanel="True"
+				Margin="0,10,20,0"
+				QueryIcon="Find" PlaceholderText="enter a search term"/>
 
         </RelativePanel>
-        <Frame Grid.Row="1" Name="MainFrame"></Frame>
+        
+        
+        <Frame Grid.Row="1" x:Name="MainFrame"/>
 
 
 
     </Grid>
 </Page>
+
+
+
