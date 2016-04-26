@@ -127,6 +127,9 @@
     <Compile Include="View\SelectedSculpture.xaml.cs">
       <DependentUpon>SelectedSculpture.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectedSculptureView.xaml.cs">
+      <DependentUpon>SelectedSculptureView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TabHeader.xaml.cs">
       <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SelectedSculpture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectedSculptureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

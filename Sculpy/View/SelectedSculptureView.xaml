@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="Sculpy.View.SelectedSculptureView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sculpy.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Name="TextBlockStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Page.DataContext>
+        <viewModel:InspectionViewModel x:Name="InspectionViewModel"/>
+    </Page.DataContext>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <RelativePanel Name="LeftContent" Padding="0,40">
+            <Rectangle Name="ImagePlaceholder" Fill="DarkGray" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True"></Rectangle>
+            <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Placement" Text="Ground" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Stone" Text=" Marble" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
+            <TextBlock Name="MetalHeader" Text="Metal:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="StoneHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Metal" Text=" Bronze" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  FontSize="18" RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
+            <TextBlock Name="TypeHeader" Text="Type:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Metal" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Type" Text="Sculpture" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+        </RelativePanel>
+
+        <RelativePanel Name="CenterContent" Grid.Column="1" Padding="40,40">
+            <TextBlock Name="Title" Text="Rytterstatuen" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Name="Subtitle" Text="Amalienborg Slotsplads" Style="{StaticResource SubheaderTextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
+            <TextBlock Name="Description" Text="Description goes here through binding" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
+        </RelativePanel>
+
+        <RelativePanel Name="RightConent" Grid.Column="2" Padding="0,40">
+            <Rectangle Fill="DimGray" Width="2" Height="700"></Rectangle>
+            <TextBlock Name="InspectionsHeader" Text="Inspections:" Style="{StaticResource SubheaderTextBlockStyle}" Margin="20,0,0,0"></TextBlock>
+            <ListView Name="InspectionListView" ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" RelativePanel.Below="InspectionsHeader" Margin="0,20">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Inspection_Date}" Style="{StaticResource TextBlockStyle}" />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TextBlockStyle}" 
+                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="16"
+                                               Margin="10,0,10,10"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
+
+
+    </Grid>
+</Page>
