@@ -118,14 +118,8 @@
     <Compile Include="View\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Sculptures.xaml.cs">
-      <DependentUpon>Sculptures.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\SculpturesView.xaml.cs">
       <DependentUpon>SculpturesView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SelectedSculpture.xaml.cs">
-      <DependentUpon>SelectedSculpture.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SelectedSculptureView.xaml.cs">
       <DependentUpon>SelectedSculptureView.xaml</DependentUpon>
@@ -167,15 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Sculptures.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\SculpturesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SelectedSculpture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
