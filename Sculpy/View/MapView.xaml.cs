@@ -30,5 +30,16 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        private async void SculptureMap_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var center =
+                new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 55.67610,
+                    Longitude = 12.56834
+                });
+            await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500));
+
+        }
     }
 }

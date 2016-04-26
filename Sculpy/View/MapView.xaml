@@ -24,7 +24,8 @@
             ZoomInteractionMode="GestureAndControl" 
             LandmarksVisible="True" 
             IsRightTapEnabled="true"
-            ZoomLevel="14">
+            ZoomLevel="14"
+            Loaded="SculptureMap_OnLoaded">
         </maps:MapControl>
         
     </Grid>
