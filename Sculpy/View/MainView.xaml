@@ -36,9 +36,10 @@
         <viewModel:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
-    <Grid Background="Transparent">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -81,11 +82,8 @@
 
         </RelativePanel>
         
+        <Frame Grid.Row="2" x:Name="MainFrame"/>
         
-        <Frame Grid.Row="1" x:Name="MainFrame"/>
-
-
-
     </Grid>
 </Page>
 

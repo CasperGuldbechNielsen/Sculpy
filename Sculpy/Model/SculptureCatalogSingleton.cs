@@ -9,10 +9,7 @@ namespace Sculpy.Model
     {
         private static SculptureCatalogSingleton instance = new SculptureCatalogSingleton();
 
-        public static SculptureCatalogSingleton Instance
-        {
-            get { return instance; }
-        }
+        public static SculptureCatalogSingleton Instance => instance;
 
         public ObservableCollection<Sculpture> Sculptures { get; set; }
 

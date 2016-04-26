@@ -37,7 +37,8 @@ namespace Sculpy.View
         private void ButtonHeader_OnClick(object sender, RoutedEventArgs e)
         {
             var button = (Button) sender;
-                       
+            
+            // TODO after all the pages are created I can add them here.
             switch (int.Parse(button.Tag.ToString()))
             {
                 case 1:
