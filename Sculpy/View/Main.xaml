@@ -341,21 +341,21 @@
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot Style="{StaticResource TabsStylePivotStyle}" PivotItemLoading="Pivot_OnPivotItemLoading">
             <Pivot.RightHeader>
-                <AutoSuggestBox PlaceholderText="Search" QueryIcon="find" VerticalAlignment="Center" Width="400"/>
+                <AutoSuggestBox PlaceholderText="Search" QueryIcon="find" VerticalAlignment="Center" HorizontalAlignment="Right" Width="400" Margin="0,0,50,0"/>
             </Pivot.RightHeader>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="Sculptures" Glyph="&#xE719;" />
+                    <local:TabHeader Label="Sculptures" Glyph="&#xE719;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="Map" Glyph="&#xE707;" />
+                    <local:TabHeader Label="Map" Glyph="&#xE707;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
             <PivotItem>
                 <PivotItem.Header>
-                    <local:TabHeader Label="Reports" Glyph="&#xE8E5;" />
+                    <local:TabHeader Label="Reports" Glyph="&#xE8E5;" Height="65" Width="180"/>
                 </PivotItem.Header>
             </PivotItem>
             
