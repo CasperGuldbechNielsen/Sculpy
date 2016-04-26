@@ -51,6 +51,8 @@
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="addSculptureButton" Label="Add sculpture"/>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="settingsButton" Label="Settings"></AppBarButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
