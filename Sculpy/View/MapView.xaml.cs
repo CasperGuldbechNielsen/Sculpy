@@ -28,32 +28,7 @@ namespace Sculpy.View
         public MapView()
         {
             this.InitializeComponent();
-            sculptureMap.Loaded += SculptureMap_OnLoaded;
         }
 
-        private async void SculptureMap_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var center =
-                new Geopoint(new BasicGeoposition()
-                {
-                    Latitude = 55.67437,
-                    Longitude = 12.56751,
-                });
-            await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500));
-
-            //Testing pushpins...
-            var pushpin = new MapIcon();
-
-            pushpin.Location = new Geopoint(new BasicGeoposition()
-            {
-                Latitude = 55.67573,
-                Longitude = 12.56858
-            });
-
-            pushpin.Title = "Dragespringvandet";
-
-            sculptureMap.MapElements.Add(pushpin);
-
-        }
     }
 }
