@@ -9,18 +9,7 @@
     xmlns:viewModel="using:Sculpy.ViewModel"
     x:Class="Sculpy.View.MapView"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Style TargetType="Button" x:Name="ListViewButton">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="IsHoldingEnabled" Value="False"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-    </Page.Resources>
-    
+
     <Page.DataContext>
         <viewModel:MapViewModel/>
     </Page.DataContext>
@@ -46,7 +35,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         
         <maps:MapControl 
@@ -59,20 +48,34 @@
 			ZoomLevel="14"
 			Loaded="SculptureMap_OnLoaded"/>
         
-        <RelativePanel Grid.Column="0" x:Name="filterPanel">
+        <RelativePanel Grid.Column="0" x:Name="filterPanel" Margin="40,40,0,0">
             <Button x:Name="FilterButton"
 			        Content="&#xE71C;" 
                     FontFamily="Segoe MDL2 Assets"
                     Style="{StaticResource ListViewButton}"
-                    Margin="20,40,0,0"/>
+                    Margin="-18,0,0,0"/>
             <TextBlock x:Name="filterHeader" 
                        Text="Filter map" 
                        RelativePanel.RightOf="FilterButton" 
                        RelativePanel.AlignBottomWith="FilterButton"
                        Style="{StaticResource SubheaderTextBlockStyle}" FontSize="30"/>
-            
-            
+            <TextBlock x:Name="MaterialsHeader" RelativePanel.Below="FilterButton" Text="Materials:" Style="{StaticResource TextBlockStyle}" Margin="0,30,0,10"/>
+            <CheckBox x:Name="Metal" RelativePanel.Below="MaterialsHeader" Content="Metal" Style="{StaticResource FilterWindowCheckBox}"/>
+            <CheckBox x:Name="Stone" RelativePanel.Below="Metal" Content="Stone" Style="{StaticResource FilterWindowCheckBox}"/>
+            <CheckBox x:Name="Others" RelativePanel.Below="Stone" Content="Others" Style="{StaticResource FilterWindowCheckBox}"/>
+            <TextBlock x:Name="PlacementHeader" RelativePanel.Below="Others" Text="Placement:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10"/>
+            <ComboBox x:Name="PlacementCombo" RelativePanel.Below="PlacementHeader" PlaceholderText="choose placement" Width="170">
+                <ComboBoxItem Content="Ground"/>
+                <ComboBoxItem Content="Building"/>
+                <ComboBoxItem Content="Facade"/>
+            </ComboBox>
+            <TextBlock x:Name="TypeHeader" RelativePanel.Below="PlacementCombo" Text="Type:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10"/>
+            <ComboBox x:Name="TypeCombo" RelativePanel.Below="TypeHeader" PlaceholderText="choose placement" Width="170">
+                <ComboBoxItem Content="Sculpture"/>
+                <ComboBoxItem Content="Base"/>
+                <ComboBoxItem Content="Fountain"/>
+                <ComboBoxItem Content="Relief"/>
+            </ComboBox>
         </RelativePanel>
-
     </Grid>
 </Page>

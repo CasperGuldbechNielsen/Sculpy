@@ -4,5 +4,45 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Sculpy"
     RequestedTheme="Dark">
+    
+    <!--All styles that will be used often should be placed here. Makes it easier to styles controls later on if we have to-->
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Name="TextBlockStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Name="ListViewButton">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="IsHoldingEnabled" Value="False"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Name="WindowListViewButton">
+            <Setter Property="Background" Value="#FF2B2B2B"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
+            <Setter Property="Height" Value="400"/>
+        </Style>
+        <Style TargetType="MenuFlyoutItem" x:Name="FilterWindowItem">
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="CheckBox" x:Name="FilterWindowCheckBox">
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Application.Resources>
 
 </Application>
