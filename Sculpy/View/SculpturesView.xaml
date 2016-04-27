@@ -48,7 +48,7 @@
     </Page.Resources>
     
     <Page.DataContext>
-        <viewModel:SculpturesViewModel x:Name="ViewModel"/>
+        <viewModel:SculpturesViewModel></viewModel:SculpturesViewModel>
     </Page.DataContext>
 
     <RelativePanel MinWidth="600">
@@ -110,7 +110,8 @@
         <ListView x:Name="SculptureListView" SelectionChanged="SculptureListView_OnSelectionChanged"
 			RelativePanel.AlignHorizontalCenterWithPanel="True"
 			Margin="0,50,0,0"
-			ItemsSource="{x:Bind ViewModel.FilteredSortedCollection}">
+            ItemsSource="{Binding SculptureCatalogSingleton.Sculptures}" 
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListItemUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
