@@ -17,7 +17,19 @@
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
     </Page.Resources>
-    
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture"/>
+                <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
+                <AppBarSeparator/>
+                <AppBarButton x:Name="settingsButton" Label="Settings"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Page.DataContext>
         <viewModel:InspectionViewModel x:Name="InspectionViewModel"/>
     </Page.DataContext>
