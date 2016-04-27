@@ -9,7 +9,18 @@
     xmlns:viewModel="using:Sculpy.ViewModel"
     x:Class="Sculpy.View.MapView"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="Button" x:Name="ListViewButton">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="IsHoldingEnabled" Value="False"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Page.Resources>
+    
     <Page.DataContext>
         <viewModel:MapViewModel/>
     </Page.DataContext>
@@ -33,14 +44,35 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        
         <maps:MapControl 
-			x:Name="sculptureMap" 
+			x:Name="sculptureMap"
+            Grid.Column="1"
 			MapServiceToken="QeLz32DxSNyF19VtizMv~dRnLRZKAEMEEGxV-4y5QxQ~An-7hyW97IOfT6BPFS0eVjruAHc-kLJT25BBhmhFRQRybVs41Pzvncm3o2Or6NZa" 
 			ZoomInteractionMode="GestureAndControl" 
 			LandmarksVisible="True" 
 			IsRightTapEnabled="true"
 			ZoomLevel="14"
 			Loaded="SculptureMap_OnLoaded"/>
+        
+        <RelativePanel Grid.Column="0" x:Name="filterPanel">
+            <Button x:Name="FilterButton"
+			        Content="&#xE71C;" 
+                    FontFamily="Segoe MDL2 Assets"
+                    Style="{StaticResource ListViewButton}"
+                    Margin="20,40,0,0"/>
+            <TextBlock x:Name="filterHeader" 
+                       Text="Filter map" 
+                       RelativePanel.RightOf="FilterButton" 
+                       RelativePanel.AlignBottomWith="FilterButton"
+                       Style="{StaticResource SubheaderTextBlockStyle}" FontSize="30"/>
+            
+            
+        </RelativePanel>
 
     </Grid>
 </Page>
