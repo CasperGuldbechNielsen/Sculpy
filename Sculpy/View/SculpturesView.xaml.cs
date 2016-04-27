@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -49,12 +50,9 @@ namespace Sculpy.View
                : SortingWindow.BorderBrush;
         }
 
-
-        private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-
-
-        }
+        //private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
+        //}
     }
 }
