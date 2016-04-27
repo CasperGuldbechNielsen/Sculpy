@@ -76,6 +76,10 @@
                 <ComboBoxItem Content="Fountain"/>
                 <ComboBoxItem Content="Relief"/>
             </ComboBox>
+            <TextBlock x:Name="TreatmentFrequency" RelativePanel.Below="TypeCombo" Text="Treatment Frequency:" Style="{StaticResource TextBlockStyle}" Margin="0,30,0,10"/>
+            <CheckBox x:Name="Immediately" RelativePanel.Below="TreatmentFrequency" Content="Immediately" Style="{StaticResource FilterWindowCheckBox}"/>
+            <CheckBox x:Name="Planned" RelativePanel.Below="Immediately" Content="Scheduled treatment planned" Style="{StaticResource FilterWindowCheckBox}"/>
+            <CheckBox x:Name="TenYears" RelativePanel.Below="Planned" Content="Inspect in 10 years" Style="{StaticResource FilterWindowCheckBox}"/>
         </RelativePanel>
     </Grid>
 </Page>
