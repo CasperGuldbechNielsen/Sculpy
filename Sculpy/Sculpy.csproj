@@ -98,7 +98,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Handler\InspectionHandler.cs" />
+    <Compile Include="Handler\MapHandler.cs" />
     <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Model\Inspection.cs" />
     <Compile Include="Model\InspectionCatalogSingleton.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InspectionViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="View\ListItemUserControl.xaml.cs">
       <DependentUpon>ListItemUserControl.xaml</DependentUpon>
     </Compile>
