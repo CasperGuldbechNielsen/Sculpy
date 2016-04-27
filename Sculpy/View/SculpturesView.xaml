@@ -107,7 +107,6 @@
 			RelativePanel.AlignRightWith="SculptureListView"
 			Style="{StaticResource ListViewButton}"
 			Click="SortButton_OnClick"/>
-        <TextBox Foreground="Aqua" Name="TestTextBlock" Text="{Binding Text, Mode=TwoWay}" PlaceholderText="insert text"></TextBox>
         <ListView x:Name="SculptureListView" SelectionChanged="SculptureListView_OnSelectionChanged"
 			RelativePanel.AlignHorizontalCenterWithPanel="True"
 			Margin="0,50,0,0"
