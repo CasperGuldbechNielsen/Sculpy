@@ -14,7 +14,9 @@ namespace Sculpy.Handler
     {
         public static ObservableCollection<Sculpture> FilterCollection()
         {
-            //FilteredSortedCollection = FilteredSortedCollection.Where(x => x.Sculpture_Placement == "Building").ToList();
+            var filtered = FilteredSortedCollection.Where(x => x.Sculpture_Placement == "Building").ToList();
+
+
 
             return null;
         }
