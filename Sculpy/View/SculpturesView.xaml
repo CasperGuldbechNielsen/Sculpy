@@ -26,7 +26,7 @@
         </Style>
         <Style TargetType="StackPanel" x:Name="WindowListViewButton">
             <Setter Property="Background" Value="#FF2B2B2B"/>
-            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Visibility" Value="Visible"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
             <Setter Property="Height" Value="400"/>
@@ -48,7 +48,7 @@
     </Page.Resources>
     
     <Page.DataContext>
-        <viewModel:MainPageViewModel x:Name="ViewModel"/>
+        <viewModel:SculpturesViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
     <RelativePanel MinWidth="600">
@@ -111,7 +111,7 @@
         <ListView x:Name="SculptureListView" SelectionChanged="SculptureListView_OnSelectionChanged"
 			RelativePanel.AlignHorizontalCenterWithPanel="True"
 			Margin="0,50,0,0"
-			ItemsSource="{x:Bind ViewModel.SculptureCatalogSingleton.Sculptures}">
+			ItemsSource="{x:Bind ViewModel.FilteredSortedCollection}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListItemUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
