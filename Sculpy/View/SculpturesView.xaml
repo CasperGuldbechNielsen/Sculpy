@@ -125,7 +125,7 @@
                   >
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="SelectionChanged">
-                    <Core:NavigateToPageAction TargetPage="View.SelectedSculptureView.xaml"/>
+                    <Core:NavigateToPageAction TargetPage="Sculpy.View.SelectedSculptureView"/>
                 </Core:EventTriggerBehavior>
             </Interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>

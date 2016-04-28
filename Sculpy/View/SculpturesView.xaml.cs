@@ -49,10 +49,5 @@ namespace Sculpy.View
                ? SortButton.Foreground = new SolidColorBrush(Colors.White)
                : SortingWindow.BorderBrush;
         }
-
-        //private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
-        //}
     }
 }
