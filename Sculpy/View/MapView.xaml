@@ -18,7 +18,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="settingsButton" Label="Settings"/>
+                <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
             <AppBarButton x:Name="locationButton" Icon="Target" Label="Where am I?">
                 <Interactivity:Interaction.Behaviors>

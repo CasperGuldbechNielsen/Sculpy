@@ -34,5 +34,10 @@ namespace Sculpy.View
             var sculpture = e.Parameter;
             ViewModel.PassedSculpture = (Sculpture)sculpture;
         }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsView));
+        }
     }
 }

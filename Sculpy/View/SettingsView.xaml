@@ -12,7 +12,7 @@
             <TextBlock x:Name="Appearance" RelativePanel.Below="Title" Text="Appearance" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="30" Margin="0,30,0,0"/>
             <TextBlock x:Name="RequestedTheme" RelativePanel.Below="Appearance" Text="Requested theme:" Style="{StaticResource TitleTextBlockStyle}" Margin="0,10,0,0"/>
             <ToggleSwitch x:Name="ToggleSwitch" RelativePanel.Below="RequestedTheme" OffContent="Dark" OnContent="Light"/>
-            <Button x:Name="CloseButton" Content="&#59153;" FontFamily="Segoe MDL2 Assets" RelativePanel.AlignRightWithPanel="True"/>
+            <Button x:Name="CloseButton" Content="&#59153;" FontFamily="Segoe MDL2 Assets" RelativePanel.AlignRightWithPanel="True" Click="CloseButton_OnClick"/>
         </RelativePanel>
     </Grid>    
 </Page>

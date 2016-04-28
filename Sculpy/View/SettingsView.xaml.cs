@@ -26,5 +26,10 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
+
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
     }
 }

@@ -57,5 +57,10 @@ namespace Sculpy.View
         {
            Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
         }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsView));
+        }
     }
 }

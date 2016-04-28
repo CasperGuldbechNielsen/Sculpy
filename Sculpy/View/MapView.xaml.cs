@@ -41,5 +41,10 @@ namespace Sculpy.View
             await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500), MapAnimationKind.Bow);
 
         }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsView));
+        }
     }
 }
