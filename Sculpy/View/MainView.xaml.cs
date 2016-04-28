@@ -41,14 +41,11 @@ namespace Sculpy.View
                     MainFrame.Navigate(typeof (SculpturesView));
                     break;
                 case 2:
-                    MainFrame.Navigate(typeof(MainView));
+                    MainFrame.Navigate(typeof(MapView));
                     break;
                 case 3:
-                    return;
-//                    MainFrame.Navigate(typeof (ReportsView));
-//                    break;
-                default:
-                    throw new Exception();
+                    MainFrame.Navigate(typeof(ReportView));
+                    break;
             }
         }
     }
