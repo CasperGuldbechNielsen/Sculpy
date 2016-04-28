@@ -26,6 +26,7 @@ namespace Sculpy.View
         public MainView()
         {
             this.InitializeComponent();
+            // setting the main frame to load the sculptures view. 
             MainFrame.Navigate(typeof (SculpturesView));
         }
         
