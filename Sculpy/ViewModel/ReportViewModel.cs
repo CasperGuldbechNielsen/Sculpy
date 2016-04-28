@@ -1,13 +1,12 @@
-﻿using Sculpy.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Sculpy.ViewModel
 {
-    public class ReportViewModel
+    class ReportViewModel
     {
-        InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
-        public ReportViewModel()
-        {
-            inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
-        } 
     }
 }
