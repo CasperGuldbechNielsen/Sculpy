@@ -80,25 +80,40 @@
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="FilterHeader"
-                      Margin="0,50,0,0"/>
+                      Margin="0,50,0,0"
+                      SelectedItem="{Binding PeriodFilter}">
+                <ComboBoxItem Content="1 day" Tag="1 dag"/>
+                <ComboBoxItem Content="1 week" Tag="1 uge"/>
+                <ComboBoxItem Content="1 Month" Tag="1 måned"/>
+                <ComboBoxItem Content="1 Year" Tag="1 år"/>
+            </ComboBox>
             <ComboBox x:Name="Damage"
                       Header="Damage"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="Period"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding DamageFilter}">
+                
+            </ComboBox>
             <ComboBox x:Name="SuggestedTreatment"
                       Header="Suggested Treatment"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="Damage"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding SuggestedTreatmentFilter}">
+                
+            </ComboBox>
             <ComboBox x:Name="TreatmentFrequency"
                       Header="Treatment Frequency"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="SuggestedTreatment"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding TreatmentFrequencyFilter}">
+                
+            </ComboBox>
         </RelativePanel>
     </Grid>
 </Page>
