@@ -8,7 +8,8 @@ using Sculpy.Model;
 namespace Sculpy.ViewModel
 {
     // TODO NOTE THAT NO ICOMMANDS HAS BEEN CREATED AS DANIEL IS PRETTY SURE THAT WE WONT EVEN NEED RelayCommand
-    public class InspectionViewModel:INotifyPropertyChanged
+    // TODO Toke, I said that but I excluded the cases when we need to send also a parameter. Still I need to read about that.
+    public class SelectedSculptureViewModel:INotifyPropertyChanged
     {
 
         public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
@@ -16,6 +17,7 @@ namespace Sculpy.ViewModel
         public Handler.InspectionHandler InspectionHandler { get; set; }
 
         private Inspection _newInspection;
+        
 
         // TODO: The controls for adding a new inspection should be bound to the properties in NewInspection
         public Inspection NewInspection
@@ -25,16 +27,30 @@ namespace Sculpy.ViewModel
         }
 
 
-        public InspectionViewModel()
+
+        private Sculpture _passedSculpture;
+        public Sculpture PassedSculpture
+        {
+            get { return _passedSculpture; }
+            set
+            {
+                _passedSculpture = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
+        public SelectedSculptureViewModel()
         {
             // Creates an instance of InspectionCatalogSingleton
             InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
 
+            // Creates an instance of InspectionHandler
+            InspectionHandler = new Handler.InspectionHandler(this);
+
             // Creates an instance of NewInspection
             NewInspection = new Inspection();
 
-            // Creates an instance of InspectionHandler
-            InspectionHandler = new Handler.InspectionHandler(this);
         }
 
 

@@ -39,7 +39,7 @@
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -55,7 +55,6 @@
 
             <StackPanel x:Name="MapButton"
 				RelativePanel.RightOf="SculpturesButton" Style= "{StaticResource HeaderStackPanel}" >
-
                 <Button Content="&#xE1C4;" Tag="2" Click="ButtonHeader_OnClick"
 					Style="{StaticResource HeaderButton}"
 					FontFamily="Segoe MDL2 Assets" />
