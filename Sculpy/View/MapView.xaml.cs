@@ -29,7 +29,6 @@ namespace Sculpy.View
     {
         MarkerHandler MarkerHandler = new MarkerHandler();
 
-        private CancellationTokenSource _cts = null;
         private double _latitude = 55.67610;
         private double _longitude = 12.56834;
 
@@ -57,67 +56,16 @@ namespace Sculpy.View
 
         private async void GetGeolocationButton_OnClick(object sender, RoutedEventArgs e)
         {
+            StatusMessage.Visibility = Visibility.Visible;
             Windows.Devices.Geolocation.Geopoint position = await MarkerHandler.Position();
             DependencyObject marker = MarkerHandler.Marker();
             sculptureMap.Children.Add(marker);
             Windows.UI.Xaml.Controls.Maps.MapControl.SetLocation(marker, position);
             Windows.UI.Xaml.Controls.Maps.MapControl.SetNormalizedAnchorPoint(marker, new Point(0.5, 0.5));
-            sculptureMap.ZoomLevel = 12;
+            sculptureMap.ZoomLevel = 18;
             sculptureMap.Center = position;
+            StatusMessage.Visibility = Visibility.Collapsed;
 
-            //GetGeolocationButton.IsEnabled = false;
-
-            //try
-            //{
-            //    // Request permission to access location
-            //    var accessStatus = await Geolocator.RequestAccessAsync();
-
-            //    switch (accessStatus)
-            //    {
-            //        case GeolocationAccessStatus.Allowed:
-
-            //            // Get cancellation token
-            //            _cts = new CancellationTokenSource();
-            //            CancellationToken token = _cts.Token;
-
-            //            StatusMessage.Visibility = Visibility.Visible;
-
-            //            Geolocator geolocator = new Geolocator();
-
-            //            // Carry out the operation
-            //            Geoposition pos = await geolocator.GetGeopositionAsync().AsTask(token);
-            //            UpdateLocationData(pos);
-            //            StatusMessage.Visibility = Visibility.Collapsed;
-            //            break;
-
-            //        case GeolocationAccessStatus.Denied:
-            //            break;
-
-            //        case GeolocationAccessStatus.Unspecified:
-            //            break;
-            //    }
-            //}
-            //finally
-            //{
-            //    _cts = null;
-            //}
-
-            //GetGeolocationButton.IsEnabled = true;
         }
-
-        //private async void UpdateLocationData(Geoposition position)
-        //{
-        //    _latitude = position.Coordinate.Point.Position.Latitude;
-        //    _longitude = position.Coordinate.Point.Position.Longitude;
-
-        //    var center =
-        //        new Geopoint(new BasicGeoposition()
-        //        {
-        //            Latitude = _latitude,
-        //            Longitude = _longitude
-        //        });
-        //    await
-        //        sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 200), MapAnimationKind.Bow);
-        //}
     }
 }
