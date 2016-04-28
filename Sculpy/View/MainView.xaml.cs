@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,34 @@ namespace Sculpy.View
         public MainView()
         {
             this.InitializeComponent();
+        }
+
+        private void HeaderButton_OnPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            var stackpanel = sender as StackPanel;
+            stackpanel.BorderBrush = new SolidColorBrush(Colors.White);
+        }
+
+        private void ButtonHeader_OnClick(object sender, RoutedEventArgs e)
+        {
+            var button = (Button) sender;
+            
+            // TODO after all the pages are created I can add them here.
+            switch (int.Parse(button.Tag.ToString()))
+            {
+                case 1:
+                    MainFrame.Navigate(typeof (SculpturesView));
+                    break;
+                case 2:
+                    MainFrame.Navigate(typeof(MainView));
+                    break;
+                case 3:
+                    return;
+//                    MainFrame.Navigate(typeof (ReportsView));
+//                    break;
+                default:
+                    throw new Exception();
+            }
         }
     }
 }
