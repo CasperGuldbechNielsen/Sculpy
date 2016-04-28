@@ -9,7 +9,8 @@ namespace Sculpy.ViewModel
 {
     class ReportViewModel
     {
-        InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
+        public InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
+
         public ReportViewModel()
         {
             inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
