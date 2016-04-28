@@ -26,5 +26,10 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsView));
+        }
     }
 }

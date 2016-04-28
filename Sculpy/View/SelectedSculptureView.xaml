@@ -25,7 +25,7 @@
                 <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture"/>
                 <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
                 <AppBarSeparator/>
-                <AppBarButton x:Name="settingsButton" Label="Settings"/>
+                <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
