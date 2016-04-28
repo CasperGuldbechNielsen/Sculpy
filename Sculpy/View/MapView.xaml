@@ -20,15 +20,12 @@
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Name="locationButton" Icon="Target" Label="Where am I?">
-                <Interactivity:Interaction.Behaviors>
-                    <Core:EventTriggerBehavior EventName="Click">
-                        <Core:InvokeCommandAction Command="{Binding setLocationCommand, Mode=TwoWay}"/>
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </AppBarButton>
+            <AppBarButton x:Name="GetGeolocationButton" Icon="Target" Label="Where am I?" Click="GetGeolocationButton_OnClick"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
+            <CommandBar.Content>
+                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="Collapsed"/>
+            </CommandBar.Content>
         </CommandBar>
     </Page.BottomAppBar>
 
