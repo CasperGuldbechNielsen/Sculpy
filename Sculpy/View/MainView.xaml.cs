@@ -26,14 +26,9 @@ namespace Sculpy.View
         public MainView()
         {
             this.InitializeComponent();
+            MainFrame.Navigate(typeof (SculpturesView));
         }
-
-        private void HeaderButton_OnPointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            var stackpanel = sender as StackPanel;
-            stackpanel.BorderBrush = new SolidColorBrush(Colors.White);
-        }
-
+        
         private void ButtonHeader_OnClick(object sender, RoutedEventArgs e)
         {
             var button = (Button) sender;
