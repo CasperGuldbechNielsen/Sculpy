@@ -56,10 +56,32 @@ namespace Sculpy.Persistancy
             }
         }
 
-        public async Task<ObservableCollection<Inspection>> GetInspetionsFromSelectedSculpture()
+        public async Task<List<Inspection>> GetInspetionsFromSelectedSculpture(int sculptureId)
         {
-            // TODO Get the inspections only for one sculpture.
-            return null;
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync($"api/Inspections?$filter={nameof(Sculpture.ID)} eq {sculptureId}").Result;
+                 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var inspectionList = await response.Content.ReadAsAsync<IEnumerable<Inspection>>();
+
+                        return inspectionList.ToList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+                return null;
+            }
         }
     }
 }

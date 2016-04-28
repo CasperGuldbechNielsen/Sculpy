@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,6 +34,8 @@ namespace Sculpy.View
         {
             var sculpture = e.Parameter;
             ViewModel.PassedSculpture = (Sculpture)sculpture;
+            if (ViewModel.PassedSculpture != null)
+                InspectionCatalogSingleton.Instance.Inspections = new ObservableCollection<Inspection>(new Persistancy.PersistenceFacade().GetInspetionsFromSelectedSculpture(ViewModel.PassedSculpture.ID).Result);
         }
     }
 }

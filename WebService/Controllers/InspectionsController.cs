@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.OData;
 using WebService;
 
 namespace WebService.Controllers
@@ -17,9 +18,10 @@ namespace WebService.Controllers
         private SculptureContext db = new SculptureContext();
 
         // GET: api/Inspections
+        [EnableQuery]
         public IQueryable<Inspection> GetInspections()
         {
-            return db.Inspections;
+            return db.Inspections.AsQueryable();
         }
 
         // GET: api/Inspections/5
