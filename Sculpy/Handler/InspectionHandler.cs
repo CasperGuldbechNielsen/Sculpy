@@ -7,9 +7,9 @@ namespace Sculpy.Handler
     public class InspectionHandler
     {
         //Reference to InspectionViewModel
-        public InspectionViewModel InspectionViewModel { get; set; }
+        public SelectedSculptureViewModel InspectionViewModel { get; set; }
 
-        public InspectionHandler(InspectionViewModel inspectionViewModel)
+        public InspectionHandler(SelectedSculptureViewModel inspectionViewModel)
         {
             InspectionViewModel = inspectionViewModel;
         }
