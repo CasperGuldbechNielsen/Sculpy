@@ -38,7 +38,7 @@ namespace Sculpy.View
                     Latitude = 55.67610,
                     Longitude = 12.56834
                 });
-            await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500));
+            await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500), MapAnimationKind.Bow);
 
         }
     }
