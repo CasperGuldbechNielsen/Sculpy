@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     
     <Page.DataContext>
-        <viewModel:ReportViewModel/>
+        <viewModel:ReportViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
