@@ -55,5 +55,11 @@ namespace Sculpy.Persistancy
                 return null;
             }
         }
+
+        public async Task<ObservableCollection<Inspection>> GetInspetionsFromSelectedSculpture()
+        {
+            // TODO Get the inspections only for one sculpture.
+            return null;
+        }
     }
 }
