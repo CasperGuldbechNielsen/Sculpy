@@ -32,7 +32,7 @@ namespace Sculpy.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var sculpture = (Sculpture) e.Parameter;
-            SelectedSculptureViewModel.PassedSculpture = sculpture;
+            ViewModel.PassedSculpture = sculpture;
         }
     }
 }
