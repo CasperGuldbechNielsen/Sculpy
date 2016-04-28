@@ -5,53 +5,100 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
     
-    <Page.Resources>
-        <Style TargetType="Button" x:Name="ListViewButton">
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="IsHoldingEnabled" Value="False"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:InspectionViewModel/>
+    </Page.DataContext>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <FlyoutBase.AttachedFlyout>
+            <MenuFlyout/>
+        </FlyoutBase.AttachedFlyout>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <RelativePanel Grid.Column="1">
+        <RelativePanel Grid.Column="1"
+                       Margin="40,40,0,0">
             <Rectangle Fill="DimGray" 
                        Width="2" 
                        Height="700"/>
             <TextBlock x:Name="ListViewHeader"
                        Text="Inspections:"
-                       RelativePanel.AlignLeftWithPanel="True"/>
+                       RelativePanel.AlignLeftWithPanel="True"
+                       Style="{StaticResource TextBlockStyle}"/>
             <CheckBox x:Name="CheckAll"
                       Content="Select All"
-                      RelativePanel.AlignRightWithPanel="True"/>
+                      RelativePanel.AlignRightWithPanel="True"
+                      Margin="0,10,0,0"/>
             <ListView x:Name="Reports"
                       Margin="0,5,0,0"
-                      RelativePanel.Below="ListViewHeader"/>
-            <Rectangle Fill="DimGray" 
-                       Width="2" 
-                       Height="700"
-                       RelativePanel.AlignRightWithPanel="True"/>
+                      RelativePanel.Below="ListViewHeader"
+                      ItemsSource="{Binding InspectionCatalogSingleton.Inspections}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Inspection_Date}" 
+                                       Style="{StaticResource TextBlockStyle}" />
+                            <TextBlock Grid.Column="0" 
+                                       Grid.Row="1" 
+                                       Text="{Binding Title}" 
+                                       Style="{StaticResource TextBlockStyle}"
+                                       Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" 
+                                       FontSize="16" 
+                                       Margin="10,0,10,10"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </RelativePanel>
-        <RelativePanel Grid.Column="0">
+        <RelativePanel Grid.Column="0"
+                       Margin="40,40,0,0">
             <Button x:Name="FilterButton"
 			        Content="&#xE71C;" 
                     FontFamily="Segoe MDL2 Assets"
-			        Style="{StaticResource ListViewButton}"/>
+			        Style="{StaticResource ListViewButton}"
+                    Margin="-18,0,0,0"/>
             <TextBlock x:Name="FilterHeader"
                        Text="Filter inspections by"
                        RelativePanel.RightOf="FilterButton"
-                       Margin="0,15,0,0"/>
-            
+                       Margin="0,15,0,0"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <ComboBox x:Name="Period"
+                      Header="Period"
+                      Width="250"
+                      PlaceholderText="Select from list"
+                      RelativePanel.Below="FilterHeader"
+                      Margin="0,50,0,0"/>
+            <ComboBox x:Name="Damage"
+                      Header="Damage"
+                      Width="250"
+                      PlaceholderText="Select from list"
+                      RelativePanel.Below="Period"
+                      Margin="0,20,0,0"/>
+            <ComboBox x:Name="SuggestedTreatment"
+                      Header="Suggested Treatment"
+                      Width="250"
+                      PlaceholderText="Select from list"
+                      RelativePanel.Below="Damage"
+                      Margin="0,20,0,0"/>
+            <ComboBox x:Name="TreatmentFrequency"
+                      Header="Treatment Frequency"
+                      Width="250"
+                      PlaceholderText="Select from list"
+                      RelativePanel.Below="SuggestedTreatment"
+                      Margin="0,20,0,0"/>
         </RelativePanel>
     </Grid>
 </Page>
