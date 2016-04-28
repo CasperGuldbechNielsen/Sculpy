@@ -118,16 +118,17 @@
 			RelativePanel.AlignRightWith="SculptureListView"
 			Style="{StaticResource ListViewButton}"
 			Click="SortButton_OnClick"/>
-        <ListView x:Name="SculptureListView" SelectedItem ="{Binding SelectedSculpture, Mode=TwoWay}"
-			RelativePanel.AlignHorizontalCenterWithPanel="True"
+        <ListView x:Name="SculptureListView" 
+			RelativePanel.AlignHorizontalCenterWithPanel="True" SelectionChanged="SculptureListView_OnSelectionChanged"
+                  SelectedItem="{Binding SelectedSculpture, Mode=TwoWay}"
 			Margin="0,50,0,0"
 			ItemsSource="{x:Bind ViewModel.SculptureCatalogSingleton.Sculptures}" 
                   >
-            <Interactivity:Interaction.Behaviors>
+            <!--<Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="SelectionChanged">
-                    <Core:NavigateToPageAction TargetPage="Sculpy.View.SelectedSculptureView" Parameter="SelectedSculpture"/>
+                    <Core:NavigateToPageAction TargetPage="Sculpy.View.SelectedSculptureView" Parameter="{Binding SelectedSculpture}"/>
                 </Core:EventTriggerBehavior>
-            </Interactivity:Interaction.Behaviors>
+            </Interactivity:Interaction.Behaviors>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <local:ListItemUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

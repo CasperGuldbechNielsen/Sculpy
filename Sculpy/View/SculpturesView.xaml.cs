@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Sculpy.Handler;
+using Sculpy.Model;
+using Sculpy.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -48,6 +50,12 @@ namespace Sculpy.View
             SortButton.Foreground = SortingWindow.Visibility == Visibility.Collapsed
                ? SortButton.Foreground = new SolidColorBrush(Colors.White)
                : SortingWindow.BorderBrush;
+        }
+
+
+        private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
         }
     }
 }

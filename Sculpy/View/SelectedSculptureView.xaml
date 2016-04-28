@@ -42,9 +42,9 @@
         </Grid.ColumnDefinitions>
 
         <RelativePanel Name="LeftContent" Padding="0,40">
-            <Rectangle Name="ImagePlaceholder" Fill="DarkGray" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True"></Rectangle>
+            <Image Name="ImagePlaceholder" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True" Source="{Binding PassedSculpture.Sculpture_Picture}"></Image>
             <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Placement" Text="Ground" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Placement" Text="{Binding PassedSculpture.Sculpture_Placement}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="Stone" Text=" Marble" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
@@ -55,9 +55,9 @@
         </RelativePanel>
 
         <RelativePanel Name="CenterContent" Grid.Column="1" Padding="40,40">
-            <TextBlock Name="Title" Text="Rytterstatuen" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-            <TextBlock Name="Subtitle" Text="Amalienborg Slotsplads" Style="{StaticResource SubheaderTextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
-            <TextBlock Name="Description" Text="Description goes here through binding" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
+            <TextBlock Name="Title" Text="{Binding PassedSculpture.Sculpture_Name}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Name="Subtitle" Text="{Binding PassedSculpture.Sculpture_Address}" Style="{StaticResource SubheaderTextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
+            <TextBlock Name="Description" Text="{Binding PassedSculpture.Sculpture_Description}" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
         </RelativePanel>
 
         <RelativePanel Name="RightConent" Grid.Column="2" Padding="0,40">
