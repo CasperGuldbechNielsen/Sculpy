@@ -50,7 +50,7 @@ namespace Sculpy.Persistancy
                 }
                 catch (Exception ex)
                 {
-                    new MessageDialog(ex.Message).ShowAsync();
+                    await new MessageDialog(ex.Message).ShowAsync();
                 }
                 return null;
             }
@@ -68,6 +68,34 @@ namespace Sculpy.Persistancy
                 {
                     var response = client.GetAsync($"api/Inspections?$filter={nameof(Sculpture.ID)} eq {sculptureId}").Result;
                  
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var inspectionList = await response.Content.ReadAsAsync<IEnumerable<Inspection>>();
+
+                        return inspectionList.ToList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+                return null;
+            }
+        }
+
+        public async Task<List<Inspection>> GetSculpturesTypesLinkingAsync(int sculptureId)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync($"api/Sculpture_Type_Linking").Result;
+
                     if (response.IsSuccessStatusCode)
                     {
                         var inspectionList = await response.Content.ReadAsAsync<IEnumerable<Inspection>>();
