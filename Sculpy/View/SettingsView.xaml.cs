@@ -20,16 +20,16 @@ namespace Sculpy.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ReportView : Page
+    public sealed partial class SettingsView : Page
     {
-        public ReportView()
+        public SettingsView()
         {
             this.InitializeComponent();
         }
 
-        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingsView));
+            Frame.GoBack();
         }
     }
 }

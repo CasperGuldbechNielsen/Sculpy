@@ -18,12 +18,12 @@ namespace Sculpy.Handler
 
         public UIElement Marker()
         {
-            Canvas marker = new Canvas(); 
+            Canvas marker = new Canvas();
             Ellipse outer = new Ellipse() {Width = 25, Height = 25};
             outer.Fill = new SolidColorBrush(Color.FromArgb(255, 240, 240, 240));
             outer.Margin = new Thickness(-12.5, -12.5, 0, 0);
             Ellipse inner = new Ellipse() { Width = 20, Height = 20 };
-            inner.Fill = new SolidColorBrush(Colors.Black); 
+            inner.Fill = new SolidColorBrush(Colors.Black);
             inner.Margin = new Thickness(-10, -10, 0, 0);
             Ellipse core = new Ellipse() { Width = 10, Height = 10 };
             core.Fill = new SolidColorBrush(Colors.White);

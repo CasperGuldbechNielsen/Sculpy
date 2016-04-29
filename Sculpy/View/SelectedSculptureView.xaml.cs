@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,16 +29,18 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
-           
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var sculpture = (Sculpture) e.Parameter; 
-            ViewModel.PassedSculpture = sculpture;
+            var sculpture = e.Parameter;
+            ViewModel.PassedSculpture = (Sculpture)sculpture;
+            if (ViewModel.PassedSculpture != null)
+                InspectionCatalogSingleton.Instance.Inspections = new ObservableCollection<Inspection>(new Persistancy.PersistenceFacade().GetInspetionsFromSelectedSculpture(ViewModel.PassedSculpture.ID).Result);
         }
 
-        private void EditSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (SelectedSculptureEditView), ViewModel.PassedSculpture);
+            Frame.Navigate(typeof(SettingsView));
         }
     }
 }

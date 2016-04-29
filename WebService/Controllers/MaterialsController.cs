@@ -8,50 +8,48 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.OData;
 using WebService;
 
 namespace WebService.Controllers
 {
-    public class InspectionsController : ApiController
+    public class MaterialsController : ApiController
     {
         private SculptureContext db = new SculptureContext();
 
-        // GET: api/Inspections
-        [EnableQuery]
-        public IQueryable<Inspection> GetInspections()
+        // GET: api/Materials
+        public IQueryable<Material> GetMaterials()
         {
-            return db.Inspections.AsQueryable();
+            return db.Materials;
         }
 
-        // GET: api/Inspections/5
-        [ResponseType(typeof(Inspection))]
-        public IHttpActionResult GetInspection(int id)
+        // GET: api/Materials/5
+        [ResponseType(typeof(Material))]
+        public IHttpActionResult GetMaterial(int id)
         {
-            Inspection inspection = db.Inspections.Find(id);
-            if (inspection == null)
+            Material material = db.Materials.Find(id);
+            if (material == null)
             {
                 return NotFound();
             }
 
-            return Ok(inspection);
+            return Ok(material);
         }
 
-        // PUT: api/Inspections/5
+        // PUT: api/Materials/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutInspection(int id, Inspection inspection)
+        public IHttpActionResult PutMaterial(int id, Material material)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != inspection.ID)
+            if (id != material.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(inspection).State = EntityState.Modified;
+            db.Entry(material).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +57,7 @@ namespace WebService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InspectionExists(id))
+                if (!MaterialExists(id))
                 {
                     return NotFound();
                 }
@@ -72,35 +70,35 @@ namespace WebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Inspections
-        [ResponseType(typeof(Inspection))]
-        public IHttpActionResult PostInspection(Inspection inspection)
+        // POST: api/Materials
+        [ResponseType(typeof(Material))]
+        public IHttpActionResult PostMaterial(Material material)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Inspections.Add(inspection);
+            db.Materials.Add(material);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = inspection.ID }, inspection);
+            return CreatedAtRoute("DefaultApi", new { id = material.ID }, material);
         }
 
-        // DELETE: api/Inspections/5
-        [ResponseType(typeof(Inspection))]
-        public IHttpActionResult DeleteInspection(int id)
+        // DELETE: api/Materials/5
+        [ResponseType(typeof(Material))]
+        public IHttpActionResult DeleteMaterial(int id)
         {
-            Inspection inspection = db.Inspections.Find(id);
-            if (inspection == null)
+            Material material = db.Materials.Find(id);
+            if (material == null)
             {
                 return NotFound();
             }
 
-            db.Inspections.Remove(inspection);
+            db.Materials.Remove(material);
             db.SaveChanges();
 
-            return Ok(inspection);
+            return Ok(material);
         }
 
         protected override void Dispose(bool disposing)
@@ -112,9 +110,9 @@ namespace WebService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool InspectionExists(int id)
+        private bool MaterialExists(int id)
         {
-            return db.Inspections.Count(e => e.ID == id) > 0;
+            return db.Materials.Count(e => e.ID == id) > 0;
         }
     }
 }

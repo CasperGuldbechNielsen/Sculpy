@@ -9,8 +9,17 @@
     mc:Ignorable="d">
     
     <Page.DataContext>
-        <viewModel:ReportViewModel/>
+        <viewModel:ReportViewModel x:Name="ViewModel"/>
     </Page.DataContext>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <FlyoutBase.AttachedFlyout>
