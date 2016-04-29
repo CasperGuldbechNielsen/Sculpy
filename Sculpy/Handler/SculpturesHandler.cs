@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Sculpy.Model;
+using Sculpy.View;
 using Sculpy.ViewModel;
 using static Sculpy.ViewModel.SculpturesViewModel;
 using SculptureCatalogSingleton = Sculpy.Model.SculptureCatalogSingleton;
