@@ -12,8 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Sculpy.Model;
-using Sculpy.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,22 +20,11 @@ namespace Sculpy.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SelectedSculptureView : Page
+    public sealed partial class SelectedSculptureEditView : Page
     {
-        public SelectedSculptureView()
+        public SelectedSculptureEditView()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var sculpture = (Sculpture) e.Parameter;
-            ViewModel.PassedSculpture = sculpture;
-        }
-
-        private void EditSculptureButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof (SelectedSculptureEditView), ViewModel.PassedSculpture);
         }
     }
 }

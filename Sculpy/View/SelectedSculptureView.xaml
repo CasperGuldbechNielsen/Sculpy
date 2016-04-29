@@ -22,7 +22,7 @@
         <CommandBar>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture"/>
+                <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture" Click="EditSculptureButton_OnClick"/>
                 <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
                 <AppBarSeparator/>
                 <AppBarButton x:Name="settingsButton" Label="Settings"/>

@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="Sculpy.View.SelectedSculptureEditView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sculpy.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="AliceBlue">
+            <Image Width="160" Height="100"></Image>
+
+            <ComboBox Header="Placement" >
+                <ComboBoxItem Content="Ground" Tag="Jord"/>
+                <ComboBoxItem Content="Building" Tag="Bygning"/>
+                <ComboBoxItem Content="Facade"/>
+            </ComboBox>
+            <ComboBox Header="Material" ></ComboBox>
+            <ComboBox></ComboBox>
+            <ComboBox></ComboBox>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <CheckBox Content="Sculpture"></CheckBox>
+                    <CheckBox Content="Base"></CheckBox>
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox Content="Relief"></CheckBox>
+                    <CheckBox Content="Fountain"></CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+
+
+
+
+
+
+
+    </Grid>
+</Page>
