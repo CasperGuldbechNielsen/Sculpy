@@ -42,5 +42,10 @@ namespace Sculpy.View
         {
             Frame.Navigate(typeof(SettingsView));
         }
+
+        private void EditSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
