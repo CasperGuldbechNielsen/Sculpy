@@ -8,7 +8,7 @@
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="Sculpy.View.SculpturesView"
     mc:Ignorable="d">
-
+ 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Name="TextBlockStyle">
             <Setter Property="FontFamily" Value="Calibri Light"/>
