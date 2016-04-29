@@ -30,6 +30,8 @@ namespace Sculpy.Model
                 new Inspection(1, "12/10/2014", "Follow-up inspection", "Lorem Ipsum aaaaaaaaaaaaaaaaal the way. You not it!", 1, "Null"),
                 new Inspection(1, "02/01/2012", "General inspection", "Lorem Ipsum aaaaaaaaaaaaaaaaal the way. You not it!", 1, "Null"),
             };
+            //RoomViewModel.RoomsCollection = new ObservableCollection<Room>(new Persistency.PersistenceFacade().GetRoomsAsync(id.Hotel_Number).Result);
+            //Inspections = new ObservableCollection<Inspection>(new Persistancy.PersistenceFacade().GetInspetionsFromSelectedSculpture().Result);
         }
 
         public void Add(int iD, string title, string inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture)
