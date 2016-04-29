@@ -107,7 +107,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
- 
+  
         <Button x:Name="FilterButton"
 			Content="&#xE71C;" FontFamily="Segoe MDL2 Assets"
 			RelativePanel.AlignLeftWith="SculptureListView"
