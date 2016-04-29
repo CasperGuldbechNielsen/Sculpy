@@ -184,6 +184,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspectionsController.cs" />
+    <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\SculpturesController.cs" />
     <Compile Include="Controllers\Sculpture_Type_LinkingController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
