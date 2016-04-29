@@ -28,7 +28,7 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
-
+           
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var sculpture = (Sculpture) e.Parameter;
