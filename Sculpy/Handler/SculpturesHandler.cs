@@ -33,7 +33,7 @@ namespace Sculpy.Handler
 
         public static void FilterCollectionByType(string criteria)
         {
-            
+            // need to add the def
         }
 
         public static void SortCollection(string criteria)

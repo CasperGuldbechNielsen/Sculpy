@@ -108,6 +108,8 @@
     <Compile Include="Model\InspectionCatalogSingleton.cs" />
     <Compile Include="Model\SculptureCatalogSingleton.cs" />
     <Compile Include="Model\Sculpture.cs" />
+    <Compile Include="Model\Sculpture_Type.cs" />
+    <Compile Include="Model\Sculpture_Type_Linking.cs" />
     <Compile Include="Persistancy\PersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
