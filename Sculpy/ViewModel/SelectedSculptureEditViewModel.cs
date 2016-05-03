@@ -24,6 +24,8 @@ namespace Sculpy.ViewModel
             }
         }
 
+        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -34,5 +34,17 @@ namespace Sculpy.View
             var sculpture = e.Parameter;
             ViewModel.PassedSculpture = (Sculpture)sculpture;
         }
+
+        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO call the Post api for sculpture. 
+            // Persistancy.PersistenceFacade.UpdateSculpture();
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace WebService.Controllers
         // GET: api/Materials
         public IQueryable<Material> GetMaterials()
         {
-            return db.Materials;
+            return db.Materials.Include(s=>s.Sculpture_Material);
         }
 
         // GET: api/Materials/5
