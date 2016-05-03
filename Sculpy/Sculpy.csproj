@@ -99,6 +99,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter .cs" />
     <Compile Include="Handler\InspectionHandler.cs" />
     <Compile Include="Handler\MapHandler.cs" />
     <Compile Include="Handler\MarkerHandler.cs" />

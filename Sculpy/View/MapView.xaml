@@ -7,12 +7,17 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:viewModel="using:Sculpy.ViewModel"
+    xmlns:converter="using:Sculpy.Converter"
     x:Class="Sculpy.View.MapView"
     mc:Ignorable="d">
 
     <Page.DataContext>
         <viewModel:MapViewModel/>
     </Page.DataContext>
+    
+    <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Page.Resources>
 
 
     <Page.BottomAppBar>
@@ -20,11 +25,11 @@
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Name="GetGeolocationButton" Icon="Target" Label="Where am I?" Click="GetGeolocationButton_OnClick"/>
+            <AppBarButton x:Name="GetGeolocationButton" Icon="Target" Label="Where am I?" Command="{Binding setLocationCommand}"/>
             <AppBarSeparator/>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
             <CommandBar.Content>
-                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="Collapsed"/>
+                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="{Binding mapMessage, Converter={StaticResource BoolToVis}}"/>
             </CommandBar.Content>
         </CommandBar>
     </Page.BottomAppBar>
@@ -34,7 +39,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
+
         <maps:MapControl 
 			x:Name="sculptureMap"
             Grid.Column="1"
@@ -42,10 +47,15 @@
 			ZoomInteractionMode="GestureAndControl" 
 			LandmarksVisible="True" 
 			IsRightTapEnabled="true"
-			ZoomLevel="14"
-			Loaded="SculptureMap_OnLoaded"/>
-        
-        <RelativePanel Grid.Column="0" x:Name="filterPanel" Margin="40,40,0,0">
+			ZoomLevel="{Binding zoomLevel, Mode=TwoWay}"
+			Loaded="SculptureMap_OnLoaded"
+            Center="{Binding mapcenter, Mode=TwoWay}">
+            <maps:MapItemsControl>
+                <Ellipse Fill="Black" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}" Visibility="{Binding showLocation, Converter={StaticResource BoolToVis}}"/>
+            </maps:MapItemsControl>
+        </maps:MapControl>
+
+            <RelativePanel Grid.Column="0" x:Name="filterPanel" Margin="40,40,0,0">
             <Button x:Name="FilterButton"
 			        Content="&#xE71C;" 
                     FontFamily="Segoe MDL2 Assets"
