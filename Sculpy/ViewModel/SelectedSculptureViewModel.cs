@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Windows.Devices.Bluetooth.Background;
 using Sculpy.Annotations;
+using Sculpy.Common;
 using Sculpy.Handler;
 using Sculpy.Model;
 
@@ -15,6 +17,8 @@ namespace Sculpy.ViewModel
         public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
 
         public Handler.InspectionHandler InspectionHandler { get; set; }
+
+        public Handler.SculptureHandler SculptureHandler { get; set; }
 
         private Inspection _newInspection;
         
@@ -39,6 +43,8 @@ namespace Sculpy.ViewModel
             }
         }
 
+        public ICommand DeleteCommand { get; set; }
+
 
         public SelectedSculptureViewModel()
         {
@@ -48,8 +54,12 @@ namespace Sculpy.ViewModel
             // Creates an instance of InspectionHandler
             InspectionHandler = new Handler.InspectionHandler(this);
 
+            SculptureHandler = new SculptureHandler();
+
             // Creates an instance of NewInspection
             NewInspection = new Inspection();
+
+            DeleteCommand = new RelayCommand(() => SculptureHandler.DeleteSculpture(PassedSculpture.ID));
 
         }
 

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Sculpy.Annotations;
+using Sculpy.Handler;
 using Sculpy.Model;
 
 namespace Sculpy.ViewModel
@@ -24,7 +25,18 @@ namespace Sculpy.ViewModel
             }
         }
 
-        
+        public SculptureHandler Handler { get; }
+
+
+        public SelectedSculptureEditViewModel()
+        {
+            
+        }
+
+        public SelectedSculptureEditViewModel(SculptureHandler handler)
+        {
+            this.Handler = handler;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

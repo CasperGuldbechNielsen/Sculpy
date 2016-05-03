@@ -21,8 +21,9 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
+            <AppBarButton x:Name="editSculptureButton"
+                          Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture" Click="EditSculptureButton_OnClick"/>
                 <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
                 <AppBarSeparator/>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
@@ -33,7 +34,7 @@
     <Page.DataContext>
         <viewModel:SelectedSculptureViewModel x:Name="ViewModel"/>
     </Page.DataContext>
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
