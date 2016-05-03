@@ -5,18 +5,23 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewModel:SelectedSculptureEditViewModel></viewModel:SelectedSculptureEditViewModel>
+    </Page.DataContext>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="AliceBlue">
-            <Image Width="160" Height="100"></Image>
+        <StackPanel>
+            <Rectangle Width="160" Height="100" Fill="CadetBlue"></Rectangle>
 
-            <ComboBox Header="Placement" >
+            <ComboBox Header="Placement" Background="Aqua">
                 <ComboBoxItem Content="Ground" Tag="Jord"/>
                 <ComboBoxItem Content="Building" Tag="Bygning"/>
                 <ComboBoxItem Content="Facade"/>
@@ -38,6 +43,17 @@
 
         </StackPanel>
 
+        <StackPanel Grid.Column="1">
+            
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}"></TextBox>
+            
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}"></TextBox>
+            
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}"></TextBox>
+            
+            
+        </StackPanel>
+        
 
 
 

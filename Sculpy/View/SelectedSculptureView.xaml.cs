@@ -45,7 +45,7 @@ namespace Sculpy.View
 
         private void EditSculptureButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Frame.Navigate(typeof(SelectedSculptureEditView), ViewModel.PassedSculpture);
         }
     }
 }
