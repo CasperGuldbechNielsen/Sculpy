@@ -7,12 +7,18 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:viewModel="using:Sculpy.ViewModel"
+    xmlns:converter="using:Sculpy.Converter"
     x:Class="Sculpy.View.MapView"
     mc:Ignorable="d">
 
     <Page.DataContext>
         <viewModel:MapViewModel/>
     </Page.DataContext>
+    
+    <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converter:BooleanToVisibilityConverter x:Key="BoolToVis2" />
+    </Page.Resources>
 
 
     <Page.BottomAppBar>
@@ -24,7 +30,7 @@
             <AppBarSeparator/>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
             <CommandBar.Content>
-                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="{Binding mapMessage}"/>
+                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="{Binding mapMessage, Converter={StaticResource BoolToVis}}"/>
             </CommandBar.Content>
         </CommandBar>
     </Page.BottomAppBar>
@@ -42,12 +48,12 @@
 			ZoomInteractionMode="GestureAndControl" 
 			LandmarksVisible="True" 
 			IsRightTapEnabled="true"
-			ZoomLevel="{Binding zoomLevel}"
+			ZoomLevel="{Binding zoomLevel, Mode=TwoWay}"
 			Loaded="SculptureMap_OnLoaded"
-            Center="{Binding mapcenter}">
-                <maps:MapItemsControl ItemsSource="{Binding mapChildren}">
-                    
-                </maps:MapItemsControl>
+            Center="{Binding mapcenter, Mode=TwoWay}">
+            <maps:MapItemsControl>
+                <Ellipse Fill="Black" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}" Visibility="{Binding showLocation, Converter={StaticResource BoolToVis2}}"/>
+            </maps:MapItemsControl>
         </maps:MapControl>
 
             <RelativePanel Grid.Column="0" x:Name="filterPanel" Margin="40,40,0,0">
