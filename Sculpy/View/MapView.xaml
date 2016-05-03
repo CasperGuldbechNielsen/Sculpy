@@ -17,7 +17,6 @@
     
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BoolToVis" />
-        <converter:BooleanToVisibilityConverter x:Key="BoolToVis2" />
     </Page.Resources>
 
 
@@ -52,7 +51,7 @@
 			Loaded="SculptureMap_OnLoaded"
             Center="{Binding mapcenter, Mode=TwoWay}">
             <maps:MapItemsControl>
-                <Ellipse Fill="Black" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}" Visibility="{Binding showLocation, Converter={StaticResource BoolToVis2}}"/>
+                <Ellipse Fill="Black" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}" Visibility="{Binding showLocation, Converter={StaticResource BoolToVis}}"/>
             </maps:MapItemsControl>
         </maps:MapControl>
 
