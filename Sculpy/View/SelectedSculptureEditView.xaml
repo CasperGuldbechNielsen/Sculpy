@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     
     <Page.DataContext>
-        <viewModel:SelectedSculptureEditViewModel></viewModel:SelectedSculptureEditViewModel>
+        <viewModel:SelectedSculptureEditViewModel x:Name="ViewModel"></viewModel:SelectedSculptureEditViewModel>
     </Page.DataContext>
 
     <Grid>
@@ -45,11 +45,14 @@
 
         <StackPanel Grid.Column="1">
             
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}"></TextBox>
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}"
+                     Height="160" Width="500"></TextBox>
             
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}"></TextBox>
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}"
+                     Height="160" Width="500"></TextBox>
             
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}"></TextBox>
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}"
+                     Height="700" Width="500"></TextBox>
             
             
         </StackPanel>
