@@ -13,7 +13,7 @@ using WebService;
 namespace WebService.Controllers
 {
     public class MaterialsController : ApiController
-    {
+    { 
         private SculptureContext db = new SculptureContext();
 
         // GET: api/Materials
