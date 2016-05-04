@@ -1,4 +1,6 @@
-﻿using Windows.Foundation;
+﻿using System;
+using Windows.Devices.Geolocation;
+using Windows.Foundation;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Sculpy.ViewModel;
@@ -7,8 +9,6 @@ namespace Sculpy.Handler
 {
     public class MapHandler
     {
-        MarkerHandler MarkerHandler = new MarkerHandler();
-
         MapViewModel mapViewModel { get; set; }
 
         public MapHandler(MapViewModel mapViewModel)
@@ -17,16 +17,23 @@ namespace Sculpy.Handler
         }
         public async void CurrentLocation()
         {
-            mapViewModel.mapMessage = true;
-            Windows.Devices.Geolocation.Geopoint position = await MarkerHandler.Position();
-            DependencyObject marker = MarkerHandler.Marker();
-            mapViewModel.MyLocation = position;
-            mapViewModel.showLocation = true;
-            Windows.UI.Xaml.Controls.Maps.MapControl.SetLocation(marker, position);
-            Windows.UI.Xaml.Controls.Maps.MapControl.SetNormalizedAnchorPoint(marker, new Point(0.5, 0.5));
-            mapViewModel.zoomLevel = 17;
-            mapViewModel.mapcenter = position;
-            mapViewModel.mapMessage = false;
+            try
+            {
+                mapViewModel.mapMessage = true;
+                var position = (await new Geolocator().GetGeopositionAsync()).Coordinate.Point;
+                mapViewModel.MyLocation = position;
+                mapViewModel.showLocation = true;
+                mapViewModel.zoomLevel = 17;
+                mapViewModel.mapcenter = position;
+                mapViewModel.mapMessage = false;
+            }
+            catch (Exception e)
+            {
+                MessageDialog ErrorMessage = new MessageDialog("There is no connection to the location service.");
+                ErrorMessage.ShowAsync();
+                mapViewModel.mapMessage = false;
+            }
+            
         }
 
     }
