@@ -184,9 +184,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InspectionsController.cs" />
-    <Compile Include="Controllers\MaterialsController.cs" />
+    <Compile Include="Controllers\SculptureMaterialController.cs" />
     <Compile Include="Controllers\SculpturesController.cs" />
-    <Compile Include="Controllers\Sculpture_Type_LinkingController.cs" />
+    <Compile Include="Controllers\SculptureTypesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="Global.asax.cs">
@@ -236,6 +236,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\SculpyWebAPI - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

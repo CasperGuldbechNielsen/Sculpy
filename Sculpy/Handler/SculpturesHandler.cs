@@ -33,7 +33,16 @@ namespace Sculpy.Handler
 
         public static void FilterCollectionByType(string criteria)
         {
-            // need to add the def
+            var filteredCollection =
+                CatalogSingleton.Sculptures.Where(x => x.SculptureTypes.Contains(criteria)).ToList();
+
+            CatalogSingleton.Sculptures.Clear();
+
+            foreach (var sculpture in filteredCollection)
+            {
+                CatalogSingleton.Sculptures.Add(sculpture);
+            }
+
         }
 
         public static void SortCollection(string criteria)

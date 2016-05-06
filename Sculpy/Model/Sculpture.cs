@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sculpy.Model
 {
@@ -15,6 +16,11 @@ namespace Sculpy.Model
         public string Sculpture_Inspection_Frequency { get; set; }
         public string Sculpture_Picture { get; set; }
 
+        public List<string> SculptureTypes { get; set; }
+
+        public List<Material> SculptureMaterials { get; set; } 
+
+
         public Sculpture(int ID, string Sculpture_Name, string Sculpture_Placement, string Sculpture_Address,
             string Sculpture_Description, string Sculpture_Inspection_Frequency, string Sculpture_Picture)
         {
@@ -26,6 +32,7 @@ namespace Sculpy.Model
             this.Sculpture_Inspection_Frequency = Sculpture_Inspection_Frequency;
             this.Sculpture_Picture = Sculpture_Picture;
         }
+
         public Sculpture()
         {
             
@@ -37,9 +44,8 @@ namespace Sculpy.Model
         /// <returns>A string with the properties of a sculpture.</returns>
         public override string ToString()
         {
-            return string.Format("Id: {0}\nName: {1}\nAddress: {2}\nDescription: {3}\nPlacement: {4}\nInspection Frequency: {5}\nPicture: {6}", 
-            ID, Sculpture_Name, Sculpture_Address, Sculpture_Description, 
-            Sculpture_Placement, Sculpture_Inspection_Frequency, Sculpture_Picture);
+            return
+                $"Id: {ID}\nName: {Sculpture_Name}\nAddress: {Sculpture_Address}\nDescription: {Sculpture_Description}\nPlacement: {Sculpture_Placement}\nInspection Frequency: {Sculpture_Inspection_Frequency}\nPicture: {Sculpture_Picture}";
         }
     }
 }

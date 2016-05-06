@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Sculpy.Persistancy;
@@ -33,6 +34,12 @@ namespace Sculpy.Model
             //};
 
             Sculptures = await new PersistenceFacade().GetAllSculptures();
+            // Here we get all the types and materials for each sculpture and store them in two separate collections.
+            foreach (var sculpture in Sculptures)
+            {
+                sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
+                //sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
+            }
 
         }
     }
