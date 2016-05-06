@@ -50,7 +50,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="addSculptureButton" Label="Add sculpture"/>
+                <AppBarButton x:Name="addSculptureButton" Label="Add sculpture" Click="AddSculptureButton_OnClick"/>
                 <AppBarSeparator/>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
@@ -150,11 +150,11 @@
                     <ComboBoxItem Content="Facade"/>
                 </ComboBox>
                 <TextBlock Text="Type:" Style="{StaticResource TextBlockStyle}" Margin="0,20,0,10"/>
-                <ComboBox PlaceholderText="choose placement" Width="170" SelectedItem="{Binding PlacementFilter, Mode=TwoWay}">
-                    <ComboBoxItem Content="Sculpture"/>
-                    <ComboBoxItem Content="Base"/>
-                    <ComboBoxItem Content="Fountain"/>
-                    <ComboBoxItem Content="Relief"/>
+                <ComboBox PlaceholderText="choose placement" Width="170" SelectedItem="{Binding TypeFilter, Mode=TwoWay}">
+                    <ComboBoxItem Content="Sculpture" Tag="Skulptur"/>
+                    <ComboBoxItem Content="Base" Tag="Sokkel"/>
+                    <ComboBoxItem Content="Fountain" Tag="Vandkunst"/>
+                    <ComboBoxItem Content="Relief" Tag="Relief"/>
                 </ComboBox>
             </StackPanel>
         </StackPanel>

@@ -55,7 +55,7 @@ namespace Sculpy.ViewModel
             set
             {
                 _typeFilter = value?.Tag?.ToString();
-                SculpturesHandler.FilterCollectionByPlacement(_typeFilter);
+                SculpturesHandler.FilterCollectionByType(_typeFilter);
             }
         }
 

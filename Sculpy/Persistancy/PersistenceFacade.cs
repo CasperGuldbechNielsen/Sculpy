@@ -84,7 +84,7 @@ namespace Sculpy.Persistancy
             }
         }
 
-        public async Task<List<Inspection>> GetSculpturesTypesLinkingAsync(int sculptureId)
+        public async Task<List<string>> GetSculptureTypesAsync(int sculptureId)
         {
             using (var client = new HttpClient(handler))
             {
@@ -94,13 +94,41 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = client.GetAsync($"api/Sculpture_Type_Linking").Result;
+                    var response = client.GetAsync($"api/SculptureTypes/{sculptureId}").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var inspectionList = await response.Content.ReadAsAsync<IEnumerable<Inspection>>();
+                        var typesList = await response.Content.ReadAsAsync<IEnumerable<string>>();
 
-                        return inspectionList.ToList();
+                        return typesList.ToList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+                return null;
+            }
+        }
+
+        public async Task<List<Material>> GetSculptureMaterialsAsync(int sculptureId)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync($"api/SculptureMaterials/{sculptureId}").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var materialList = await response.Content.ReadAsAsync<IEnumerable<Material>>();
+
+                        return materialList.ToList();
                     }
                 }
                 catch (Exception ex)

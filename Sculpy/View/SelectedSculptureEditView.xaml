@@ -5,44 +5,111 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModel:SelectedSculptureEditViewModel x:Name="ViewModel"></viewModel:SelectedSculptureEditViewModel>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="TextBox" x:Name="TextBoxStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Width" Value="700"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Name="CheckBoxStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Width" Value="80"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Accept" Name="AcceptButton" Click="AcceptButton_OnClick"/>
+            <AppBarButton Icon="Cancel" Name="CancelButton" Click="CancelButton_OnClick"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            
+            
         </Grid.ColumnDefinitions>
 
-        <StackPanel Background="AliceBlue">
-            <Image Width="160" Height="100"></Image>
+        <StackPanel Width="280" Grid.Column="0">
+            <Rectangle Width="240" Height="170" Fill="CadetBlue" HorizontalAlignment="Center"
+                       ></Rectangle>
 
-            <ComboBox Header="Placement" >
+            <ComboBox Header="Placement" HorizontalAlignment="Center"
+                      PlaceholderText="choose placement"
+                      Width="240" Margin="0,20,0,20">
                 <ComboBoxItem Content="Ground" Tag="Jord"/>
                 <ComboBoxItem Content="Building" Tag="Bygning"/>
-                <ComboBoxItem Content="Facade"/>
+                <ComboBoxItem Content="Facade" Tag="Facade"/>
             </ComboBox>
-            <ComboBox Header="Material" ></ComboBox>
-            <ComboBox></ComboBox>
-            <ComboBox></ComboBox>
+            <ComboBox Header="Materials" HorizontalAlignment="Center" PlaceholderText="choose metal"
+                      Width="240">
+                <ComboBoxItem Content="Bronze" Tag="Bronze"/>
+                <ComboBoxItem Content="Cortenstål" Tag="Cortenstål"/>
+                <ComboBoxItem Content="Painted steel" Tag="Bemaletstån"/>
+                <ComboBoxItem Content="Aluminium" Tag="Aluminum"/>
+                <ComboBoxItem Content="Iron" Tag="Jern"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox HorizontalAlignment="Center" PlaceholderText="choose stone"
+                      Width="240" Margin="0,20,0,20">
+                <ComboBoxItem Content="Granite" Tag="Granit"/>
+                <ComboBoxItem Content="Sandstone" Tag="Sandsten"/>
+                <ComboBoxItem Content="Chalkstone" Tag="Kalksten"/>
+                <ComboBoxItem Content="Marmor" Tag="Marble"/>
+                <ComboBoxItem Content="Other" Tag="Andet"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox HorizontalAlignment="Center" PlaceholderText="others"
+                      Width="240">
+                <ComboBoxItem Content="Wood" Tag="Træ"></ComboBoxItem>
+                <ComboBoxItem Content="Other" Tag="Andet" />
+            </ComboBox>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <TextBlock Text="Type" FontSize="16" FontWeight="ExtraLight"></TextBlock>
+                <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <CheckBox Content="Sculpture"></CheckBox>
-                    <CheckBox Content="Base"></CheckBox>
+                    <CheckBox Content="Sculpture" Style="{StaticResource CheckBoxStyle}"></CheckBox>
+                    <CheckBox Content="Base" Style="{StaticResource CheckBoxStyle}"></CheckBox>
                 </StackPanel>
                 <StackPanel>
-                    <CheckBox Content="Relief"></CheckBox>
-                    <CheckBox Content="Fountain"></CheckBox>
+                    <CheckBox Content="Relief" Style="{StaticResource CheckBoxStyle}"></CheckBox>
+                    <CheckBox Content="Fountain" Style="{StaticResource CheckBoxStyle}"></CheckBox>
+                </StackPanel>
                 </StackPanel>
             </StackPanel>
 
         </StackPanel>
 
+        <StackPanel Grid.Column="1">
 
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}"
+                     Style="{StaticResource TextBoxStyle}"
+                     FontSize="32"
+                     ></TextBox>
 
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}"
+                     Style="{StaticResource TextBoxStyle}"
+                     FontSize="32"
+                     ></TextBox>
 
-
-
-
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}"
+                     Style="{StaticResource TextBoxStyle}"
+                     Height="300"></TextBox>
+        </StackPanel>
     </Grid>
 </Page>
+

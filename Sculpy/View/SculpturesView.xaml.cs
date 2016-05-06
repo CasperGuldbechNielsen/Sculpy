@@ -62,5 +62,11 @@ namespace Sculpy.View
         {
             Frame.Navigate(typeof(SettingsView));
         }
+
+        private void AddSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var sculpture = new Sculpture();
+            Frame.Navigate(typeof (SelectedSculptureEditView), sculpture);
+        }
     }
 }

@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Model;
+using Sculpy.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +27,24 @@ namespace Sculpy.View
         public SelectedSculptureEditView()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var sculpture = e.Parameter;
+            ViewModel.PassedSculpture = (Sculpture)sculpture;
+        }
+
+        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO call the Post api for sculpture. 
+            // Persistancy.PersistenceFacade.UpdateSculpture();
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
     }
 }

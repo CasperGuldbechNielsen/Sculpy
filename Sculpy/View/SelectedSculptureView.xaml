@@ -21,8 +21,9 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
+            <AppBarButton x:Name="editSculptureButton"
+                          Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="editSculptureButton" Label="Edit sculpture" Click="EditSculptureButton_OnClick"/>
                 <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
                 <AppBarSeparator/>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
@@ -33,7 +34,7 @@
     <Page.DataContext>
         <viewModel:SelectedSculptureViewModel x:Name="ViewModel"/>
     </Page.DataContext>
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -47,11 +48,11 @@
             <TextBlock Name="Placement" Text="{Binding PassedSculpture.Sculpture_Placement}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Stone" Text=" Marble" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
+            <TextBlock Name="Stone" Text="{Binding PassedSculpture.SculptureMaterials.Count}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
             <TextBlock Name="MetalHeader" Text="Metal:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="StoneHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
             <TextBlock Name="Metal" Text=" Bronze" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  FontSize="18" RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
             <TextBlock Name="TypeHeader" Text="Type:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Metal" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Type" Text="Sculpture" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
+            <TextBlock Name="Type" Text="{Binding PassedSculpture.SculptureTypes.Count,Mode=TwoWay}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
         </RelativePanel>
 
         <RelativePanel Name="CenterContent" Grid.Column="1" Padding="40,40">
