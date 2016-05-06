@@ -37,8 +37,13 @@ namespace Sculpy.Model
             // Here we get all the types and materials for each sculpture and store them in two separate collections.
             foreach (var sculpture in Sculptures)
             {
-                sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
-                //sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
+                if (sculpture.ID < 15)
+                {
+                    sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
+                    sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
+                }
+                
+
             }
 
         }
