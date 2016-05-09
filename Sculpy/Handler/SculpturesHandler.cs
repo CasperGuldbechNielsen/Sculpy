@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Sculpy.Model;
+using Sculpy.View;
 using Sculpy.ViewModel;
 using static Sculpy.ViewModel.SculpturesViewModel;
 using SculptureCatalogSingleton = Sculpy.Model.SculptureCatalogSingleton;
@@ -32,7 +33,7 @@ namespace Sculpy.Handler
 
         public static void FilterCollectionByType(string criteria)
         {
-            
+            // need to add the def
         }
 
         public static void SortCollection(string criteria)

@@ -6,8 +6,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Sculpy.Annotations;
+using Sculpy.Common;
 using Sculpy.Handler;
 using Sculpy.Model;
 using Sculpy.View;
@@ -23,8 +25,11 @@ namespace Sculpy.ViewModel
             SculptureCatalogSingleton = SculptureCatalogSingleton.Instance;
         }
 
-        private ListViewItem _selectedSculpture;
-        public ListViewItem SelectedSculpture
+        
+     
+
+        private Sculpture _selectedSculpture;
+        public Sculpture SelectedSculpture
         {
             get { return _selectedSculpture; }
             set
