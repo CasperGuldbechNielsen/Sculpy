@@ -88,15 +88,12 @@
 
             </TextBox>
 
-            <RelativePanel>
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="&#xE722;" 
                            FontFamily="Segoe MDL2 Assets"
-                           RelativePanel.LeftOf="ManagePicturesStackPanel"/>
-                
-                <StackPanel Name="ManagePicturesStackPanel"
-                        Style="{StaticResource StackPanelStyle}"
-                        Orientation="Horizontal"
-                        Height="100">
+                           FontSize="50"
+                           RelativePanel.LeftOf="ManagePicturesStackPanel"
+                           />
                 
                 <ListView Name="InspectionPicturesListView"
                           ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" Width="829" Height="70" Margin="10,0">
@@ -108,8 +105,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            
             </StackPanel>
-            </RelativePanel>
         </StackPanel>
 
         <RelativePanel Grid.Column="1">

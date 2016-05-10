@@ -26,18 +26,7 @@ namespace Sculpy.ViewModel
 
         public ICommand CreateCommand { get; set; }
 
-        //private Inspection _newInspection;
-
-        //public Inspection NewInspection
-        //{
-        //    get { return _newInspection;}
-        //    set
-        //    {
-        //        _newInspection = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
+        
         private Inspection _selectedInspection;
 
         public Inspection SelectedInspection
@@ -55,12 +44,8 @@ namespace Sculpy.ViewModel
         {
             InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
 
-            
-
             //In the InspectionHandler why are we passing the SelectedSculptureViewModel?
             InspectionHandler = new InspectionHandler(SelectedSculptureViewModel);
-
-            //NewInspection = new Inspection();
             
             DeleteCommand = new RelayCommand(() => InspectionHandler.DeleteInspection(SelectedInspection.ID));
             CreateCommand = new RelayCommand(() => InspectionHandler.CreateInspection());
