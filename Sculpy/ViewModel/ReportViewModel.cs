@@ -1,19 +1,28 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Sculpy.Annotations;
+using Sculpy.Common;
 using Sculpy.Handler;
 using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
-    class ReportViewModel : INotifyPropertyChanged
+    public class ReportViewModel : INotifyPropertyChanged
     {
         public InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
+        public Handler.ReportHandler ReportHandler { get; set; }
+
+        public ICommand DrawReportCommand { get; set; }
 
         public ReportViewModel()
         {
+            ReportHandler = new ReportHandler(this);
             inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
+            inspectionCatalogSingleton.LoadAllSculptures();
+            DrawReportCommand = new RelayCommand(ReportHandler.DrawReport);
         }
 
         private string _periodFilter;
@@ -22,7 +31,7 @@ namespace Sculpy.ViewModel
             set
             {
                 _periodFilter = value?.Tag?.ToString();
-                ReportHandler.FilterCollectionByPeriod(_periodFilter);
+                ReportHandler.FilterCollectionByPeriod(int.Parse(_periodFilter));
             }
         }
 

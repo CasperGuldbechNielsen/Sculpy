@@ -99,8 +99,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter .cs" />
     <Compile Include="Handler\InspectionHandler.cs" />
     <Compile Include="Handler\MapHandler.cs" />
+    <Compile Include="Handler\MarkerHandler.cs" />
     <Compile Include="Handler\ReportHandler.cs" />
     <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Handler\SculpturesHandler.cs" />
@@ -108,6 +110,8 @@
     <Compile Include="Model\InspectionCatalogSingleton.cs" />
     <Compile Include="Model\SculptureCatalogSingleton.cs" />
     <Compile Include="Model\Sculpture.cs" />
+    <Compile Include="Model\Sculpture_Type.cs" />
+    <Compile Include="Model\Sculpture_Type_Linking.cs" />
     <Compile Include="Persistancy\PersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,8 +135,14 @@
     <Compile Include="View\SculpturesView.xaml.cs">
       <DependentUpon>SculpturesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectedSculptureEditView.xaml.cs">
+      <DependentUpon>SelectedSculptureEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SelectedSculptureView.xaml.cs">
       <DependentUpon>SelectedSculptureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +188,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SelectedSculptureEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SelectedSculptureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup />
