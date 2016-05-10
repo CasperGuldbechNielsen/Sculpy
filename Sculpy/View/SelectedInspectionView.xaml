@@ -5,11 +5,25 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
 
+    <Page.DataContext>
+        <viewModel:SelectedInspectionViewModel x:Name="SelectedInspectionViewModel"/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Name="TextBlockStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Page.Resources>
     
     
-    
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     </Grid>
