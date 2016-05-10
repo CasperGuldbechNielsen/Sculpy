@@ -139,5 +139,32 @@ namespace Sculpy.Persistancy
                 return null;
             }
         }
+
+        public async Task<ObservableCollection<Inspection>> GetAllInspections()
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync("api/Inspections").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var inspectionList = await response.Content.ReadAsAsync<ObservableCollection<Inspection>>();
+                        return inspectionList;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
     }
 }

@@ -103,6 +103,7 @@
     <Compile Include="Handler\InspectionHandler.cs" />
     <Compile Include="Handler\MapHandler.cs" />
     <Compile Include="Handler\MarkerHandler.cs" />
+    <Compile Include="Handler\ReportHandler.cs" />
     <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Handler\SculpturesHandler.cs" />
     <Compile Include="Model\Inspection.cs" />
@@ -196,8 +197,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingsView.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup />

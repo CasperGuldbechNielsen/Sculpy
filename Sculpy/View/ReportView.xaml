@@ -62,7 +62,8 @@
                                        Style="{StaticResource TextBlockStyle}" />
                             <TextBlock Grid.Column="0" 
                                        Grid.Row="1" 
-                                       Text="{Binding Title}" 
+                                       Text="{Binding Inspection_Note}" 
+                                       TextWrapping="Wrap"
                                        Style="{StaticResource TextBlockStyle}"
                                        Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" 
                                        FontSize="16" 
@@ -71,6 +72,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button x:Name="DrawReport"
+                    Content="Draw report"
+                    Margin="0,0,10,10"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True" Command="{Binding DrawReportCommand}"/>
         </RelativePanel>
         <RelativePanel Grid.Column="0"
                        Margin="40,40,0,0">
@@ -89,25 +95,47 @@
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="FilterHeader"
-                      Margin="0,50,0,0"/>
+                      Margin="0,50,0,0"
+                      SelectedItem="{Binding PeriodFilter, Mode=TwoWay}">
+                <ComboBoxItem Content="1 day" Tag="1"/>
+                <ComboBoxItem Content="1 week" Tag="7"/>
+                <ComboBoxItem Content="1 Month" Tag="30"/>
+                <ComboBoxItem Content="1 Year" Tag="365"/>
+            </ComboBox>
             <ComboBox x:Name="Damage"
                       Header="Damage"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="Period"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding DamageFilter, Mode=TwoWay}">
+                <ComboBoxItem Content="Graffitti" Tag="Graffitti" />
+                <ComboBoxItem Content="Environmental" Tag="Miljømæssige" />
+                <ComboBoxItem Content="Vandalism" Tag="Hærværk" />
+                <ComboBoxItem Content="Crack" Tag="Rævne" />
+            </ComboBox>
             <ComboBox x:Name="SuggestedTreatment"
                       Header="Suggested Treatment"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="Damage"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding SuggestedTreatmentFilter, Mode=TwoWay}">
+                <ComboBoxItem Content="Repair" Tag="Reperation" />
+                <ComboBoxItem Content="Wash" Tag="Vask" />
+            </ComboBox>
             <ComboBox x:Name="TreatmentFrequency"
                       Header="Treatment Frequency"
                       Width="250"
                       PlaceholderText="Select from list"
                       RelativePanel.Below="SuggestedTreatment"
-                      Margin="0,20,0,0"/>
+                      Margin="0,20,0,0"
+                      SelectedItem="{Binding TreatmentFrequencyFilter, Mode=TwoWay}">
+                <ComboBoxItem Content="Every year" Tag="Hvert år" />
+                <ComboBoxItem Content="Every 2nd year" Tag="Hvert andet år" />
+                <ComboBoxItem Content="Every 5th year" Tag="Hvert 5 år" />
+                <ComboBoxItem Content="Every 10th year" Tag="Hvert 10 år" />
+            </ComboBox>
         </RelativePanel>
     </Grid>
 </Page>
