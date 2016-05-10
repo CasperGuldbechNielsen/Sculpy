@@ -14,11 +14,11 @@
 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Name="TextBlockStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
-            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="Button" x:Name="ButtonStyle">
             <Setter Property="FontSize" Value="40"/>
@@ -29,32 +29,69 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="StackPanel" x:Name="StackPanelStyle">
-            <Setter Property="Background" Value="#FF2B2B2B"/>
+            <Setter Property="Background" Value="Black"/>
             <Setter Property="Visibility" Value="Visible"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
-            <Setter Property="Height" Value="400"/>
+            <!--<Setter Property="Height" Value="400"/>-->
         </Style>
         <Style TargetType="TextBox" x:Name="TextBoxStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
-            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
-            <Setter Property="FontSize" Value="21"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Width" Value="700"></Setter>
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="21"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FF2B2B2B"/>
+            <Setter Property="Width" Value="700"/>
         </Style>
         <Style TargetType="CheckBox" x:Name="CheckBoxStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
-            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="Width" Value="80"></Setter>
+            <Setter Property="FontFamily" Value="Calibri Light"/>
+            <Setter Property="FontWeight" Value="ExtraLight"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="80"/>
         </Style>
     </Page.Resources>
 
 
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Name="InspectionDetailsStackPanel"
+                    Style="{StaticResource StackPanelStyle}"
+                    Orientation="Vertical">
+            <TextBox Name="InspectionTitleTextBox"
+                     Style="{StaticResource TextBoxStyle}"
+                     Height="70">
+                
+            </TextBox>
+            <TextBox Name="InspectionNotesTextBox"
+                     Style="{StaticResource TextBoxStyle}"
+                     Height="500">
+                
+            </TextBox>
+            
+            <StackPanel Name="ManagePicturesStackPanel"
+                        Style="{StaticResource StackPanelStyle}"
+                        Orientation="Horizontal">
+                <ListView Name="InspectionPicturesListView"
+                          ItemsSource="{Binding InspectionCatalogSingleton.Inspections}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Damage_Picture}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
