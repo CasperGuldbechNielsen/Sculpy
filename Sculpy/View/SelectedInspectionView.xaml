@@ -54,7 +54,7 @@
     </Page.Resources>
 
 
-    
+
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -62,36 +62,110 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Name="InspectionDetailsStackPanel"
+
+        <StackPanel Name="InspectionDetailsStackPanel" 
+                    Grid.Column="0"
                     Style="{StaticResource StackPanelStyle}"
                     Orientation="Vertical">
             <TextBox Name="InspectionTitleTextBox"
                      Style="{StaticResource TextBoxStyle}"
-                     Height="70">
-                
+                     Height="70"
+                     Text="{Binding SelectedInspection.Title, Mode=TwoWay}">
+
             </TextBox>
             <TextBox Name="InspectionNotesTextBox"
                      Style="{StaticResource TextBoxStyle}"
-                     Height="500">
-                
+                     Height="500"
+                     Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}">
+
             </TextBox>
-            
+
             <StackPanel Name="ManagePicturesStackPanel"
                         Style="{StaticResource StackPanelStyle}"
-                        Orientation="Horizontal">
+                        Orientation="Horizontal"
+                        Height="100">
                 <ListView Name="InspectionPicturesListView"
                           ItemsSource="{Binding InspectionCatalogSingleton.Inspections}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Damage_Picture}"/>
+                                <TextBlock Text="{Binding Damage_Picture, Mode=TwoWay}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    
                 </ListView>
             </StackPanel>
         </StackPanel>
+
+        <RelativePanel Grid.Column="1">
+            <StackPanel Name="InspectionPropertyStackPanel"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    Style="{StaticResource StackPanelStyle}"
+                    Orientation="Vertical">
+                <RelativePanel>
+                    <TextBlock Name="DatePickerTextBlock"
+                           Text="Date">
+
+                    </TextBlock>
+                    <DatePicker RelativePanel.Below="DatePickerTextBlock">
+
+                    </DatePicker>
+                </RelativePanel>
+                <RelativePanel>
+                    <TextBlock Name="ChooseDamageTextBlock"
+                           Text="Damage">
+
+                    </TextBlock>
+                    <ComboBox RelativePanel.Below="ChooseDamageTextBlock"
+                          PlaceholderText="Select from list"
+                          Name="DamageComboBox">
+                        <ComboBoxItem Content="None"/>
+                        <ComboBoxItem Content="Biological growth"/>
+                        <ComboBoxItem Content="Weathering"/>
+                        <ComboBoxItem Content="Construction damage"/>
+                        <ComboBoxItem Content="Defective joints"/>
+                        <ComboBoxItem Content="Discoloration"/>
+                        <ComboBoxItem Content="Cracks"/>
+                        <ComboBoxItem Content="Lost parts"/>
+                        <ComboBoxItem Content="Other"/>
+
+                    </ComboBox>
+                    <TextBlock Name="ChooseTreatmentTypeTextBlock"
+                           Text="Treatment"
+                           RelativePanel.Below="DamageComboBox">
+
+                    </TextBlock>
+                    <ComboBox RelativePanel.Below="ChooseTreatmentTypeTextBlock"
+                            PlaceholderText="Select from list"
+                            Name="TreatmentCombobox">
+                        <ComboBoxItem Content="None"/>
+                        <ComboBoxItem Content="Wash"/>
+                        <ComboBoxItem Content="Waxing"/>
+                        <ComboBoxItem Content="Rebuild"/>
+                        <ComboBoxItem Content="Other"/>
+
+                    </ComboBox>
+                    <TextBlock Name="ChooseTreatmentFrequencyTextBlock"
+                           Text="Treatment frequency"
+                           RelativePanel.Below="TreatmentCombobox">
+
+                    </TextBlock>
+                    <ComboBox RelativePanel.Below="ChooseTreatmentFrequencyTextBlock"
+                              PlaceholderText="Select from list"
+                              Name="TreatmentFrequencyCombobox">
+                        <ComboBoxItem Content="None"/>
+                        <ComboBoxItem Content="Immediately"/>
+                        <ComboBoxItem Content="Look after in 10 years"/>
+                        <ComboBoxItem Content="Treatment plan"/>
+                        <ComboBoxItem Content="Other"/>
+                                
+                    </ComboBox>
+
+                </RelativePanel>
+
+
+            </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>
