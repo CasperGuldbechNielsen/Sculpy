@@ -39,7 +39,7 @@ namespace Sculpy.Handler
         }
 
         //TODO Not finished as we need to decide if we will have a SelectedInspection property in InspectionViewModel
-        public void DeleteInspection()
+        public void DeleteInspection(int id)
         {
             //new PersistenceFacade().RemoveInspection(InspectionViewModel.SelectedInspection);
 
