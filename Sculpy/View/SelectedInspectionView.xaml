@@ -52,6 +52,15 @@
             <Setter Property="Width" Value="80"/>
         </Style>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Accept" Label="Save" Command="{Binding CreateCommand}"/>
+            <AppBarButton Icon="Cancel" Label="Delete" Command="{Binding DeleteCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
 
 
@@ -85,7 +94,7 @@
                         Orientation="Horizontal"
                         Height="100">
                 <ListView Name="InspectionPicturesListView"
-                          ItemsSource="{Binding InspectionCatalogSingleton.Inspections}">
+                          ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" Width="829" Margin="10,0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -108,7 +117,7 @@
                            Text="Date">
 
                     </TextBlock>
-                    <DatePicker RelativePanel.Below="DatePickerTextBlock">
+                    <DatePicker RelativePanel.Below="DatePickerTextBlock" Margin="0,0,0,20">
 
                     </DatePicker>
                 </RelativePanel>
@@ -119,7 +128,7 @@
                     </TextBlock>
                     <ComboBox RelativePanel.Below="ChooseDamageTextBlock"
                           PlaceholderText="Select from list"
-                          Name="DamageComboBox">
+                          Name="DamageComboBox" Margin="0,0,-144,20" Width="286">
                         <ComboBoxItem Content="None"/>
                         <ComboBoxItem Content="Biological growth"/>
                         <ComboBoxItem Content="Weathering"/>
@@ -138,7 +147,7 @@
                     </TextBlock>
                     <ComboBox RelativePanel.Below="ChooseTreatmentTypeTextBlock"
                             PlaceholderText="Select from list"
-                            Name="TreatmentCombobox">
+                            Name="TreatmentCombobox" Margin="0,0,-144,20" Width="286">
                         <ComboBoxItem Content="None"/>
                         <ComboBoxItem Content="Wash"/>
                         <ComboBoxItem Content="Waxing"/>
@@ -153,7 +162,7 @@
                     </TextBlock>
                     <ComboBox RelativePanel.Below="ChooseTreatmentFrequencyTextBlock"
                               PlaceholderText="Select from list"
-                              Name="TreatmentFrequencyCombobox">
+                              Name="TreatmentFrequencyCombobox" Margin="0,0,-144,0" Width="286">
                         <ComboBoxItem Content="None"/>
                         <ComboBoxItem Content="Immediately"/>
                         <ComboBoxItem Content="Look after in 10 years"/>
