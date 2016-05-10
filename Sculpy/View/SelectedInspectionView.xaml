@@ -20,9 +20,39 @@
             <Setter Property="Margin" Value="10"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+        <Style TargetType="Button" x:Name="ButtonStyle">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="IsHoldingEnabled" Value="False"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Name="StackPanelStyle">
+            <Setter Property="Background" Value="#FF2B2B2B"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
+            <Setter Property="Height" Value="400"/>
+        </Style>
+        <Style TargetType="TextBox" x:Name="TextBoxStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Width" Value="700"></Setter>
+        </Style>
+        <Style TargetType="CheckBox" x:Name="CheckBoxStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Width" Value="80"></Setter>
+        </Style>
     </Page.Resources>
-    
-    
+
+
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
