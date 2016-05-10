@@ -14,7 +14,7 @@ using SculptureCatalogSingleton = Sculpy.Model.SculptureCatalogSingleton;
 namespace Sculpy.Handler
 {
     public class SculpturesHandler
-    { 
+    {
         private static SculptureCatalogSingleton CatalogSingleton { get; } = SculptureCatalogSingleton.Instance;
 
 
@@ -33,7 +33,17 @@ namespace Sculpy.Handler
 
         public static void FilterCollectionByType(string criteria)
         {
-            // need to add the def
+            var filteredCollection = CatalogSingleton.Sculptures
+                .Where(sculpture => sculpture.ID < 15)
+                .Where(sculpture => sculpture.SculptureTypes.Any(sculptureType => sculptureType == criteria)).ToList();
+
+            CatalogSingleton.Sculptures.Clear();
+
+            foreach (var sculpture in filteredCollection)
+            {
+                CatalogSingleton.Sculptures.Add(sculpture);
+            }
+
         }
 
         public static void SortCollection(string criteria)

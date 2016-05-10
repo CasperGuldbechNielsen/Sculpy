@@ -108,14 +108,14 @@
     <Compile Include="Handler\SculpturesHandler.cs" />
     <Compile Include="Model\Inspection.cs" />
     <Compile Include="Model\InspectionCatalogSingleton.cs" />
+    <Compile Include="Model\Material.cs" />
     <Compile Include="Model\SculptureCatalogSingleton.cs" />
     <Compile Include="Model\Sculpture.cs" />
-    <Compile Include="Model\Sculpture_Type.cs" />
-    <Compile Include="Model\Sculpture_Type_Linking.cs" />
     <Compile Include="Persistancy\PersistenceFacade.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
+    <Compile Include="ViewModel\SelectedSculptureEditViewModel.cs" />
     <Compile Include="ViewModel\SelectedSculptureViewModel.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
