@@ -50,7 +50,7 @@ namespace Sculpy.View
 
         private void InspectionListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Frame.Navigate(typeof (SelectedInspectionPage), ViewModel.PassedInspection);
+            Frame.Navigate(typeof (SelectedInspectionView), ViewModel.PassedInspection);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace Sculpy.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SelectedInspectionPage : Page
+    public sealed partial class SelectedInspectionView : Page
     {
-        public SelectedInspectionPage()
+        public SelectedInspectionView()
         {
             this.InitializeComponent();
         }
