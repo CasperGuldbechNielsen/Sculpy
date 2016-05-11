@@ -144,7 +144,7 @@
                             Style="{StaticResource TextBlockStyle}"/>
                     <TextBlock 
                             Name="TreatmentFrequencyTextBlock"
-                            Text="Treatment frequency"
+                            Text="Treatment plan"
                             RelativePanel.Below="SelectedInspectionTreatmentTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
                     
