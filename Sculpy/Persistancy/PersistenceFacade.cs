@@ -66,8 +66,8 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = client.GetAsync($"api/Inspections?$filter={nameof(Sculpture.ID)} eq {sculptureId}").Result;
-                 
+                    var response = client.GetAsync($"api/Inspections?$filter=Sculpture_ID eq {sculptureId}").Result;
+
                     if (response.IsSuccessStatusCode)
                     {
                         var inspectionList = await response.Content.ReadAsAsync<IEnumerable<Inspection>>();

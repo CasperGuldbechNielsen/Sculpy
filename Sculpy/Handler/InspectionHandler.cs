@@ -19,12 +19,12 @@ namespace Sculpy.Handler
         /// </summary>
         public void CreateInspection()
         {
-            Inspection inspection = new Inspection();
-            inspection.ID = InspectionViewModel.NewInspection.ID;
-            inspection.Inspection_Date = InspectionViewModel.NewInspection.Inspection_Date;
-            inspection.Inspection_Note = InspectionViewModel.NewInspection.Inspection_Note;
-            inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
-            inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
+            //Inspection inspection = new Inspection();
+            //inspection.ID = InspectionViewModel.NewInspection.ID;
+            //inspection.Inspection_Date = InspectionViewModel.NewInspection.Inspection_Date;
+            //inspection.Inspection_Note = InspectionViewModel.NewInspection.Inspection_Note;
+            //inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
+            //inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
 
             //new PersistenceFacade().SaveInspection(inspection);
 
@@ -39,7 +39,7 @@ namespace Sculpy.Handler
         }
 
         //TODO Not finished as we need to decide if we will have a SelectedInspection property in InspectionViewModel
-        public void DeleteInspection()
+        public void DeleteInspection(int id)
         {
             //new PersistenceFacade().RemoveInspection(InspectionViewModel.SelectedInspection);
 
@@ -51,5 +51,7 @@ namespace Sculpy.Handler
             //    InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
             //}
         }
+
+        
     }
 }
