@@ -43,7 +43,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Width="320" Grid.Column="0" Padding="10">
-            <Rectangle Width="240" Height="170" Fill="CadetBlue" HorizontalAlignment="Center"
+            <Rectangle Width="240" Height="170" Fill="LightSkyBlue" HorizontalAlignment="Center"
                        ></Rectangle>
 
             <StackPanel Orientation="Horizontal">
@@ -116,8 +116,8 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="130"></ColumnDefinition>
-                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
                                 <CheckBox Content="Granite" Tag="Granit"
@@ -142,7 +142,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource TextBlockStyle}"
-                       Text="Others materials:"></TextBlock>
+                       Text="Other materials:"></TextBlock>
                 <Button Content="Choose Others">
                     <Button.Flyout>
                         <Flyout>
