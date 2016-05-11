@@ -13,8 +13,11 @@ namespace Sculpy.Model
         public int Sculpture_ID { get; set; }
         public string Damage_Picture { get; set; }
         public string Inspection_Title { get; set; }
-
-        public Inspection(int id, DateTime inspectionDate, string inspectionNote, int sculptureId, string damagePicture, string inspectionTitle)
+        public string Treatment_Type { get; set; }
+        public string Damage_Type { get; set; }
+        public string Treatment_Plan { get; set; }
+        
+        public Inspection(int id, DateTime inspectionDate, string inspectionNote, int sculptureId, string damagePicture, string inspectionTitle, string treatmentType, string damageType, string treatmentPlan)
         {
             ID = id;
             Inspection_Date = inspectionDate;
@@ -22,6 +25,9 @@ namespace Sculpy.Model
             Sculpture_ID = sculptureId;
             Damage_Picture = damagePicture;
             Inspection_Title = inspectionTitle;
+            Treatment_Type = treatmentType;
+            Damage_Type = damageType;
+            Treatment_Plan = treatmentPlan;
         }
 
         public Inspection()
