@@ -104,7 +104,7 @@
 
                     </TextBlock>
                     <TextBlock Name="SelectedInspectionDamageTextBlock"
-                               Text="change Inspection class to BIND"
+                               Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"
                                RelativePanel.Below="DamageTextBlock">
                         
                     </TextBlock>
@@ -115,7 +115,7 @@
 
                     </TextBlock>
                     <TextBlock Name="SelectedInspectionTreatmentTextBlock"
-                               Text="change Inspection class to BIND"
+                               Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}"
                                RelativePanel.Below="TreatmentTypeTextBlock">
                         
                     </TextBlock>
@@ -125,7 +125,7 @@
 
                     </TextBlock>
                     <TextBlock Name="SelectedInspectionTreatmentFrequencyTextBlock"
-                               Text="change Inspection class to BIND"
+                               Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}"
                                RelativePanel.Below="TreatmentFrequencyTextBlock">
                         
                     </TextBlock>

@@ -40,9 +40,9 @@ namespace Sculpy.Model
             //TODO: Implement this
         }
 
-        public void Add(int iD, string title, DateTime inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture, string inspection_title)
+        public void Add(int iD, string title, DateTime inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture, string inspection_title, string treatment_type, string damage_type, string treatment_plan)
         {
-            Inspections.Add(new Inspection(iD, inspection_Date, inspection_Note, sculpture_ID, damage_Picture, inspection_title));
+            Inspections.Add(new Inspection(iD, inspection_Date, inspection_Note, sculpture_ID, damage_Picture, inspection_title, treatment_type, damage_type, treatment_plan));
         }
     }
 }

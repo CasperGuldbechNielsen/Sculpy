@@ -36,6 +36,7 @@ namespace Sculpy.View
 
         private void EditInspectionButton_Onclick(object sender, RoutedEventArgs e)
         {
+            //TODO: implement navigation when Toke is done with the page
             //Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.PassedInspection);
         }
     }
