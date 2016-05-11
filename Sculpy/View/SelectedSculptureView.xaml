@@ -17,6 +17,7 @@
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
 
+        <converter:DateToStringConverter x:Key="DateToStringConverter"/>
         
     </Page.Resources>
 
@@ -113,7 +114,7 @@
                             <TextBlock  Grid.Row="0" Text="{Binding Inspection_Title}" Style="{StaticResource TextBlockStyle}" 
                                                Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" 
                                         Margin="10,0,10,10"/>
-                            <TextBlock  Grid.Row="1" Text="{Binding Inspection_Date}" 
+                            <TextBlock  Grid.Row="1" Text="{Binding Inspection_Date, Converter={StaticResource DateToStringConverter}}" 
                                        Style="{StaticResource TextBlockStyle}" FontSize="16" Margin="20,0,0,0" />
 
                         </Grid>
@@ -121,8 +122,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button x:Name="SortButton" RelativePanel.Below="InspectionListView" Margin="30,0,0,0" FontSize="38"
-                    Background="Transparent"
+            <Button RelativePanel.Below="InspectionListView" Margin="30,0,0,0" FontSize="38"
+                    Background="Transparent" Click="SelectedInspectionButton_OnClick"
             Content="&#xE109;" FontFamily="Segoe MDL2 Assets" BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}" BorderThickness="1"
 			/>
 

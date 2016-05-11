@@ -122,6 +122,9 @@
     <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\SculpturesViewModel.cs" />
+    <Compile Include="View\CreateInspectionView.xaml.cs">
+      <DependentUpon>CreateInspectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ListItemUserControl.xaml.cs">
       <DependentUpon>ListItemUserControl.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\CreateInspectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ListItemUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
