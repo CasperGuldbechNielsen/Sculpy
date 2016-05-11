@@ -11,9 +11,8 @@ namespace Sculpy.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value == null) return string.Empty;
-            var date = DateTime.Parse(value.ToString());
-            return string.Format("{0:dd MM yyyy}", date);
+            var date = (DateTime) value;
+            return string.Format($"{date:d}");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
