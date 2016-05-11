@@ -43,6 +43,19 @@ namespace Sculpy.ViewModel
             }
         }
 
+        private Inspection _passedInspection;
+
+        public Inspection PassedInspection
+        {
+            get { return _passedInspection; }
+            set
+            {
+                _passedInspection = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand DeleteCommand { get; set; }
 
 

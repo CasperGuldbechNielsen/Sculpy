@@ -9,55 +9,25 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <viewModel:SelectedInspectionViewModel x:Name="SelectedInspectionViewModel"/>
+        <viewModel:SelectedInspectionViewModel x:Name="ViewModel"/>
     </Page.DataContext>
 
     <Page.Resources>
-        <Style TargetType="TextBlock" x:Name="TextBlockStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"/>
-            <Setter Property="FontWeight" Value="ExtraLight"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Foreground" Value="White"/>
-        </Style>
-        <Style TargetType="Button" x:Name="ButtonStyle">
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="70"/>
-            <Setter Property="IsHoldingEnabled" Value="False"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-        <Style TargetType="StackPanel" x:Name="StackPanelStyle">
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="Visibility" Value="Visible"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
-        </Style>
-        <Style TargetType="TextBox" x:Name="TextBoxStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"/>
-            <Setter Property="FontWeight" Value="ExtraLight"/>
-            <Setter Property="FontSize" Value="21"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#FF2B2B2B"/>
-            <Setter Property="Width" Value="700"/>
-        </Style>
-        <Style TargetType="CheckBox" x:Name="CheckBoxStyle">
-            <Setter Property="FontFamily" Value="Calibri Light"/>
-            <Setter Property="FontWeight" Value="ExtraLight"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="80"/>
-        </Style>
+    <Style TargetType="StackPanel" x:Name="InspectionStackPanelStyle">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColor}"/>
+    </Style>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="Save" Command="{Binding CreateCommand}"/>
-            <AppBarButton Icon="Cancel" Label="Delete" Command="{Binding DeleteCommand}"/>
+            <AppBarButton Icon="Edit" Label="Edit inspection" Click="EditInspectionButton_Onclick" />
+            <AppBarButton Icon="Delete" Label="Delete inspection" Command="{Binding DeleteCommand}"/>
+            
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -73,20 +43,20 @@
 
         <StackPanel Name="InspectionDetailsStackPanel" 
                     Grid.Column="0"
-                    Style="{StaticResource StackPanelStyle}"
+                    Style="{StaticResource InspectionStackPanelStyle}"
                     Orientation="Vertical">
-            <TextBox Name="InspectionTitleTextBox"
-                     Style="{StaticResource TextBoxStyle}"
+            <TextBlock Name="InspectionTitleTextBox"
+                     Style="{StaticResource TextBlockStyle}"
                      Height="70"
-                     Text="{Binding SelectedInspection.Title, Mode=TwoWay}">
+                     Text="{Binding SelectedInspection.Inspection_Title, Mode=TwoWay}">
 
-            </TextBox>
-            <TextBox Name="InspectionNotesTextBox"
-                     Style="{StaticResource TextBoxStyle}"
+            </TextBlock>
+            <TextBlock Name="InspectionNotesTextBox"
+                     Style="{StaticResource TextBlockStyle}"
                      Height="450"
                      Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}">
 
-            </TextBox>
+            </TextBlock>
 
             <StackPanel Orientation="Horizontal">
                 <Button Name="AddPictureButton"
@@ -116,67 +86,49 @@
             <StackPanel Name="InspectionPropertyStackPanel"
                     RelativePanel.AlignHorizontalCenterWithPanel="True"
                     RelativePanel.AlignVerticalCenterWithPanel="True"
-                    Style="{StaticResource StackPanelStyle}"
+                    Style="{StaticResource InspectionStackPanelStyle}"
                     Orientation="Vertical">
                 <RelativePanel>
                     <TextBlock Name="DatePickerTextBlock"
                            Text="Date">
 
                     </TextBlock>
-                    <DatePicker RelativePanel.Below="DatePickerTextBlock" Margin="0,0,0,20">
-
-                    </DatePicker>
+                    <TextBlock Name="SelectedInspectionDateTextBlock"
+                               Text="{Binding SelectedInspection.Inspection_Date, Mode=TwoWay}">
+                        
+                    </TextBlock>
                 </RelativePanel>
                 <RelativePanel>
-                    <TextBlock Name="ChooseDamageTextBlock"
+                    <TextBlock Name="DamageTextBlock"
                            Text="Damage">
 
                     </TextBlock>
+                    <TextBlock Name="SelectedInspectionDamageTextBlock"
+                               Text="change Inspection class to BIND"
+                               RelativePanel.Below="DamageTextBlock">
+                        
+                    </TextBlock>
                     
-                    <ComboBox RelativePanel.Below="ChooseDamageTextBlock"
-                          PlaceholderText="Select from list"
-                          Name="DamageComboBox" Margin="0,0,-144,20" Width="286">
-                        <ComboBoxItem Content="None"/>
-                        <ComboBoxItem Content="Biological growth"/>
-                        <ComboBoxItem Content="Weathering"/>
-                        <ComboBoxItem Content="Construction damage"/>
-                        <ComboBoxItem Content="Defective joints"/>
-                        <ComboBoxItem Content="Discoloration"/>
-                        <ComboBoxItem Content="Cracks"/>
-                        <ComboBoxItem Content="Lost parts"/>
-                        <ComboBoxItem Content="Other"/>
-
-                    </ComboBox>
-                    <TextBlock Name="ChooseTreatmentTypeTextBlock"
+                    <TextBlock Name="TreatmentTypeTextBlock"
                            Text="Treatment"
-                           RelativePanel.Below="DamageComboBox">
+                           RelativePanel.Below="SelectedInspectionDamageTextBlock">
 
                     </TextBlock>
-                    <ComboBox RelativePanel.Below="ChooseTreatmentTypeTextBlock"
-                            PlaceholderText="Select from list"
-                            Name="TreatmentCombobox" Margin="0,0,-144,20" Width="286">
-                        <ComboBoxItem Content="None"/>
-                        <ComboBoxItem Content="Wash"/>
-                        <ComboBoxItem Content="Waxing"/>
-                        <ComboBoxItem Content="Rebuild"/>
-                        <ComboBoxItem Content="Other"/>
-
-                    </ComboBox>
-                    <TextBlock Name="ChooseTreatmentFrequencyTextBlock"
+                    <TextBlock Name="SelectedInspectionTreatmentTextBlock"
+                               Text="change Inspection class to BIND"
+                               RelativePanel.Below="TreatmentTypeTextBlock">
+                        
+                    </TextBlock>
+                    <TextBlock Name="TreatmentFrequencyTextBlock"
                            Text="Treatment frequency"
-                           RelativePanel.Below="TreatmentCombobox">
+                           RelativePanel.Below="SelectedInspectionTreatmentTextBlock">
 
                     </TextBlock>
-                    <ComboBox RelativePanel.Below="ChooseTreatmentFrequencyTextBlock"
-                              PlaceholderText="Select from list"
-                              Name="TreatmentFrequencyCombobox" Margin="0,0,-144,0" Width="286">
-                        <ComboBoxItem Content="None"/>
-                        <ComboBoxItem Content="Immediately"/>
-                        <ComboBoxItem Content="Look after in 10 years"/>
-                        <ComboBoxItem Content="Treatment plan"/>
-                        <ComboBoxItem Content="Other"/>
-                                
-                    </ComboBox>
+                    <TextBlock Name="SelectedInspectionTreatmentFrequencyTextBlock"
+                               Text="change Inspection class to BIND"
+                               RelativePanel.Below="TreatmentFrequencyTextBlock">
+                        
+                    </TextBlock>
 
                 </RelativePanel>
 

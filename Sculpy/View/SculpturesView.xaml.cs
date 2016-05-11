@@ -52,10 +52,9 @@ namespace Sculpy.View
                : SortingWindow.BorderBrush;
         }
 
-
         private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.SelectedSculpture);
         }
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
@@ -66,7 +65,76 @@ namespace Sculpy.View
         private void AddSculptureButton_OnClick(object sender, RoutedEventArgs e)
         {
             var sculpture = new Sculpture();
-            Frame.Navigate(typeof (SelectedSculptureEditView), sculpture);
+            Frame.Navigate(typeof(SelectedSculptureEditView), sculpture);
+        }
+
+        private void MetalCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            MetalGrid.Visibility = MetalGrid.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+
+        }
+
+        private void PlacementFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByPlacement(tag);
+        }
+
+        private void TypeFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByType(tag);
+        }
+
+        private void MaterialFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByMaterial(tag);
+        }
+
+        private void PlacementToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
+        {
+            PlacementGrid.Visibility = PlacementGrid.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void TypeToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
+        {
+            TypeGrid.Visibility = TypeGrid.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void StoneCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            StoneGrid.Visibility = StoneGrid.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void OthersCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            OthersGrid.Visibility = OthersGrid.Visibility == Visibility.Collapsed
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        private void SortCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.SortCollection(tag);
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SculpturesHandler.ResetCollectionAsync();
         }
     }
 }
