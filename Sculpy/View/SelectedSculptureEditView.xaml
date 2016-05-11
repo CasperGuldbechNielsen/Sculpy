@@ -56,14 +56,44 @@
                 <ComboBoxItem Content="Building" Tag="Bygning"/>
                 <ComboBoxItem Content="Facade" Tag="Facade"/>
             </ComboBox>
-            <ComboBox Header="Materials" HorizontalAlignment="Center" PlaceholderText="choose metal"
-                      Width="240">
-                <ComboBoxItem Content="Bronze" Tag="Bronze"/>
-                <ComboBoxItem Content="Cortenstål" Tag="Cortenstål"/>
-                <ComboBoxItem Content="Painted steel" Tag="Bemaletstån"/>
-                <ComboBoxItem Content="Aluminium" Tag="Aluminum"/>
-                <ComboBoxItem Content="Iron" Tag="Jern"></ComboBoxItem>
-            </ComboBox>
+
+            
+            
+            <Button Content="Choose Metals">
+                <Button.Flyout>
+                    <Flyout>
+                        <Grid Padding="10" Name="StoneGrid">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"></ColumnDefinition>
+                                <ColumnDefinition Width="120"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Content="Granite" Tag="Granit"
+                              Style="{StaticResource FilterWindowCheckBox}"
+                              Grid.Row="0" Grid.Column="0"/>
+                            <CheckBox Content="Sandstone" Tag="Sandsten" Style="{StaticResource FilterWindowCheckBox}"
+                              Grid.Row="0" Grid.Column="1"
+                              />
+                            <CheckBox Content="Chalkstone" Grid.Row="1" Grid.Column="0"
+                              Tag="Kalksten" 
+                              Style="{StaticResource FilterWindowCheckBox}"/>
+                            <CheckBox Content="Marble" Grid.Row="1" Grid.Column="1"
+                              Tag="Marmor" 
+                              Style="{StaticResource FilterWindowCheckBox}"/>
+                            <CheckBox Content="Other"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
+                             Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
+                        </Grid >
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            
+            
+
             <ComboBox HorizontalAlignment="Center" PlaceholderText="choose stone"
                       Width="240" Margin="0,20,0,20">
                 <ComboBoxItem Content="Granite" Tag="Granit"/>
