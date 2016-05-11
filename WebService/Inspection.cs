@@ -24,6 +24,13 @@ namespace WebService
 
         public byte[] Damage_Picture { get; set; }
 
+        public string Treatment_Type { get; set; }
+
+        public string Damage_Type { get; set; }
+
+        public string Treatment_Plan { get; set; }
+
+
     }
 }
 
