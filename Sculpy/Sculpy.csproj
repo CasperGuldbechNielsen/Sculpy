@@ -135,6 +135,9 @@
     <Compile Include="View\SculpturesView.xaml.cs">
       <DependentUpon>SculpturesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectedInspectionEditView.xaml.cs">
+      <DependentUpon>SelectedInspectionEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SelectedSculptureEditView.xaml.cs">
       <DependentUpon>SelectedSculptureEditView.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SculpturesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SelectedInspectionEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
