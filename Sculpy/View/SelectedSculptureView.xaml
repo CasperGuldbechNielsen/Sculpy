@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:Sculpy.ViewModel"
+    xmlns:converter="using:Sculpy.Converter"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -13,9 +14,11 @@
             <Setter Property="FontFamily" Value="Calibri Light"></Setter>
             <Setter Property="FontWeight" Value="ExtraLight"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+
+        <converter:DateToStringConverter x:Key="DateToStringConverter"/>
+        
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -42,51 +45,89 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <RelativePanel Name="LeftContent" Padding="0,40">
-            <Image Name="ImagePlaceholder" Width="175" Height="175" RelativePanel.AlignHorizontalCenterWithPanel="True" Source="{Binding PassedSculpture.Sculpture_Picture}"></Image>
-            <TextBlock Name="PlacementHeader" Text="Placement:" Margin="0,80,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="ImagePlaceholder" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Placement" Text="{Binding PassedSculpture.Sculpture_Placement}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="PlacementHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="MaterialsHeader" Text="Materials:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Placement" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="StoneHeader" Text="Stone:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="MaterialsHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Stone" Text="{Binding PassedSculpture.SculptureMaterials.Count}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.AlignVerticalCenterWith="StoneHeader" RelativePanel.RightOf="StoneHeader" ></TextBlock>
-            <TextBlock Name="MetalHeader" Text="Metal:" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="StoneHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Metal" Text=" Bronze" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}"  FontSize="18" RelativePanel.AlignVerticalCenterWith="MetalHeader" RelativePanel.RightOf="MetalHeader"></TextBlock>
-            <TextBlock Name="TypeHeader" Text="Type:" Margin="0,20,0,0" Style="{StaticResource BaseTextBlockStyle}" FontWeight="Bold" FontSize="20" RelativePanel.Below="Metal" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-            <TextBlock Name="Type" Text="{Binding PassedSculpture.SculptureTypes.Count,Mode=TwoWay}" Margin="0,5,0,0" Style="{StaticResource CaptionTextBlockStyle}" FontSize="18" RelativePanel.Below="TypeHeader" RelativePanel.AlignLeftWith="ImagePlaceholder"></TextBlock>
-        </RelativePanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Width="175" Height="120" Grid.Row="0"
+                   Source="../Assets/Sculpture.bmp"></Image>
+
+            <StackPanel Margin="70,10,70,0" Grid.Row="1">
+                <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                <TextBlock Text="{Binding PassedSculpture.Sculpture_Placement}" 
+                       Style="{StaticResource TextBlockStyle}" FontSize="18" Margin="15,0,0,0"
+                       ></TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="70,10,70,0" >
+                <TextBlock Text="Type:" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                <ListView IsEnabled="False"
+                          ItemsSource="{Binding PassedSculpture.SculptureTypes, Mode=TwoWay}"
+                          FontSize="20" FontFamily="Calibri Light" FontWeight="ExtraLight"
+                          Margin="0">
+                </ListView>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Margin="70,10,70,0" >
+                <TextBlock Text="Materials:" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                <ListView IsEnabled="False"
+                ItemsSource="{Binding PassedSculpture.SculptureMaterials, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Material_Type_ID}"
+                                       Style="{StaticResource TextBlockStyle}" Margin="0,0,10,0"></TextBlock>
+                                <TextBlock Text="{Binding Material_Name}" Style="{StaticResource TextBlockStyle}"
+                                       ></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
 
         <RelativePanel Name="CenterContent" Grid.Column="1" Padding="40,40">
-            <TextBlock Name="Title" Text="{Binding PassedSculpture.Sculpture_Name}" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
-            <TextBlock Name="Subtitle" Text="{Binding PassedSculpture.Sculpture_Address}" Style="{StaticResource SubheaderTextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
-            <TextBlock Name="Description" Text="{Binding PassedSculpture.Sculpture_Description}" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
+            <TextBlock Name="Title" Text="{Binding PassedSculpture.Sculpture_Name}" Style="{StaticResource TextBlockStyle}"
+                       FontSize="50"></TextBlock>
+            <TextBlock Name="Subtitle" FontSize="40"
+                       Text="{Binding PassedSculpture.Sculpture_Address}" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
+            <TextBlock Name="Description" FontSize="30"
+                       Text="{Binding PassedSculpture.Sculpture_Description}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
         </RelativePanel>
 
         <RelativePanel Name="RightConent" Grid.Column="2" Padding="0,40">
             <Rectangle Fill="DimGray" Width="2" Height="700"></Rectangle>
             <TextBlock Name="InspectionsHeader" Text="Inspections:" Style="{StaticResource SubheaderTextBlockStyle}" Margin="20,0,0,0"></TextBlock>
-            <ListView Name="InspectionListView" ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" RelativePanel.Below="InspectionsHeader" Margin="0,20">
+            <ListView Name="InspectionListView" ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" SelectedItem="{Binding PassedInspection, Mode=TwoWay}" SelectionChanged="InspectionListView_OnSelectionChanged" RelativePanel.Below="InspectionsHeader" Margin="0,20">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="500"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Inspection_Date}" Style="{StaticResource TextBlockStyle}" />
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Title}" Style="{StaticResource TextBlockStyle}" 
-                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" FontSize="16"
-                                               Margin="10,0,10,10"/>
+                            <TextBlock  Grid.Row="0" Text="{Binding Inspection_Title}" Style="{StaticResource TextBlockStyle}" 
+                                               Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" 
+                                        Margin="10,0,10,10"/>
+                            <TextBlock  Grid.Row="1" Text="{Binding Inspection_Date, Converter={StaticResource DateToStringConverter}}" 
+                                       Style="{StaticResource TextBlockStyle}" FontSize="16" Margin="20,0,0,0" />
+
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </RelativePanel>
 
+            <Button RelativePanel.Below="InspectionListView" Margin="30,0,0,0" FontSize="38"
+                    Background="Transparent" Click="SelectedInspectionButton_OnClick"
+            Content="&#xE109;" FontFamily="Segoe MDL2 Assets" BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}" BorderThickness="1"
+			/>
+
+        </RelativePanel>
 
     </Grid>
 </Page>

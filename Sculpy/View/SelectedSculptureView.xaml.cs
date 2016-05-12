@@ -47,5 +47,15 @@ namespace Sculpy.View
         {
             Frame.Navigate(typeof(SelectedSculptureEditView), ViewModel.PassedSculpture);
         }
+
+        private void InspectionListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectedInspectionView), ViewModel.PassedInspection);
+        }
+
+        private void SelectedInspectionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CreateInspectionView));
+        }
     }
 }

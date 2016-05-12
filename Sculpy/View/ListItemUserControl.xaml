@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:converter="using:Sculpy.Converter"
     MaxWidth="700">
 
     <UserControl.Resources>
@@ -16,6 +17,8 @@
             <Setter Property="Margin" Value="10"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
         </Style>
+
+        <converter:DateToStringConverter x:Key="DateToStringConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="0,0,0,20">
@@ -61,7 +64,7 @@
                                                Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}"
                                                Margin="10,0,10,10"/>
         <TextBlock x:Name="textBlock3" Grid.Column="1" Grid.Row="0" Text="Inspection Date" Style="{StaticResource TextBlockStyle}" />
-        <TextBlock x:Name="textBlock4" Grid.Column="1" Grid.Row="1" Text="14-04-2016" Style="{StaticResource TextBlockStyle}"  
+        <TextBlock x:Name="textBlock4" Grid.Column="1" Grid.Row="1" Text="{x:Bind Sculpture.LastInspection.Date, Converter={StaticResource DateToStringConverter}}" Style="{StaticResource TextBlockStyle}"  
                                                HorizontalAlignment="Center" Margin="10,0,10,10"
                                                Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}"/>
     </Grid>

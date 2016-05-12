@@ -1,0 +1,161 @@
+﻿<Page
+    x:Class="Sculpy.View.SelectedInspectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Sculpy.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <viewModel:SelectedInspectionViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style TargetType="StackPanel" x:Name="InspectionStackPanelStyle">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Page.Resources>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Edit" Label="Edit inspection" Click="EditInspectionButton_Onclick" />
+            <AppBarButton Icon="Delete" Label="Delete inspection" Command="{Binding DeleteCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel 
+                Name="InspectionDetailsStackPanel" 
+                Grid.Column="0"
+                Style="{StaticResource InspectionStackPanelStyle}"
+                Orientation="Vertical"
+                Margin="60,40,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="#FF2B2B2B" Margin="0,0,0,40" BorderBrush="Gray" BorderThickness="1" Grid.Row="0">
+                    <TextBlock 
+                        Name="InspectionTitleTextBlock"
+                        Margin="0,0,0,10"
+                        TextWrapping="Wrap"
+                        FontFamily="Calibri"
+                        FontSize="40"
+                        Text="{Binding SelectedInspection.Inspection_Title, Mode=TwoWay}"/>
+                </Border>
+                <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Grid.Row="1">
+                    <TextBlock 
+                         Name="InspectionNotesTextBlock"
+                         TextWrapping="Wrap"
+                         Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}"
+                         FontFamily="Calibri"
+                         FontSize="20"/>
+                </Border>
+                
+                <RelativePanel 
+                        Name="ManagePicturesPanel"  
+                        Grid.Row="2">
+                    
+                    <StackPanel Orientation="Horizontal">
+
+                        <Button 
+                            Name="AddPictureButton"
+                            Height="Auto"
+                            Width="Auto"
+                            Background="Black">
+                            <TextBlock 
+                                   Text="&#xE722;" 
+                                   FontFamily="Segoe MDL2 Assets"
+                                   FontSize="50"
+                                   RelativePanel.LeftOf="InspectionPicturesListView"/>
+                        </Button>
+
+                        <ListView 
+                            Name="InspectionPicturesListView"
+                            ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" 
+                            Margin="10,0"
+                            ShowsScrollingPlaceholders="False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Damage_Picture, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackPanel>
+                </RelativePanel>
+            </Grid>
+            </StackPanel>
+        
+        <RelativePanel Grid.Column="1">
+            <StackPanel Name="InspectionPropertyStackPanel"
+                    RelativePanel.AlignHorizontalCenterWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True"
+                    Style="{StaticResource InspectionStackPanelStyle}"
+                    Orientation="Vertical"
+                    Margin="0,50,0,0">
+                <RelativePanel>
+                    <TextBlock 
+                            Name="DatePickerTextBlock"
+                            Text="Date"
+                            Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                            Name="SelectedInspectionDateTextBlock"
+                            Text="{Binding SelectedInspection.Inspection_Date, Mode=TwoWay}"
+                            RelativePanel.Below="DatePickerTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+                </RelativePanel>
+                
+                <RelativePanel>
+                    <TextBlock 
+                            Name="DamageTextBlock"
+                            Text="Damage"
+                            Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                            Name="SelectedInspectionDamageTextBlock"
+                            Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"
+                            RelativePanel.Below="DamageTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+
+                    <TextBlock 
+                            Name="TreatmentTypeTextBlock"
+                            Text="Treatment"
+                            RelativePanel.Below="SelectedInspectionDamageTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                            Name="SelectedInspectionTreatmentTextBlock"
+                            Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}"
+                            RelativePanel.Below="TreatmentTypeTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+                    <TextBlock 
+                            Name="TreatmentFrequencyTextBlock"
+                            Text="Treatment plan"
+                            RelativePanel.Below="SelectedInspectionTreatmentTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+                    
+                    <TextBlock 
+                            Name="SelectedInspectionTreatmentFrequencyTextBlock"
+                            Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}"
+                            RelativePanel.Below="TreatmentFrequencyTextBlock"
+                            Style="{StaticResource TextBlockStyle}"/>
+
+                </RelativePanel>
+            </StackPanel>
+        </RelativePanel>
+    </Grid>
+</Page>

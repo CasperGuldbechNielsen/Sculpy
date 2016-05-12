@@ -18,8 +18,19 @@ namespace WebService
         [StringLength(1000)]
         public string Inspection_Note { get; set; }
 
+        public string Inspection_Title { get; set; }
+
         public int Sculpture_ID { get; set; }
 
         public byte[] Damage_Picture { get; set; }
+
+        public string Treatment_Type { get; set; }
+
+        public string Damage_Type { get; set; }
+
+        public string Treatment_Plan { get; set; }
+
+
     }
 }
+
