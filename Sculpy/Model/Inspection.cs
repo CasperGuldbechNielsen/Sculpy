@@ -38,9 +38,9 @@ namespace Sculpy.Model
         public override string ToString()
         {
             return string.Format("Inspection-ID: {0}\n" +
-                                 "Inspection Date: {2}\n" +
-                                 "Inspection Note: {3}\n" +
-                                 "Sculpture-ID: {4}\n", ID, Inspection_Date, Inspection_Note, Sculpture_ID);
+                                 "Inspection Date: {1}\n" +
+                                 "Inspection Note: {2}\n" +
+                                 "Sculpture-ID: {3}\n", ID, Inspection_Date, Inspection_Note, Sculpture_ID);
         }
 
         // TODO: Make ToString method...
