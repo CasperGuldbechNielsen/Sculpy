@@ -50,12 +50,12 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="addSculptureButton" Label="Add sculpture" Click="AddSculptureButton_OnClick"/>
-                <AppBarSeparator/>
+               <AppBarSeparator/>
                 <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
-        </CommandBar>
+            <AppBarButton x:Name="syncButton" Icon="Sync" Label="Synchronize"/>
+            <AppBarButton Label="Add sculpture" Icon="Add" Click="AddSculptureButton_OnClick"/>
+           </CommandBar>
     </Page.BottomAppBar>
 
     <Page.DataContext>

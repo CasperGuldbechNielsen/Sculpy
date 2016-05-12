@@ -24,12 +24,11 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
-            <AppBarButton x:Name="editSculptureButton"
-                          Click="EditSculptureButton_OnClick" Icon="Edit"/>
+            <AppBarButton Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
+                <AppBarButton Label="Delete sculpture" Command="{Binding DeleteCommand}"/>
                 <AppBarSeparator/>
-                <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
+                <AppBarButton Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

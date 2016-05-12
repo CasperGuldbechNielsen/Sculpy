@@ -11,7 +11,9 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +27,19 @@ namespace Sculpy.ViewModel
         public CreateSculptureView()
         {
             this.InitializeComponent();
+        }
+
+        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SculptureHandler.CreateSculpture(ViewModel.PassedSculpture);
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+            }
         }
     }
 }
