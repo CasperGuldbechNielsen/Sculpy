@@ -169,7 +169,6 @@ namespace Sculpy.Persistancy
             }
         }
 
-
         public async Task CreateSculptureAsync(Sculpture sculpture)
         {
             using (var client = new HttpClient(handler))

@@ -46,22 +46,22 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Width="280" Grid.Column="0">
-            <Rectangle Width="240" Height="170" Fill="CadetBlue" HorizontalAlignment="Center"
-                       ></Rectangle>
+            <Image Width="240" Height="170" HorizontalAlignment="Center"
+                   Source="{Binding PassedSculpture.Sculpture_Picture, Mode=TwoWay}"
+                       ></Image>
 
             <ComboBox Header="Placement" HorizontalAlignment="Center"
-                      PlaceholderText="choose placement"
+                      PlaceholderText="{Binding PassedSculpture.Sculpture_Placement}"
                       Width="240" Margin="0,20,0,20">
                 <ComboBoxItem Content="Ground" Tag="Jord"/>
                 <ComboBoxItem Content="Building" Tag="Bygning"/>
                 <ComboBoxItem Content="Facade" Tag="Facade"/>
             </ComboBox>
 
-            
-            
-            <Button Content="Choose Metals">
-                <Button.Flyout>
-                    <Flyout>
+
+
+            <ListView ItemsSource="{Binding PassedSculpture.SculptureMaterials}">
+                <Flyout>
                         <Grid Padding="10" Name="StoneGrid">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -89,8 +89,8 @@
                              Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
                         </Grid >
                     </Flyout>
-                </Button.Flyout>
-            </Button>
+                
+            </ListView>
             
             
 
@@ -126,17 +126,17 @@
 
         <StackPanel Grid.Column="1">
 
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}"
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Name, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"
                      FontSize="32"
                      ></TextBox>
 
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}"
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Address, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"
                      FontSize="32"
                      ></TextBox>
 
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}"
+            <TextBox Text="{Binding PassedSculpture.Sculpture_Description, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"
                      Height="300"></TextBox>
         </StackPanel>

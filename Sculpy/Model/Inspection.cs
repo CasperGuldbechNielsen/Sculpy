@@ -43,6 +43,5 @@ namespace Sculpy.Model
                                  "Sculpture-ID: {3}\n", ID, Inspection_Date, Inspection_Note, Sculpture_ID);
         }
 
-        // TODO: Make ToString method...
     }
 }

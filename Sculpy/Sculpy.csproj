@@ -118,6 +118,7 @@
     <Compile Include="ViewModel\CreateSculptureView.xaml.cs">
       <DependentUpon>CreateSculptureView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CreateSculptureViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="ViewModel\SelectedInspectionEditViewModel.cs" />
     <Compile Include="ViewModel\SelectedInspectionViewModel.cs" />

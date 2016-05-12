@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Page.DataContext>
-        <local:SelectedSculptureEditViewModel x:Name="ViewModel"></local:SelectedSculptureEditViewModel>
+        <local:CreateSculptureViewModel x:Name="ViewModel"></local:CreateSculptureViewModel>
     </Page.DataContext>
 
     <Page.Resources>
@@ -216,17 +216,17 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Name}" Header="Name:"
+            <TextBox Text="{Binding NewSculpture.Sculpture_Name, Mode=TwoWay}" Header="Name:"
                      Style="{StaticResource TextBoxStyle}"
                      FontSize="32"
                      ></TextBox>
 
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Address}" Header="Address:"
+            <TextBox Text="{Binding NewSculpture.Sculpture_Address, Mode=TwoWay}" Header="Address:"
                      Style="{StaticResource TextBoxStyle}"
                      FontSize="32"
                      ></TextBox>
 
-            <TextBox Text="{Binding PassedSculpture.Sculpture_Description}" Header="Description:"
+            <TextBox Text="{Binding NewSculpture.Sculpture_Description, Mode=TwoWay}" Header="Description:"
                      Style="{StaticResource TextBoxStyle}"
                      Height="300"></TextBox>
         </StackPanel>
