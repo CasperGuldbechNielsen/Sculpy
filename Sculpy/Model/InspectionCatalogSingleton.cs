@@ -35,9 +35,9 @@ namespace Sculpy.Model
             //Inspections = new ObservableCollection<Inspection>(new Persistancy.PersistenceFacade().GetInspetionsFromSelectedSculpture().Result);
         }
 
-        public void LoadAllSculptures()
+        public async void LoadAllSculptures()
         {
-            //TODO: Implement this
+            Inspections = await new PersistenceFacade().GetAllInspections();
         }
 
         public void Add(int iD, string title, DateTime inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture, string inspection_title, string treatment_type, string damage_type, string treatment_plan)
