@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,6 +31,16 @@ namespace Sculpy.View
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SettingsView));
+        }
+
+        private void Reports_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<Inspection> mySelectedItems = new List<Inspection>();
+
+            foreach (var item in Reports.SelectedItems)
+                mySelectedItems.Add((Inspection)item);
+
+            ViewModel.SelectedInspections = mySelectedItems;
         }
     }
 }

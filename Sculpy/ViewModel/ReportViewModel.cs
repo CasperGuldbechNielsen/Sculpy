@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -22,8 +24,23 @@ namespace Sculpy.ViewModel
             ReportHandler = new ReportHandler(this);
             inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
             inspectionCatalogSingleton.LoadAllSculptures();
-            DrawReportCommand = new RelayCommand(ReportHandler.DrawReport);
+            DrawReportCommand = new RelayCommand(() => ReportHandler.DrawReport(_selectedInspections));
+            _selectedInspections = new List<Inspection>();
         }
+
+        private List<Inspection> _selectedInspections; 
+        public List<Inspection> SelectedInspections
+        {
+            get { return _selectedInspections; }
+            set
+            {
+                if (value != null)
+                {
+                    _selectedInspections = value;
+                    OnPropertyChanged();
+                }
+            }
+        } 
 
         private string _periodFilter;
         public ComboBoxItem PeriodFilter
@@ -64,10 +81,6 @@ namespace Sculpy.ViewModel
                 ReportHandler.FilterCollectionByDamage(_damageFilter);
             }
         }
-
-
-
-        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
