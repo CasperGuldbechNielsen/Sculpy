@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:Sculpy.ViewModel"
+    xmlns:converter="using:Sculpy.Converter"
     mc:Ignorable="d">
 
     <Page.DataContext>
@@ -18,6 +19,8 @@
             <Setter Property="Visibility" Value="Visible"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
+
+        <converter:DateToStringConverter x:Key="DateToStringConverter"/>
     </Page.Resources>
     
     <Page.BottomAppBar>
@@ -52,7 +55,8 @@
                         Name="InspectionTitleTextBlock"
                         Margin="0,0,0,10"
                         TextWrapping="Wrap"
-                        FontFamily="Calibri"
+                        FontFamily="Calibri Light"
+                        FontWeight="ExtraLight"
                         FontSize="40"
                         Text="{Binding SelectedInspection.Inspection_Title, Mode=TwoWay}"/>
                 </Border>
@@ -61,7 +65,8 @@
                          Name="InspectionNotesTextBlock"
                          TextWrapping="Wrap"
                          Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}"
-                         FontFamily="Calibri"
+                         FontFamily="Calibri Light"
+                         FontWeight="ExtraLight"
                          FontSize="20"/>
                 </Border>
                 
@@ -114,11 +119,13 @@
                             Name="DatePickerTextBlock"
                             Text="Date"
                             Style="{StaticResource TextBlockStyle}"/>
-                    <TextBlock 
-                            Name="SelectedInspectionDateTextBlock"
-                            Text="{Binding SelectedInspection.Inspection_Date, Mode=TwoWay}"
+                    <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Grid.Row="1"
                             RelativePanel.Below="DatePickerTextBlock"
+                            Name="SelectedInspectionDateTextBlock">
+                    <TextBlock 
+                            Text="{Binding SelectedInspection.Inspection_Date, Converter={StaticResource DateToStringConverter}}"
                             Style="{StaticResource TextBlockStyle}"/>
+                    </Border>
                 </RelativePanel>
                 
                 <RelativePanel>
@@ -126,34 +133,38 @@
                             Name="DamageTextBlock"
                             Text="Damage"
                             Style="{StaticResource TextBlockStyle}"/>
-                    <TextBlock 
-                            Name="SelectedInspectionDamageTextBlock"
+                    <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
+                            Grid.Row="1" Name="SelectedInspectionDamageTextBlock"
+                            RelativePanel.Below="DamageTextBlock">
+                        <TextBlock 
                             Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"
-                            RelativePanel.Below="DamageTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
+                    </Border>
 
                     <TextBlock 
                             Name="TreatmentTypeTextBlock"
                             Text="Treatment"
                             RelativePanel.Below="SelectedInspectionDamageTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
+                    <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
+                            Grid.Row="1" Name="SelectedInspectionTreatmentTextBlock"
+                            RelativePanel.Below="TreatmentTypeTextBlock">
                     <TextBlock 
-                            Name="SelectedInspectionTreatmentTextBlock"
                             Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}"
-                            RelativePanel.Below="TreatmentTypeTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
+                    </Border>
                     <TextBlock 
                             Name="TreatmentFrequencyTextBlock"
                             Text="Treatment plan"
                             RelativePanel.Below="SelectedInspectionTreatmentTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
-                    
+                    <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
+                            Grid.Row="1" Name="SelectedInspectionTreatmentFrequencyTextBlock"
+                            RelativePanel.Below="TreatmentFrequencyTextBlock">
                     <TextBlock 
-                            Name="SelectedInspectionTreatmentFrequencyTextBlock"
                             Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}"
-                            RelativePanel.Below="TreatmentFrequencyTextBlock"
                             Style="{StaticResource TextBlockStyle}"/>
-
+                    </Border>
                 </RelativePanel>
             </StackPanel>
         </RelativePanel>
