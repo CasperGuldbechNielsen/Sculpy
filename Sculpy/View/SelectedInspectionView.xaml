@@ -76,7 +76,7 @@
                     
                     <StackPanel Orientation="Horizontal">
 
-                        <Button 
+                        <Border 
                             Name="AddPictureButton"
                             Height="Auto"
                             Width="Auto"
@@ -86,7 +86,7 @@
                                    FontFamily="Segoe MDL2 Assets"
                                    FontSize="50"
                                    RelativePanel.LeftOf="InspectionPicturesListView"/>
-                        </Button>
+                        </Border>
 
                         <ListView 
                             Name="InspectionPicturesListView"
@@ -113,7 +113,7 @@
                     RelativePanel.AlignTopWithPanel="True"
                     Style="{StaticResource InspectionStackPanelStyle}"
                     Orientation="Vertical"
-                    Margin="0,50,0,0">
+                    Margin="0,30,0,0">
                 <RelativePanel>
                     <TextBlock 
                             Name="DatePickerTextBlock"
@@ -121,7 +121,8 @@
                             Style="{StaticResource TextBlockStyle}"/>
                     <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" Grid.Row="1"
                             RelativePanel.Below="DatePickerTextBlock"
-                            Name="SelectedInspectionDateTextBlock">
+                            Name="SelectedInspectionDateTextBlock"
+                            Width="250">
                     <TextBlock 
                             Text="{Binding SelectedInspection.Inspection_Date, Converter={StaticResource DateToStringConverter}}"
                             Style="{StaticResource TextBlockStyle}"/>
@@ -135,7 +136,8 @@
                             Style="{StaticResource TextBlockStyle}"/>
                     <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
                             Grid.Row="1" Name="SelectedInspectionDamageTextBlock"
-                            RelativePanel.Below="DamageTextBlock">
+                            RelativePanel.Below="DamageTextBlock"
+                            Width="250">
                         <TextBlock 
                             Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"
                             Style="{StaticResource TextBlockStyle}"/>
@@ -148,7 +150,8 @@
                             Style="{StaticResource TextBlockStyle}"/>
                     <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
                             Grid.Row="1" Name="SelectedInspectionTreatmentTextBlock"
-                            RelativePanel.Below="TreatmentTypeTextBlock">
+                            RelativePanel.Below="TreatmentTypeTextBlock"
+                            Width="250">
                     <TextBlock 
                             Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}"
                             Style="{StaticResource TextBlockStyle}"/>
@@ -160,7 +163,8 @@
                             Style="{StaticResource TextBlockStyle}"/>
                     <Border Background="#FF2B2B2B" Margin="0,0,0,20" BorderBrush="Gray" BorderThickness="1" 
                             Grid.Row="1" Name="SelectedInspectionTreatmentFrequencyTextBlock"
-                            RelativePanel.Below="TreatmentFrequencyTextBlock">
+                            RelativePanel.Below="TreatmentFrequencyTextBlock"
+                            Width="250">
                     <TextBlock 
                             Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}"
                             Style="{StaticResource TextBlockStyle}"/>
