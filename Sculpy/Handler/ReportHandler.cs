@@ -121,7 +121,7 @@ namespace Sculpy.Handler
 
             foreach (var item in inspections) // Loop through all strings
             {
-                builder.Append(item);
+                builder.AppendLine(item.ToString());
             }
             string result = builder.ToString();
 
