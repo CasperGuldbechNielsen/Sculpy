@@ -45,7 +45,9 @@
             <ListView x:Name="Reports"
                       Margin="0,5,0,0"
                       RelativePanel.Below="ListViewHeader"
-                      ItemsSource="{Binding inspectionCatalogSingleton.Inspections}">
+                      SelectionMode="Multiple"
+                      ItemsSource="{Binding inspectionCatalogSingleton.Inspections}"
+                      SelectionChanged="Reports_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,20">
@@ -76,7 +78,7 @@
                     Content="Draw report"
                     Margin="0,0,10,10"
                     RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True" Command="{Binding DrawReportCommand}"/>
+                    RelativePanel.AlignBottomWithPanel="True" Command="{Binding DrawReportCommand}" CommandParameter="{Binding SelectedInspections}"/>
         </RelativePanel>
         <RelativePanel Grid.Column="0"
                        Margin="40,40,0,0">
