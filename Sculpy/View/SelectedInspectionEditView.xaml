@@ -5,7 +5,12 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewModel:SelectedInspectionEditViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
     
     <Page.BottomAppBar>
         <CommandBar>
@@ -22,7 +27,7 @@
         
         <RelativePanel>
             <TextBox Name="TitleTextBox" 
-                     PlaceholderText="THIS WILL BIND TO THE TITLE OF THE SELECTED INSPECTION"
+                     Text="{Binding PassedInspection.Inspection_Title}"
                      FontSize="20"
                      Width="700"
                      Height="75"
@@ -30,7 +35,7 @@
                      RelativePanel.AlignHorizontalCenterWithPanel="True"
                      Margin="50,50,50,20"/>
             <TextBox Name="NotesTextBox"
-                     PlaceholderText="THIS WILL BIND TO THE NOTES OF THE SELECTED INSPECTION"
+                     Text="{Binding PassedInspection.Inspection_Note}"
                      Width="700"
                      Height="400"
                      BorderBrush="Gray"
