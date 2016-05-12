@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 using Sculpy.Model;
 using Sculpy.ViewModel;
 
@@ -33,6 +34,7 @@ namespace Sculpy.View
         {
             var sculpture = e.Parameter;
             ViewModel.PassedSculpture = (Sculpture)sculpture;
+            ViewModel.PassedSculpture?.SculptureMaterials.ForEach(material => ViewModel.MaterialCollection.Add(material));
         }
 
         private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
@@ -44,6 +46,16 @@ namespace Sculpy.View
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
+        }
+
+        private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var tag = checkBox.Tag.ToString();
+            var material = new Material(tag);
+
+            ViewModel.PassedSculpture.SculptureMaterials.Add(material);
+            ViewModel.MaterialCollection.Add(material);
         }
     }
 }

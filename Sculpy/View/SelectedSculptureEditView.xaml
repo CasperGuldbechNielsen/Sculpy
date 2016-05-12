@@ -41,99 +41,166 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            
-            
+
+
         </Grid.ColumnDefinitions>
 
-        <StackPanel Width="280" Grid.Column="0">
-            <Image Width="240" Height="170" HorizontalAlignment="Center"
+        <StackPanel Width="340" Grid.Column="0">
+            <Image Width="250" Height="120" HorizontalAlignment="Center" Margin="0"
                    Source="{Binding PassedSculpture.Sculpture_Picture, Mode=TwoWay}"
                        ></Image>
 
-            <ComboBox Header="Placement" HorizontalAlignment="Center"
+            <ComboBox Header="Placement" HorizontalAlignment="Center" SelectedItem="{Binding PlacementBoxItem, Mode=TwoWay}"
                       PlaceholderText="{Binding PassedSculpture.Sculpture_Placement}"
-                      Width="240" Margin="0,20,0,20">
+                      Width="250" Margin="0,10,0,10">
                 <ComboBoxItem Content="Ground" Tag="Jord"/>
                 <ComboBoxItem Content="Building" Tag="Bygning"/>
                 <ComboBoxItem Content="Facade" Tag="Facade"/>
             </ComboBox>
 
+            <GridView ItemsSource="{Binding MaterialCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Header="Materials" Margin="0,15,0,0" Width="250" Name="GridViewMaterials"
+                      HorizontalAlignment="Center">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Material_Type_ID}"
+                                       Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
+                            <TextBlock Text="{Binding Material_Name}" 
+                                       Style="{StaticResource TextBlockStyle}" Margin="15,10,15,10"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
 
+            <Button Content="Choose Materials" HorizontalAlignment="Center"  Width="150" Margin="0,0,0,10">
+                <Button.Flyout>
+                    <Flyout>
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundAccentBrush}"></Setter>
+                                <Setter Property="BorderThickness" Value="1"></Setter>
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        <StackPanel>
+                            <TextBlock Text="Metals" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
 
-            <ListView ItemsSource="{Binding PassedSculpture.SculptureMaterials}">
-                <Flyout>
-                        <Grid Padding="10" Name="StoneGrid">
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"></ColumnDefinition>
-                                <ColumnDefinition Width="120"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <CheckBox Content="Granite" Tag="Granit"
+                                <CheckBox Content="Iron" Tag="Jern" Checked="ToggleButton_OnChecked"
                               Style="{StaticResource FilterWindowCheckBox}"
                               Grid.Row="0" Grid.Column="0"/>
-                            <CheckBox Content="Sandstone" Tag="Sandsten" Style="{StaticResource FilterWindowCheckBox}"
-                              Grid.Row="0" Grid.Column="1"
-                              />
-                            <CheckBox Content="Chalkstone" Grid.Row="1" Grid.Column="0"
-                              Tag="Kalksten" 
+                                <CheckBox Content="Bronze" Tag="Bronze" Style="{StaticResource FilterWindowCheckBox}"
+                                          Checked="ToggleButton_OnChecked"
+                              Grid.Row="0" Grid.Column="1"/>
+                                <CheckBox Content="Painted steel" Grid.Row="1" Grid.Column="0"
+                              Tag="Bemaletstån" Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Aluminum" Grid.Row="1" Grid.Column="1" Tag="Aluminium"
                               Style="{StaticResource FilterWindowCheckBox}"/>
-                            <CheckBox Content="Marble" Grid.Row="1" Grid.Column="1"
-                              Tag="Marmor" 
-                              Style="{StaticResource FilterWindowCheckBox}"/>
-                            <CheckBox Content="Other"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
-                             Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
-                        </Grid >
+                                <CheckBox Content="Weathering steel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                              Tag="Cortenstål" Style="{StaticResource FilterWindowCheckBox}"/>
+                            </Grid >
+
+                            <TextBlock Text="Stones" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox Content="Granite" Tag="Granit"
+                                 Style="{StaticResource FilterWindowCheckBox}"
+                                 Grid.Row="0" Grid.Column="0"/>
+                                <CheckBox Content="Sandstone" Tag="Sandsten" Style="{StaticResource FilterWindowCheckBox}"
+                                 Grid.Row="0" Grid.Column="1" />
+                                <CheckBox Content="Chalkstone" Grid.Row="1" Grid.Column="0"
+                                 Tag="Kalksten" Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Marble" Grid.Row="1" Grid.Column="1"
+                                 Tag="Marmor" Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Other"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
+                                 Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
+                            </Grid >
+
+                            <TextBlock Text="Others" Style="{StaticResource TextBlockStyle}"></TextBlock>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                    <ColumnDefinition Width="140"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox Content="Wood" Tag="Træ" 
+                              Style="{StaticResource FilterWindowCheckBox}" Grid.Row="0" Grid.Column="0"/>
+                                <CheckBox Content="Brick" Tag="Tegl" Style="{StaticResource FilterWindowCheckBox}"
+                              Grid.Row="0" Grid.Column="1" />
+                                <CheckBox Content="Concrete" Grid.Row="1" Grid.Column="0"
+                              Tag="Beton" Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Other" Grid.Row="1" Grid.Column="1"
+                              Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
+                            </Grid >
+                        </StackPanel>
                     </Flyout>
-                
-            </ListView>
-            
-            
+                </Button.Flyout>
+            </Button>
 
-            <ComboBox HorizontalAlignment="Center" PlaceholderText="choose stone"
-                      Width="240" Margin="0,20,0,20">
-                <ComboBoxItem Content="Granite" Tag="Granit"/>
-                <ComboBoxItem Content="Sandstone" Tag="Sandsten"/>
-                <ComboBoxItem Content="Chalkstone" Tag="Kalksten"/>
-                <ComboBoxItem Content="Marmor" Tag="Marble"/>
-                <ComboBoxItem Content="Other" Tag="Andet"></ComboBoxItem>
-            </ComboBox>
-            <ComboBox HorizontalAlignment="Center" PlaceholderText="others"
-                      Width="240">
-                <ComboBoxItem Content="Wood" Tag="Træ"></ComboBoxItem>
-                <ComboBoxItem Content="Other" Tag="Andet" />
-            </ComboBox>
 
-            <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <TextBlock Text="Type" FontSize="16" FontWeight="ExtraLight"></TextBlock>
-                <StackPanel Orientation="Horizontal">
-                <StackPanel>
-                    <CheckBox Content="Sculpture" Style="{StaticResource CheckBoxStyle}"></CheckBox>
-                    <CheckBox Content="Base" Style="{StaticResource CheckBoxStyle}"></CheckBox>
-                </StackPanel>
-                <StackPanel>
-                    <CheckBox Content="Relief" Style="{StaticResource CheckBoxStyle}"></CheckBox>
-                    <CheckBox Content="Fountain" Style="{StaticResource CheckBoxStyle}"></CheckBox>
-                </StackPanel>
-                </StackPanel>
-            </StackPanel>
 
+            <GridView ItemsSource="{Binding PassedSculpture.SculptureTypes, Mode=TwoWay}" HorizontalAlignment="Center"
+                          Header="Types" Margin="0,15,0,0"  Width="250">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding}" Style="{StaticResource TextBlockStyle}" Margin="15,10,15,10"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+
+            <Button Content="Choose Types" HorizontalAlignment="Center" Width="150" Margin="0,0,0,10">
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <CheckBox Content="Sculpture" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                                <CheckBox Content="Base" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                            </StackPanel>
+                            <StackPanel>
+                                <CheckBox Content="Relief" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                                <CheckBox Content="Fountain" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
         </StackPanel>
 
         <StackPanel Grid.Column="1">
-
             <TextBox Text="{Binding PassedSculpture.Sculpture_Name, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"
-                     FontSize="32"
+                     FontSize="28"
                      ></TextBox>
 
             <TextBox Text="{Binding PassedSculpture.Sculpture_Address, Mode=TwoWay}"
                      Style="{StaticResource TextBoxStyle}"
-                     FontSize="32"
+                     FontSize="28"
                      ></TextBox>
 
             <TextBox Text="{Binding PassedSculpture.Sculpture_Description, Mode=TwoWay}"

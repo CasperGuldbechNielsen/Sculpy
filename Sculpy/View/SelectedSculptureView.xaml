@@ -52,8 +52,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Image Width="175" Height="120" Grid.Row="0"
-                   Source="../Assets/Sculpture.bmp"></Image>
+            <Image Width="175" Height="120" Grid.Row="0" Source="{Binding PassedSculpture.Sculpture_Picture}"></Image>
 
             <StackPanel Margin="70,10,70,0" Grid.Row="1">
                 <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}"></TextBlock>
