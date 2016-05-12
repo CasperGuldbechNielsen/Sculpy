@@ -31,7 +31,7 @@ namespace Sculpy.ViewModel
 
         private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
-            SculptureHandler.CreateSculpture(ViewModel.PassedSculpture);
+            SculptureHandler.CreateSculpture(ViewModel.NewSculpture);
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)

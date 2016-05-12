@@ -104,7 +104,7 @@ namespace Sculpy.Handler
                 {
                     sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
                     sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
-                    // sculpture.Inspections = await new PersistenceFacade().GetInspetionsFromSelectedSculpture(sculpture.ID);
+                    //sculpture.Inspections = await new PersistenceFacade().GetInspetionsFromSelectedSculpture(sculpture.ID);
                 }
             }
 

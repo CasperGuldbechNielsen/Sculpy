@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using Windows.UI.Popups;
 using Newtonsoft.Json;
@@ -121,15 +123,14 @@ namespace Sculpy.Handler
 
             foreach (var item in inspections) // Loop through all strings
             {
-                builder.AppendLine(item.ToString());
+                builder.AppendFormat(item.ToString());
             }
-            string result = builder.ToString();
 
 
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("Report.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, builder.ToString());
 
 
             MessageDialog dialog = new MessageDialog("A report has been saved to your harddrive.");

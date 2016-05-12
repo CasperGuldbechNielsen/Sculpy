@@ -21,7 +21,7 @@ namespace WebService.Controllers
                 from sm in db.Sculpture_Material
                 where sm.Sculpture_ID == sculpture_Id
                 select sm.Material;
-           
+            // db.Sculptures.Include(s=>s.)
             return query;
         }
     }
