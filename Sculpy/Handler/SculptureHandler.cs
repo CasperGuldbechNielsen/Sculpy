@@ -1,22 +1,27 @@
-﻿using Sculpy.Model;
+﻿using Windows.Foundation.Metadata;
+using Sculpy.Model;
+using Sculpy.ViewModel;
 
 namespace Sculpy.Handler
 {
     public class SculptureHandler
     {
-        public static void DeleteSculpture(int id)
+        public static async void DeleteSculpture(int id)
         {
-            
+            await new Persistancy.PersistenceFacade().DeleteSculptureAsync(id);
+            SculpturesHandler.ResetCollectionAsync();
         }
 
-        public static void UpdateSculpture(int id)
+        public static async void UpdateSculpture(Sculpture sculpture)
         {
-
+            await new Persistancy.PersistenceFacade().UpdateSculptureAsync(sculpture);
+            SculpturesHandler.ResetCollectionAsync();
         }
 
-        public static void CreateSculpture(Sculpture sculpture)
+        public static async void CreateSculpture(Sculpture sculpture)
         {
-
+            await new Persistancy.PersistenceFacade().CreateSculptureAsync(sculpture);
+            SculpturesHandler.ResetCollectionAsync();
         }
 
     }

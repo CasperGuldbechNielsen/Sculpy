@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using Newtonsoft.Json;
 using Sculpy.Model;
 
 namespace Sculpy.Persistancy
@@ -22,7 +24,7 @@ namespace Sculpy.Persistancy
 
         public PersistenceFacade()
         {
-            handler = new HttpClientHandler {UseDefaultCredentials = true};
+            handler = new HttpClientHandler { UseDefaultCredentials = true };
         }
 
         /// <summary>
@@ -166,5 +168,75 @@ namespace Sculpy.Persistancy
                 return null;
             }
         }
+
+
+        public async Task CreateSculptureAsync(Sculpture sculpture)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(sculpture);
+                var sculptureContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PostAsync("Api/Sculptures", sculptureContent);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public async Task DeleteSculptureAsync(int id)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/Sculptures/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+            }
+        }
+
+        public async Task UpdateSculptureAsync(Sculpture sculpture)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json= JsonConvert.SerializeObject(sculpture);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/Sculptures/" + sculpture.ID, content);
+                }
+                catch (Exception ex)
+                {
+
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                
+
+            }
+        }
+
     }
 }
