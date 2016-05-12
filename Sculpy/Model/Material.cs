@@ -13,6 +13,17 @@ namespace Sculpy.Model
         public string Material_Name { get; set; }
 
         public int Material_Type_ID { get; set; }
-        
+
+        public Material(string materialName)
+        {
+            // TODO Dani: create MaterialController and go through the collection and extract the material.
+            if (materialName == "Bronze")
+            {
+                this.ID = 21;
+                this.Material_Type_ID = 2;
+                this.Material_Name = materialName;
+            }
+        }
+
     }
 }
