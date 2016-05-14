@@ -59,7 +59,7 @@
             </ComboBox>
 
             <GridView ItemsSource="{Binding MaterialCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Header="Materials" Margin="0,15,0,0" Width="250" Name="GridViewMaterials"
+                      Header="Materials" Margin="0,15,0,0" Width="250"
                       HorizontalAlignment="Center">
                 <GridView.ItemTemplate>
                     <DataTemplate>
@@ -67,13 +67,13 @@
                             <TextBlock Text="{Binding Material_Type_ID}"
                                        Style="{StaticResource TextBlockStyle}" Margin="0"></TextBlock>
                             <TextBlock Text="{Binding Material_Name}" 
-                                       Style="{StaticResource TextBlockStyle}" Margin="15,10,15,10"></TextBlock>
+                                       Style="{StaticResource TextBlockStyle}" Margin="5,10,30,10"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
 
-            <Button Content="Choose Materials" HorizontalAlignment="Center"  Width="150" Margin="0,0,0,10">
+            <Button Content="Choose Materials" HorizontalAlignment="Center"  Width="150" Margin="0,0,0,10" Name="MaterialButton">
                 <Button.Flyout>
                     <Flyout>
                         <Flyout.FlyoutPresenterStyle>
@@ -95,18 +95,26 @@
                                     <ColumnDefinition Width="140"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <CheckBox Content="Iron" Tag="Jern" Checked="ToggleButton_OnChecked"
-                              Style="{StaticResource FilterWindowCheckBox}"
-                              Grid.Row="0" Grid.Column="0"/>
-                                <CheckBox Content="Bronze" Tag="Bronze" Style="{StaticResource FilterWindowCheckBox}"
-                                          Checked="ToggleButton_OnChecked"
-                              Grid.Row="0" Grid.Column="1"/>
+                                <CheckBox Content="Iron" Tag="Jern" Grid.Row="0" Grid.Column="0"
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Bronze" Tag="Bronze" Style="{StaticResource FilterWindowCheckBox}" 
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Grid.Row="0" Grid.Column="1"/>
                                 <CheckBox Content="Painted steel" Grid.Row="1" Grid.Column="0"
-                              Tag="Bemaletstån" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}" 
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Bemaletstån" Style="{StaticResource FilterWindowCheckBox}"/>
                                 <CheckBox Content="Aluminum" Grid.Row="1" Grid.Column="1" Tag="Aluminium"
-                              Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Style="{StaticResource FilterWindowCheckBox}"/>
                                 <CheckBox Content="Weathering steel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                              Tag="Cortenstål" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}" 
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Cortenstål" Style="{StaticResource FilterWindowCheckBox}"/>
                             </Grid >
 
                             <TextBlock Text="Stones" Style="{StaticResource TextBlockStyle}"></TextBlock>
@@ -122,16 +130,26 @@
                                 </Grid.ColumnDefinitions>
 
                                 <CheckBox Content="Granite" Tag="Granit"
-                                 Style="{StaticResource FilterWindowCheckBox}"
-                                 Grid.Row="0" Grid.Column="0"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Style="{StaticResource FilterWindowCheckBox}"
+                                          Grid.Row="0" Grid.Column="0"/>
                                 <CheckBox Content="Sandstone" Tag="Sandsten" Style="{StaticResource FilterWindowCheckBox}"
-                                 Grid.Row="0" Grid.Column="1" />
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Grid.Row="0" Grid.Column="1" />
                                 <CheckBox Content="Chalkstone" Grid.Row="1" Grid.Column="0"
-                                 Tag="Kalksten" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Kalksten" Style="{StaticResource FilterWindowCheckBox}"/>
                                 <CheckBox Content="Marble" Grid.Row="1" Grid.Column="1"
-                                 Tag="Marmor" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Marmor" Style="{StaticResource FilterWindowCheckBox}"/>
                                 <CheckBox Content="Other"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2"
-                                 Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
                             </Grid >
 
                             <TextBlock Text="Others" Style="{StaticResource TextBlockStyle}"></TextBlock>
@@ -146,14 +164,22 @@
                                     <ColumnDefinition Width="140"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <CheckBox Content="Wood" Tag="Træ" 
-                              Style="{StaticResource FilterWindowCheckBox}" Grid.Row="0" Grid.Column="0"/>
+                                <CheckBox Content="Wood" Tag="Træ"
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}" 
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Style="{StaticResource FilterWindowCheckBox}" Grid.Row="0" Grid.Column="0"/>
                                 <CheckBox Content="Brick" Tag="Tegl" Style="{StaticResource FilterWindowCheckBox}"
-                              Grid.Row="0" Grid.Column="1" />
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Grid.Row="0" Grid.Column="1" />
                                 <CheckBox Content="Concrete" Grid.Row="1" Grid.Column="0"
-                              Tag="Beton" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Beton" Style="{StaticResource FilterWindowCheckBox}"/>
                                 <CheckBox Content="Other" Grid.Row="1" Grid.Column="1"
-                              Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
+                                          Loaded="{x:Bind ViewModel.MaterialCheckBox_IsEnabled}" 
+                                          Checked="{x:Bind ViewModel.MaterialCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.MaterialCheckBox_OnUnchecked}" 
+                                          Tag="Andet" Style="{StaticResource FilterWindowCheckBox}"/>
                             </Grid >
                         </StackPanel>
                     </Flyout>
@@ -162,7 +188,7 @@
 
 
 
-            <GridView ItemsSource="{Binding PassedSculpture.SculptureTypes, Mode=TwoWay}" HorizontalAlignment="Center"
+            <GridView ItemsSource="{Binding TypeCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"
                           Header="Types" Margin="0,15,0,0"  Width="250">
                 <GridView.ItemTemplate>
                     <DataTemplate>
@@ -177,14 +203,31 @@
             <Button Content="Choose Types" HorizontalAlignment="Center" Width="150" Margin="0,0,0,10">
                 <Button.Flyout>
                     <Flyout>
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundAccentBrush}"></Setter>
+                                <Setter Property="BorderThickness" Value="1"></Setter>
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <CheckBox Content="Sculpture" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
-                                <CheckBox Content="Base" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                                <CheckBox Content="Sculpture" Tag="Skulptur"
+                                  Style="{StaticResource FilterWindowCheckBox}"
+                                          Loaded="{x:Bind ViewModel.TypeCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.TypeCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.TypeCheckBox_OnUnchecked}"/>
+                                <CheckBox Content="Base" Tag="Sokkel" Style="{StaticResource FilterWindowCheckBox}"
+                                           Loaded="{x:Bind ViewModel.TypeCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.TypeCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.TypeCheckBox_OnUnchecked}"/>
                             </StackPanel>
                             <StackPanel>
-                                <CheckBox Content="Relief" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
-                                <CheckBox Content="Fountain" Style="{StaticResource FilterWindowCheckBox}"></CheckBox>
+                                <CheckBox Content="Fountain"  Tag="Vandkunst"
+                                           Loaded="{x:Bind ViewModel.TypeCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.TypeCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.TypeCheckBox_OnUnchecked}" 
+                                  Style="{StaticResource FilterWindowCheckBox}"/>
+                                <CheckBox Content="Relief" Tag="Relief"
+                                           Loaded="{x:Bind ViewModel.TypeCheckBox_IsEnabled}"
+                                          Checked="{x:Bind ViewModel.TypeCheckBox_OnChecked}" Unchecked="{x:Bind ViewModel.TypeCheckBox_OnUnchecked}" 
+                                  Style="{StaticResource FilterWindowCheckBox}"/>
                             </StackPanel>
                         </StackPanel>
                     </Flyout>
