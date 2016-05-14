@@ -8,14 +8,16 @@ namespace Sculpy.ViewModel
 {
     public class SelectedInspectionEditViewModel:INotifyPropertyChanged
     {
-        private Inspection _passedInspection;
+        public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
 
-        public Inspection PassedInspection
+        private Inspection _selectedInspection;
+
+        public Inspection SelectedInspection
         {
-            get { return _passedInspection; }
+            get { return _selectedInspection; }
             set
             {
-                _passedInspection = value;
+                _selectedInspection = value;
                 OnPropertyChanged();
             }
         }
@@ -31,6 +33,7 @@ namespace Sculpy.ViewModel
         public SelectedInspectionEditViewModel(InspectionHandler handler)
         {
             Handler = handler;
+            InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -30,8 +30,8 @@ namespace Sculpy.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var inspection = e.Parameter;
-            ViewModel.PassedInspection = (Inspection) inspection;
+            var Inspection = (Inspection)e.Parameter;
+            ViewModel.SelectedInspection = Inspection;
         }
     }
 }

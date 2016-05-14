@@ -36,7 +36,7 @@ namespace Sculpy.View
 
         private void EditInspectionButton_Onclick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.PassedInspection);
+            Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.SelectedInspection);
         }
     }
 }

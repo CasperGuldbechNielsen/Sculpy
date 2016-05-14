@@ -27,7 +27,7 @@
         
         <RelativePanel>
             <TextBox Name="TitleTextBox" 
-                     Text="{Binding PassedInspection.Inspection_Title}"
+                     Text="{Binding SelectedInspection.Inspection_Title, Mode=TwoWay}"
                      FontSize="20"
                      Width="700"
                      Height="75"
@@ -35,7 +35,7 @@
                      RelativePanel.AlignHorizontalCenterWithPanel="True"
                      Margin="50,50,50,20"/>
             <TextBox Name="NotesTextBox"
-                     Text="{Binding PassedInspection.Inspection_Note}"
+                     Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}"
                      Width="700"
                      Height="400"
                      BorderBrush="Gray"
