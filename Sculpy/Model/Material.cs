@@ -14,6 +14,10 @@ namespace Sculpy.Model
 
         public int Material_Type_ID { get; set; }
 
+        public Material()
+        {
+            
+        }
         public Material(string materialName)
         {
             // TODO Dani: create MaterialController and go through the collection and extract the material.
