@@ -37,12 +37,15 @@ namespace WebService.Controllers
         public IHttpActionResult UpdateSculptureMaterials(int sculptureId, List<int> materialIds)
         {
             var collection = db.Sculpture_Material.Where(sm => sm.Sculpture_ID == sculptureId);
-            foreach (var entry in collection)
+            if (collection.Count()!=0)
             {
-                db.Sculpture_Material.Remove(entry);
+                foreach (var entry in collection)
+                {
+                    db.Sculpture_Material.Remove(entry);
+                }
+                db.SaveChanges();
             }
-            db.SaveChanges();
-
+            
             const string sql = "INSERT INTO Sculpture_Material(Sculpture_ID, Material_ID) VALUES(@P0, @P1)";
             var parameterList = new List<object>();
             foreach (var materialId in materialIds)

@@ -285,5 +285,28 @@ namespace Sculpy.Persistancy
                 }
             }
         }
+
+        public async Task UpdateSculptureTypesAsync(int sculptureId, List<int> typeIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(typeIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/UpdateSculptureTypes/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
     }
 }

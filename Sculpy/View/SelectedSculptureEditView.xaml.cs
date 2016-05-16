@@ -42,9 +42,34 @@ namespace Sculpy.View
         {
             await new Persistancy.PersistenceFacade().UpdateSculptureAsync(ViewModel.PassedSculpture);
 
-            var paramterList = new List<int>();
-            ViewModel.PassedSculpture.SculptureMaterials.ForEach(material => paramterList.Add(material.ID));
-            await new Persistancy.PersistenceFacade().UpdateSculptureMaterialsAsync(ViewModel.PassedSculpture.ID, paramterList);
+            var parameterList = new List<int>();
+            ViewModel.PassedSculpture.SculptureMaterials.ForEach(material => parameterList.Add(material.ID));
+            await new Persistancy.PersistenceFacade().UpdateSculptureMaterialsAsync(ViewModel.PassedSculpture.ID, parameterList);
+
+            var parameterList2 = new List<string>();
+            ViewModel.PassedSculpture.SculptureTypes.ForEach(type => parameterList2.Add(type));
+            parameterList.Clear();
+            parameterList2.ForEach(x =>
+            {
+                switch (x)
+                {
+                    case "Skulptur":
+                        parameterList.Add(1);
+                        break;
+                    case "Sokkel":
+                        parameterList.Add(2);
+                        break;
+                    case "Relief":
+                        parameterList.Add(3);
+                        break;
+                    case "Facade":
+                        parameterList.Add(4);
+                        break;
+                    default:
+                        break;
+                }
+            });
+            await new Persistancy.PersistenceFacade().UpdateSculptureTypesAsync(ViewModel.PassedSculpture.ID, parameterList);
 
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
