@@ -42,7 +42,7 @@ namespace Sculpy.ViewModel
         {
             var checkBox = (CheckBox)sender;
             var tag = checkBox.Tag.ToString();
-            var material = new Material() { Material_Name = tag, ID = 2, Material_Type_ID = 3 };
+            var material = new Material(tag);
 
             if (PassedSculpture.SculptureMaterials.All(material1 => material1.Material_Name != material.Material_Name))
             {
@@ -55,7 +55,7 @@ namespace Sculpy.ViewModel
         {
             var checkBox = (CheckBox)sender;
             var tag = checkBox.Tag.ToString();
-            var material = new Material() { Material_Name = tag, ID = 2, Material_Type_ID = 3 };
+            var material = new Material(tag);
 
             var collection =
                 PassedSculpture.SculptureMaterials.Where(material1 => material1.Material_Name != material.Material_Name).ToList();

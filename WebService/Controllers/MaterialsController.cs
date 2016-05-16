@@ -39,7 +39,7 @@ namespace WebService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutMaterial(int id, Material material)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 return BadRequest(ModelState);
             }

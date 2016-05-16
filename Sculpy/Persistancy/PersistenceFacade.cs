@@ -229,7 +229,6 @@ namespace Sculpy.Persistancy
                 }
                 catch (Exception ex)
                 {
-
                     await new MessageDialog(ex.Message).ShowAsync();
                 }
                 
@@ -237,5 +236,54 @@ namespace Sculpy.Persistancy
             }
         }
 
+        public async Task<List<Material>> GetAllMaterials()
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync("api/Materials").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var materialList = await response.Content.ReadAsAsync<List<Material>>();
+                        return materialList;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
+
+        public async Task UpdateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(materialIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/UpdateSculptureMaterials/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
     }
 }
