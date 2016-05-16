@@ -62,7 +62,7 @@ namespace Sculpy.View
                     case "Relief":
                         parameterList.Add(3);
                         break;
-                    case "Facade":
+                    case "Vandkunst":
                         parameterList.Add(4);
                         break;
                     default:

@@ -80,7 +80,8 @@ namespace WebService.Controllers
                 {
                     SculptureId = st.Sculpture_ID,
                     SculptureType = t.Sculpture_Type1
-                };
+                }; // or select t;
+
 
             var dictionary = new Dictionary<int,string>();
 
