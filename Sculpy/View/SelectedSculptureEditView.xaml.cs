@@ -41,6 +41,11 @@ namespace Sculpy.View
         private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             await new Persistancy.PersistenceFacade().UpdateSculptureAsync(ViewModel.PassedSculpture);
+
+            var paramterList = new List<int>();
+            ViewModel.PassedSculpture.SculptureMaterials.ForEach(material => paramterList.Add(material.ID));
+            await new Persistancy.PersistenceFacade().UpdateSculptureMaterialsAsync(ViewModel.PassedSculpture.ID, paramterList);
+
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
 

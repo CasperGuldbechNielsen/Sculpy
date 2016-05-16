@@ -16,18 +16,19 @@ namespace Sculpy.Model
 
         public Material()
         {
-            
+
         }
         public Material(string materialName)
         {
-            // TODO Dani: create MaterialController and go through the collection and extract the material.
-            if (materialName == "Bronze")
+            var materialList = new Persistancy.PersistenceFacade().GetAllMaterials().Result;
+
+            foreach (var material in materialList.Where(material => materialName == material.Material_Name))
             {
-                this.ID = 21;
-                this.Material_Type_ID = 2;
+                this.ID = material.ID;
+                this.Material_Type_ID = material.Material_Type_ID;
                 this.Material_Name = materialName;
+                break;
             }
         }
-
     }
 }
