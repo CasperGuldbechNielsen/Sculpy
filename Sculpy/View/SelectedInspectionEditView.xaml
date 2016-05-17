@@ -38,6 +38,7 @@
                      Text="{Binding SelectedInspection.Inspection_Note, Mode=TwoWay}"
                      Width="700"
                      Height="400"
+                     TextWrapping="Wrap"
                      BorderBrush="Gray"
                      RelativePanel.Below="TitleTextBox"
                      RelativePanel.AlignHorizontalCenterWithPanel="True"/>
