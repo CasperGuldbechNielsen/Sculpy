@@ -39,6 +39,18 @@ namespace Sculpy.Model
             
         }
 
+        public Sculpture(int id)
+        {
+            this.ID = id;
+            this.Sculpture_Name = null;
+            this.Sculpture_Placement = null;
+            this.Sculpture_Address = null;
+            this.Sculpture_Description = null;
+            this.Sculpture_Inspection_Frequency = null;
+            this.Sculpture_Picture = null;
+            this.SculptureMaterials = new List<Material>();
+            this.SculptureTypes = new List<string>();
+        }
         /// <summary>
         /// This method overrides ToString() method in order to display the sculpture the way we want
         /// </summary>
