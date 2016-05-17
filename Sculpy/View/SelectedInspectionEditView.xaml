@@ -73,7 +73,8 @@
             
             <DatePicker Name="DatePicker"
                         RelativePanel.Below="DateTextBlock"
-                        Margin="0,0,0,30"/>
+                        Margin="0,0,0,30"
+                        Date="{Binding SelectedInspection.Inspection_Date, Mode=TwoWay}"/>
             
             <TextBlock Name="DamageTextBlock" 
                        Text="Damage"
