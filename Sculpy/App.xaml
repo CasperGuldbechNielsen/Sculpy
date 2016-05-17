@@ -47,6 +47,14 @@
             <Setter Property="Width" Value="296"/>
             <Setter Property="Margin" Value="0,0,0,30"></Setter>
         </Style>
+        <Style TargetType="TextBox" x:Name="TextBoxStyle">
+            <Setter Property="FontFamily" Value="Calibri Light"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+            <Setter Property="FontSize" Value="21"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Width" Value="700"></Setter>
+        </Style>
     </Application.Resources>
 
 </Application>

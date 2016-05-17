@@ -6,14 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-    </Grid>
-
+    
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Accept" Label="Save" />
@@ -21,4 +14,80 @@
             <AppBarButton Icon="Cancel" Label="Cancel" />
         </CommandBar>
     </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+    
+
+
+        <StackPanel Grid.Column="0" Padding="50">
+            <TextBox Name="TitleTextBox" 
+                     PlaceholderText="Inspection title.." 
+                     Header="Title" 
+                     Style="{StaticResource TextBoxStyle}"/>
+            <TextBox Name="NoteTextBox" 
+                     PlaceholderText="Write notes here.." 
+                     Header="Notes" 
+                     Style="{StaticResource TextBoxStyle}"/>
+        </StackPanel>
+
+        <RelativePanel Grid.Column="1" Padding="50">
+            <TextBlock Name="DateTextBlock" 
+                       Text="Date"
+                       Style="{StaticResource TextBlockStyle}"/>
+            <DatePicker Name="DatePicker"
+                       RelativePanel.Below="DateTextBlock"
+                        Margin="0,0,0,30"/>
+            <TextBlock Name="DamageTextBlock" 
+                       Text="Damage"
+                       Style="{StaticResource TextBlockStyle}"
+                       RelativePanel.Below="DatePicker"/>
+            <ComboBox Name="DamageComboBox" 
+                      PlaceholderText="Select from list" 
+                      RelativePanel.Below="DamageTextBlock" 
+                      Style="{StaticResource ComboBoxStyle}">
+                <ComboBoxItem Content="None"/>
+                <ComboBoxItem Content="Biological growth"/>
+                <ComboBoxItem Content="Weathering"/>
+                <ComboBoxItem Content="Construction damage"/>
+                <ComboBoxItem Content="Defective joint"/>
+                <ComboBoxItem Content="Discoloration"/>
+                <ComboBoxItem Content="Cracks"/>
+                <ComboBoxItem Content="Lost parts"/>
+                <ComboBoxItem Content="Other"/>
+            </ComboBox>
+            <TextBlock Name="TreatmentTextBlock" 
+                       Text="Treatment"
+                       Style="{StaticResource TextBlockStyle}"
+                       RelativePanel.Below="DamageComboBox"/>
+            <ComboBox Name="TreatmentComboBox" 
+                      PlaceholderText="Select from list" 
+                      RelativePanel.Below="TreatmentTextBlock"
+                      Style="{StaticResource ComboBoxStyle}">
+                <ComboBoxItem Content="None"/>
+                <ComboBoxItem Content="Wash"/>
+                <ComboBoxItem Content="Wax"/>
+                <ComboBoxItem Content="Rebuild"/>
+                <ComboBoxItem Content="Other"/>
+            </ComboBox>
+            <TextBlock Name="FrequencyTextBlock" 
+                       Text="Treatment frequency"
+                       Style="{StaticResource TextBlockStyle}"
+                       RelativePanel.Below="TreatmentComboBox"/>
+            <ComboBox Name="FrequencyComboBox" 
+                      PlaceholderText="Select from list" 
+                      RelativePanel.Below="FrequencyTextBlock"
+                      Style="{StaticResource ComboBoxStyle}">
+                <ComboBoxItem Content="None"/>
+                <ComboBoxItem Content="Immediately"/>
+                <ComboBoxItem Content="Look after in 10 years"/>
+                <ComboBoxItem Content="Treatment plan"/>
+                <ComboBoxItem Content="Other"/>
+            </ComboBox>
+        </RelativePanel>
+
+    </Grid>
 </Page>
