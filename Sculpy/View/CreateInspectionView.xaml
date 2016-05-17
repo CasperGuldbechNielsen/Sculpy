@@ -8,7 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Click="ButtonBase_OnClick" Content="Go Back" Width="100" Height="20" HorizontalAlignment="Center"
-                ></Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Accept" Label="Save" />
+            <!-- TODO: Confirmation box before cancel -->
+            <AppBarButton Icon="Cancel" Label="Cancel" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
