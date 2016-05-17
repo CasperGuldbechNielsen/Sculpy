@@ -14,8 +14,8 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Name="SaveButton" Icon="Accept" Label="Save"/>
-            <AppBarButton Name="CancelButton"  Icon="Cancel" Label="Cancel"/>
+            <AppBarButton Name="SaveButton" Icon="Accept" Label="Save" Click="SaveButton_OnClick"/>
+            <AppBarButton Name="CancelButton"  Icon="Cancel" Label="Cancel" Click="CancelButton_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -48,76 +48,63 @@
                         RelativePanel.AlignLeftWith="NotesTextBox"
                         Margin="0,40,0,0">
 
-                    <Border Name="PictureButton"
+                <Border Name="PictureButton"
                             Height="150"
                             Width="150"
                             Background="Black">
-                        <TextBlock Text="&#xE722;" 
+                    <TextBlock Text="&#xE722;" 
                                    FontFamily="Segoe MDL2 Assets"
                                    FontSize="80"/>
-                    </Border>
+                </Border>
 
-                    <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}" 
+                <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}" 
                            Margin="5,0,5,0" 
                            Width="150" Height="150"/>
-                                
-                </StackPanel>
-            
+
+            </StackPanel>
+
         </RelativePanel>
 
         <RelativePanel Grid.Column="1" Padding="50">
             <TextBlock Name="DateTextBlock" 
                        Text="Date"
-                       Style="{StaticResource TextBlockStyle}"/>
+                       Style="{StaticResource TextBlockStyle}"
+                       />
+            
             <DatePicker Name="DatePicker"
-                       RelativePanel.Below="DateTextBlock"
+                        RelativePanel.Below="DateTextBlock"
                         Margin="0,0,0,30"/>
+            
             <TextBlock Name="DamageTextBlock" 
                        Text="Damage"
                        Style="{StaticResource TextBlockStyle}"
                        RelativePanel.Below="DatePicker"/>
-            <ComboBox Name="DamageComboBox" 
-                      PlaceholderText="Select from list" 
-                      RelativePanel.Below="DamageTextBlock" 
-                      Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Biological growth"/>
-                <ComboBoxItem Content="Weathering"/>
-                <ComboBoxItem Content="Construction damage"/>
-                <ComboBoxItem Content="Defective joint"/>
-                <ComboBoxItem Content="Discoloration"/>
-                <ComboBoxItem Content="Cracks"/>
-                <ComboBoxItem Content="Lost parts"/>
-                <ComboBoxItem Content="Other"/>
-            </ComboBox>
+            
+            <TextBox  Name="DamageTextBox" 
+                      RelativePanel.Below="DamageTextBlock"
+                      Style="{StaticResource TextBoxStyle}"
+                      Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"/>
+                      
             <TextBlock Name="TreatmentTextBlock" 
                        Text="Treatment"
                        Style="{StaticResource TextBlockStyle}"
-                       RelativePanel.Below="DamageComboBox"/>
-            <ComboBox Name="TreatmentComboBox" 
-                      PlaceholderText="Select from list" 
+                       RelativePanel.Below="DamageTextBox"/>
+            
+            <TextBox  Name="TreatmentTextBox" 
+                      Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}" 
                       RelativePanel.Below="TreatmentTextBlock"
-                      Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Wash"/>
-                <ComboBoxItem Content="Wax"/>
-                <ComboBoxItem Content="Rebuild"/>
-                <ComboBoxItem Content="Other"/>
-            </ComboBox>
+                      Style="{StaticResource TextBoxStyle}"/>
+            
             <TextBlock Name="FrequencyTextBlock" 
-                       Text="Treatment frequency"
+                       Text="Treatment Frequency"
                        Style="{StaticResource TextBlockStyle}"
-                       RelativePanel.Below="TreatmentComboBox"/>
-            <ComboBox Name="FrequencyComboBox" 
-                      PlaceholderText="Select from list" 
+                       RelativePanel.Below="TreatmentTextBox"/>
+               
+            <TextBox  Name="FrequencyComboBox" 
+                      Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}" 
                       RelativePanel.Below="FrequencyTextBlock"
-                      Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Immediately"/>
-                <ComboBoxItem Content="Look after in 10 years"/>
-                <ComboBoxItem Content="Treatment plan"/>
-                <ComboBoxItem Content="Other"/>
-            </ComboBox>
+                      Style="{StaticResource TextBoxStyle}"/>
+            
         </RelativePanel>
 
     </Grid>
