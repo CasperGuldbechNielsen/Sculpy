@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
-    
+
     <Page.DataContext>
         <viewModel:SelectedInspectionEditViewModel x:Name="ViewModel"/>
     </Page.DataContext>
-    
+
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Name="SaveButton" Icon="Accept" Label="Save"/>
@@ -24,7 +24,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        
+
         <RelativePanel >
             <TextBox Name="TitleTextBox" 
                      Text="{Binding SelectedInspection.Inspection_Title, Mode=TwoWay}"
@@ -44,26 +44,27 @@
                      RelativePanel.AlignHorizontalCenterWithPanel="True"/>
 
             <StackPanel Orientation="Horizontal"
-                        Name="PicturesControlPanel"
                         RelativePanel.Below="NotesTextBox"
-                        RelativePanel.AlignHorizontalCenterWithPanel="True">
+                        RelativePanel.AlignLeftWith="NotesTextBox"
+                        Margin="0,40,0,0">
+
                     <Border Name="PictureButton"
-                            Height="180"
-                            Width="180"
+                            Height="150"
+                            Width="150"
                             Background="Black">
                         <TextBlock Text="&#xE722;" 
                                    FontFamily="Segoe MDL2 Assets"
-                                   FontSize="50"/>
+                                   FontSize="80"/>
                     </Border>
-                    <StackPanel Name="DamagePictures" Orientation="Horizontal">
-                        <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}"
-                                               Height="180"
-                                               Width="180"
-                                               Margin="10,10,10,10"/>
-                    </StackPanel>
+
+                    <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}" 
+                           Margin="5,0,5,0" 
+                           Width="150" Height="150"/>
+                                
                 </StackPanel>
-            </RelativePanel>
             
+        </RelativePanel>
+
         <RelativePanel Grid.Column="1" Padding="50">
             <TextBlock Name="DateTextBlock" 
                        Text="Date"
@@ -118,6 +119,6 @@
                 <ComboBoxItem Content="Other"/>
             </ComboBox>
         </RelativePanel>
-        
+
     </Grid>
 </Page>

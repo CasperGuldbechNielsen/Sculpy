@@ -74,29 +74,37 @@
                         Name="ManagePicturesPanel"  
                         Grid.Row="2">
                     
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal"
+                                RelativePanel.AlignLeftWithPanel="True">
 
                         <Border 
                             Name="PictureButton"
-                            Height="180"
-                            Width="180"
-                            Background="Black">
+                            Height="150"
+                            Width="150"
+                            Background="Black"
+                            RelativePanel.LeftOf="InspectionPicturesGridView">
                             <TextBlock 
                                    Text="&#xE722;" 
                                    FontFamily="Segoe MDL2 Assets"
-                                   FontSize="100"
+                                   FontSize="80"
                                    RelativePanel.LeftOf="DamagePictures"/>
                         </Border>
 
-                        
-                                    <StackPanel Name="DamagePictures" Orientation="Horizontal">
-                                        <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}"
-                                               Height="180"
-                                               Width="180"
-                                               Margin="10,10,10,10"/>
+                        <GridView 
+                            Name="InspectionPicturesGridView"
+                            ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" 
+                            Margin="2,0"
+                            ShowsScrollingPlaceholders="False">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Damage_Picture, Mode=TwoWay}" 
+                                               Margin="5,0,5,0" 
+                                               Width="150" Height="150"/>
                                     </StackPanel>
-                               
-
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
                     </StackPanel>
                 </RelativePanel>
             </Grid>
