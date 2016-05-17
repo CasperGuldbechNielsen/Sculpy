@@ -332,6 +332,27 @@ namespace Sculpy.Persistancy
             }
         }
 
+        public async Task UpdateEditedInspection(int inspectionId, Inspection inspection)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                var json = JsonConvert.SerializeObject(inspection);
+                var inspectionContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PutAsync("api/Inspections/" + inspection.ID, inspectionContent);
+                }
+                catch (Exception ex)
+                {
+
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
     }  
 }
