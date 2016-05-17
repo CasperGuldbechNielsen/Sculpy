@@ -88,19 +88,14 @@
                                    RelativePanel.LeftOf="InspectionPicturesListView"/>
                         </Border>
 
-                        <ListView 
-                            Name="InspectionPicturesListView"
-                            ItemsSource="{Binding InspectionCatalogSingleton.Inspections}" 
-                            Margin="10,0"
-                            ShowsScrollingPlaceholders="False">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
+                        
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Damage_Picture, Mode=TwoWay}"/>
+                                        <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}"
+                                               Height="150"
+                                               Width="150"
+                                               Margin="10,10,10,10"/>
                                     </StackPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                               
 
                     </StackPanel>
                 </RelativePanel>
