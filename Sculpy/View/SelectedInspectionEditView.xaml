@@ -84,6 +84,7 @@
             <TextBox  Name="DamageTextBox" 
                       RelativePanel.Below="DamageTextBlock"
                       Style="{StaticResource TextBoxStyle}"
+                      Width="300"
                       Text="{Binding SelectedInspection.Damage_Type, Mode=TwoWay}"/>
                       
             <TextBlock Name="TreatmentTextBlock" 
@@ -94,6 +95,7 @@
             <TextBox  Name="TreatmentTextBox" 
                       Text="{Binding SelectedInspection.Treatment_Type, Mode=TwoWay}" 
                       RelativePanel.Below="TreatmentTextBlock"
+                      Width="300"
                       Style="{StaticResource TextBoxStyle}"/>
             
             <TextBlock Name="FrequencyTextBlock" 
@@ -104,6 +106,7 @@
             <TextBox  Name="FrequencyComboBox" 
                       Text="{Binding SelectedInspection.Treatment_Plan, Mode=TwoWay}" 
                       RelativePanel.Below="FrequencyTextBlock"
+                      Width="300"
                       Style="{StaticResource TextBoxStyle}"/>
             
         </RelativePanel>
