@@ -33,12 +33,12 @@
                      PlaceholderText="Inspection title.." 
                      Header="Title" 
                      Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding NewInspection.Inspection_Title}"/>
+                     Text="{Binding NewInspection.Inspection_Title, Mode=TwoWay}"/>
             <TextBox Name="NoteTextBox" 
                      PlaceholderText="Write notes here.." 
                      Header="Notes" 
                      Style="{StaticResource TextBoxStyle}"
-                     Text="{Binding NewInspection.Inspection_Note}"/>
+                     Text="{Binding NewInspection.Inspection_Note, Mode=TwoWay}"/>
         </StackPanel>
 
         <RelativePanel Grid.Column="1" Padding="50">

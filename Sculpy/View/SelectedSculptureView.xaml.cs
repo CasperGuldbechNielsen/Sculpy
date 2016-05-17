@@ -56,7 +56,7 @@ namespace Sculpy.View
 
         private void SelectedInspectionButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CreateInspectionView), ViewModel.PassedInspection.ID);
+            Frame.Navigate(typeof(CreateInspectionView), ViewModel.PassedSculpture.ID);
         }
 
         private void DeleteSculptureButton_OnClick(object sender, RoutedEventArgs e)

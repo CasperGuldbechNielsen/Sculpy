@@ -19,6 +19,11 @@ namespace Sculpy.ViewModel
             }
         }
 
+        public CreateInspectionViewModel()
+        {
+            NewInspection = new Inspection();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

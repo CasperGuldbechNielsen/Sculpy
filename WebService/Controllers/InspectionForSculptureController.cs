@@ -19,6 +19,8 @@ namespace WebService.Controllers
         {
           
             inspection.Sculpture_ID = sculptureId;
+            inspection.ID = 23;
+            inspection.Inspection_Date = DateTime.Now;
             db.Inspections.Add(inspection);
             db.SaveChanges();
 

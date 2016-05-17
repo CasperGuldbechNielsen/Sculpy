@@ -254,6 +254,7 @@
     <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\skulpyWebAPI - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\skulpyWebAPI.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
