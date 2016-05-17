@@ -323,7 +323,7 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = await client.PostAsync("Api/Inspections", inspectionContent);
+                    var response = await client.PostAsync($"Api/InspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
                 }
                 catch (Exception ex)
                 {
