@@ -14,7 +14,7 @@
     
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Accept" Label="Save" />
+            <AppBarButton Icon="Accept" Label="Save" Click="ButtonBase_OnClick"/>
             <!-- TODO: Confirmation box before cancel -->
             <AppBarButton Icon="Cancel" Label="Cancel" />
         </CommandBar>
