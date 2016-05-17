@@ -28,6 +28,14 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var sculptureId = int.Parse(e?.Parameter?.ToString());
+            ViewModel.NewInspection.Sculpture_ID = sculptureId;
+
+
+        }
+
         private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             InspectionHandler.CreateInspection(ViewModel.NewInspection);
