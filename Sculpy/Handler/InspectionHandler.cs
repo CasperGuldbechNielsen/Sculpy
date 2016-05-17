@@ -6,7 +6,7 @@ namespace Sculpy.Handler
 {
     public class InspectionHandler
     {
-        //Reference to InspectionViewModel
+
         public SelectedSculptureViewModel InspectionViewModel { get; set; }
 
         public InspectionHandler(SelectedSculptureViewModel inspectionViewModel)
@@ -14,42 +14,15 @@ namespace Sculpy.Handler
             InspectionViewModel = inspectionViewModel;
         }
 
-        /// <summary>
-        /// Creates an Inspection object via properties in the InspectionViewModels NewInspection
-        /// </summary>
-        public void CreateInspection()
+        public static async void CreateInspection(Inspection inspection)
         {
-            //Inspection inspection = new Inspection();
-            //inspection.ID = InspectionViewModel.NewInspection.ID;
-            //inspection.Inspection_Date = InspectionViewModel.NewInspection.Inspection_Date;
-            //inspection.Inspection_Note = InspectionViewModel.NewInspection.Inspection_Note;
-            //inspection.Sculpture_ID = InspectionViewModel.NewInspection.Sculpture_ID;
-            //inspection.Damage_Picture = InspectionViewModel.NewInspection.Damage_Picture;
-
-            //new PersistenceFacade().SaveInspection(inspection);
-
-            //var inspections = new PersistenceFacade().GetAllInspections();
-
-            InspectionViewModel.InspectionCatalogSingleton.Inspections.Clear();
-
-            //foreach (var inspection1 in inspections)
-            //{
-            //    InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
-            //}
+            await new Persistancy.PersistenceFacade().CreateInspectionAsync(inspection);
+            //TODO Call ResetCollectionAsync method here??
         }
 
-        //TODO Not finished as we need to decide if we will have a SelectedInspection property in InspectionViewModel
         public void DeleteInspection(int id)
         {
-            //new PersistenceFacade().RemoveInspection(InspectionViewModel.SelectedInspection);
 
-            //var inspections = new PersistenceFacade().GetAllInspections();
-
-            //InspectionViewModel.InspectionCatalogSingleton.Inspections.Clear();
-            //foreach (var inspection1 in inspections)
-            //{
-            //    InspectionViewModel.InspectionCatalogSingleton.Inspections.Add(inspection1);
-            //}
         }
 
         
