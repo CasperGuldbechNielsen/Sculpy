@@ -77,22 +77,22 @@
                     <StackPanel Orientation="Horizontal">
 
                         <Border 
-                            Name="AddPictureButton"
-                            Height="Auto"
-                            Width="Auto"
+                            Name="PictureButton"
+                            Height="180"
+                            Width="180"
                             Background="Black">
                             <TextBlock 
                                    Text="&#xE722;" 
                                    FontFamily="Segoe MDL2 Assets"
-                                   FontSize="50"
-                                   RelativePanel.LeftOf="InspectionPicturesListView"/>
+                                   FontSize="100"
+                                   RelativePanel.LeftOf="DamagePictures"/>
                         </Border>
 
                         
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Name="DamagePictures" Orientation="Horizontal">
                                         <Image Source="{Binding SelectedInspection.Damage_Picture, Mode=TwoWay}"
-                                               Height="150"
-                                               Width="150"
+                                               Height="180"
+                                               Width="180"
                                                Margin="10,10,10,10"/>
                                     </StackPanel>
                                
