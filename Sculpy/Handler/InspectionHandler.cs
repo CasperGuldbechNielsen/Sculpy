@@ -14,12 +14,10 @@ namespace Sculpy.Handler
             InspectionViewModel = inspectionViewModel;
         }
 
-        /// <summary>
-        /// Creates an Inspection object via properties in the InspectionViewModels NewInspection
-        /// </summary>
-        public void CreateInspection()
+        public static async void CreateInspection(Inspection inspection)
         {
-
+            await new Persistancy.PersistenceFacade().CreateInspectionAsync(inspection);
+            //TODO Call ResetCollectionAsync method here??
         }
 
         public void DeleteInspection(int id)

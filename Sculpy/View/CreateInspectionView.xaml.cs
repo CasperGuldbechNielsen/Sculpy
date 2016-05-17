@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,10 +28,9 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            InspectionHandler.CreateInspection(ViewModel.NewInspection);
         }
     }
 }
