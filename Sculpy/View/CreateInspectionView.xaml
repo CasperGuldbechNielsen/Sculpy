@@ -5,7 +5,12 @@
     xmlns:local="using:Sculpy.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:Sculpy.ViewModel"
     mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <viewModel:CreateInspectionViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
     
     <Page.BottomAppBar>
         <CommandBar>
@@ -27,11 +32,13 @@
             <TextBox Name="TitleTextBox" 
                      PlaceholderText="Inspection title.." 
                      Header="Title" 
-                     Style="{StaticResource TextBoxStyle}"/>
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding NewInspection.Inspection_Title}"/>
             <TextBox Name="NoteTextBox" 
                      PlaceholderText="Write notes here.." 
                      Header="Notes" 
-                     Style="{StaticResource TextBoxStyle}"/>
+                     Style="{StaticResource TextBoxStyle}"
+                     Text="{Binding NewInspection.Inspection_Note}"/>
         </StackPanel>
 
         <RelativePanel Grid.Column="1" Padding="50">
