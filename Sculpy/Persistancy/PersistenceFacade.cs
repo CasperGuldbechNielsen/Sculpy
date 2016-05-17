@@ -332,7 +332,7 @@ namespace Sculpy.Persistancy
             }
         }
 
-        public async Task UpdateEditedInspection(int inspectionId, Inspection inspection)
+        public async Task UpdateEditedInspection(Inspection inspection)
         {
             using (var client = new HttpClient(handler))
             {

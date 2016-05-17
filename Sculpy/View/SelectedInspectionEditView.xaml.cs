@@ -34,9 +34,9 @@ namespace Sculpy.View
             ViewModel.SelectedInspection = Inspection;
         }
 
-        private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+        private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            await new Persistancy.PersistenceFacade().UpdateEditedInspection(ViewModel.SelectedInspection);
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
