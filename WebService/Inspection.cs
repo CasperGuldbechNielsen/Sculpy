@@ -22,7 +22,7 @@ namespace WebService
 
         public int Sculpture_ID { get; set; }
 
-        public byte[] Damage_Picture { get; set; }
+        public string Damage_Picture { get; set; }
 
         public string Treatment_Type { get; set; }
 

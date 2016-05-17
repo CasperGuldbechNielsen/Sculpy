@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.UI.Popups;
 using Newtonsoft.Json;
 using Sculpy.Model;
@@ -308,5 +309,27 @@ namespace Sculpy.Persistancy
                 }
             }
         }
-    }
+
+        public async Task CreateInspectionAsync(Inspection inspection)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(inspection);
+                var inspectionContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PostAsync($"Api/InspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+    }  
 }
