@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using Newtonsoft.Json;
 using Sculpy.Model;
 using Sculpy.ViewModel;
+using UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding;
 
 namespace Sculpy.Handler
 {
@@ -77,7 +78,7 @@ namespace Sculpy.Handler
         internal static void FilterCollectionByDamage(string damageFilter)
         {
             var filteredCollection =
-                            CatalogSingleton.Inspections.Where(x => x.Inspection_Note == damageFilter).ToList();
+                            CatalogSingleton.Inspections.Where(x => x.Damage_Type == damageFilter).ToList();
 
             CatalogSingleton.Inspections.Clear();
 
@@ -90,7 +91,7 @@ namespace Sculpy.Handler
         internal static void FilterCollectionByTreatmentFrequency(string treatmentFrequencyFilter)
         {
             var filteredCollection =
-                            CatalogSingleton.Inspections.Where(x => x.Inspection_Note == treatmentFrequencyFilter).ToList();
+                            CatalogSingleton.Inspections.Where(x => x.Treatment_Plan == treatmentFrequencyFilter).ToList();
 
             CatalogSingleton.Inspections.Clear();
 
@@ -103,7 +104,7 @@ namespace Sculpy.Handler
         internal static void FilterCollectionBySuggestedTreatment(string suggestedTreatmentFilter)
         {
             var filteredCollection =
-                            CatalogSingleton.Inspections.Where(x => x.Inspection_Note == suggestedTreatmentFilter).ToList();
+                            CatalogSingleton.Inspections.Where(x => x.Treatment_Type == suggestedTreatmentFilter).ToList();
 
             CatalogSingleton.Inspections.Clear();
 
@@ -113,24 +114,34 @@ namespace Sculpy.Handler
             }
         }
 
+        /// <summary>
+        /// Create a report based on the inspections passed as a parameter
+        /// </summary>
+        /// <param name="inspections"></param>
         public async void DrawReport(List<Inspection> inspections)
         {
-            // Make report here
-
+            // Create an empty string builder to make the report string
             StringBuilder builder = new StringBuilder();
 
+            // Loop through the inspections passed in as parameter
+            // to build the string for the report
             foreach (var item in inspections) // Loop through all strings
             {
-                builder.AppendLine(item.ToString());
+                builder.AppendLine("Inspection-ID: " + item.ID);
+                builder.AppendLine("Inspection Date: " + item.Inspection_Date);
+                builder.AppendLine("Inspection Note: " + item.Inspection_Note);
+                builder.AppendLine("Sculpture-ID: " + item.Sculpture_ID);
+                builder.AppendLine("\n");
             }
+
             string result = builder.ToString();
 
-
+            // Open the folder
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            // Create the file
             Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("Report.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-
-            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result);
-
+            // Save the file
+            await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result, UnicodeEncoding.Utf8);
 
             MessageDialog dialog = new MessageDialog("A report has been saved to your harddrive.");
             dialog.ShowAsync();

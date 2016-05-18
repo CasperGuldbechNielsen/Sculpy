@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Chat;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -41,6 +42,17 @@ namespace Sculpy.View
                 mySelectedItems.Add((Inspection)item);
 
             ViewModel.SelectedInspections = mySelectedItems;
+        }
+
+        private void CheckAll_OnChecked(object sender, RoutedEventArgs e)
+        {
+
+            // TODO: Create the method for selecting all items in the listview.
+
+            //for (int i = 0; i < Reports.Items.Count; i++)
+            //{
+            //    Reports.Items[i].
+            //}
         }
     }
 }
