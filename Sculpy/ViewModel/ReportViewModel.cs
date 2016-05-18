@@ -17,14 +17,18 @@ namespace Sculpy.ViewModel
         public InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
         public Handler.ReportHandler ReportHandler { get; set; }
 
+        // Invoked when user clicks Draw Report button
         public ICommand DrawReportCommand { get; set; }
 
         public ReportViewModel()
         {
-            ReportHandler = new ReportHandler(this);
+            ReportHandler = new ReportHandler(this); // Create new instance of reportHandler and pass in this viewmodel
             inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
-            inspectionCatalogSingleton.LoadAllSculptures();
-            DrawReportCommand = new RelayCommand(() => ReportHandler.DrawReport(_selectedInspections));
+            // Load all inspections from the database to populate the listview
+            inspectionCatalogSingleton.LoadAllInscpections();
+            // Create an action that pass the command to invoke the DrawReport method in reportHandler, pass in the parameter _selectedInspections
+            DrawReportCommand = new RelayCommand(() => ReportHandler.DrawReport(_selectedInspections)); 
+            // Create a new empty list to pass in as a parameter to the above command
             _selectedInspections = new List<Inspection>();
         }
 

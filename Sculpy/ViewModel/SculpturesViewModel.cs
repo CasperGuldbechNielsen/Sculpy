@@ -24,10 +24,7 @@ namespace Sculpy.ViewModel
         {
             SculptureCatalogSingleton = SculptureCatalogSingleton.Instance;
         }
-
-        
-     
-
+       
         private Sculpture _selectedSculpture;
         public Sculpture SelectedSculpture
         {
