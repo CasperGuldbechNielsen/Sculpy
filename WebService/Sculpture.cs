@@ -29,5 +29,7 @@ namespace WebService
         public string Sculpture_Inspection_Frequency { get; set; }
 
         public string Sculpture_Picture { get; set; }
+
+        public string Cultural_Heritage { get; set; }
     }
 }

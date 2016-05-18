@@ -15,6 +15,7 @@ namespace Sculpy.Model
         public string Sculpture_Description { get; set; }
         public string Sculpture_Inspection_Frequency { get; set; }
         public string Sculpture_Picture { get; set; }
+        public string Cultural_Heritage { get; set; }
         public DateTime LastInspection { get; set; }
 
         public List<string> SculptureTypes { get; set; }
