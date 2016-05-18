@@ -26,7 +26,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Icon="Edit" Label="Edit inspection" Click="EditInspectionButton_Onclick" />
-            <AppBarButton Icon="Delete" Label="Delete inspection" Command="{Binding DeleteCommand}"/>
+            <AppBarButton Icon="Delete" Label="Delete inspection" Click="ButtonBase_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>
 

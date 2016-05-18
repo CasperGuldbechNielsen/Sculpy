@@ -390,7 +390,7 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = await client.DeleteAsync("api/Inspection/" + id);
+                    var response = await client.DeleteAsync("api/Inspections/" + id);
                 }
                 catch (Exception ex)
                 {
