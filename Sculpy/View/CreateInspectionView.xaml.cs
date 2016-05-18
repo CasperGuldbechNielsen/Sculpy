@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Sculpy.Handler;
+using Sculpy.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,15 +31,22 @@ namespace Sculpy.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var sculptureId = int.Parse(e?.Parameter?.ToString());
-            ViewModel.NewInspection.Sculpture_ID = sculptureId;
-
-
+            var sculpture = (Sculpture)e.Parameter;
+            ViewModel.Sculpture = sculpture;
+            if (sculpture != null) ViewModel.NewInspection = new Inspection(sculpture.ID);
         }
 
         private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
+            ViewModel.NewInspection.Sculpture_ID = ViewModel.Sculpture.ID;
             InspectionHandler.CreateInspection(ViewModel.NewInspection);
+
+            Frame.Navigate(typeof (SelectedSculptureView), ViewModel.Sculpture);
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
         }
     }
 }

@@ -28,9 +28,40 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
-        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
+        private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             SculptureHandler.CreateSculpture(ViewModel.NewSculpture);
+
+            var parameterList = new List<int>();
+            ViewModel.NewSculpture.SculptureMaterials.ForEach(material => parameterList.Add(material.ID));
+            await new Persistancy.PersistenceFacade().CreateSculptureMaterialsAsync(ViewModel.NewSculpture.ID, parameterList);
+
+            var parameterList2 = new List<string>();
+            ViewModel.NewSculpture.SculptureTypes.ForEach(type => parameterList2.Add(type));
+            parameterList.Clear();
+            parameterList2.ForEach(x =>
+            {
+                switch (x)
+                {
+                    case "Skulptur":
+                        parameterList.Add(1);
+                        break;
+                    case "Sokkel":
+                        parameterList.Add(2);
+                        break;
+                    case "Relief":
+                        parameterList.Add(3);
+                        break;
+                    case "Vandkunst":
+                        parameterList.Add(4);
+                        break;
+                    default:
+                        break;
+                }
+            });
+            await new Persistancy.PersistenceFacade().UpdateSculptureTypesAsync(ViewModel.NewSculpture.ID, parameterList);
+            SculpturesHandler.ResetCollectionAsync();
+            Frame.Navigate(typeof(SculpturesView));
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)

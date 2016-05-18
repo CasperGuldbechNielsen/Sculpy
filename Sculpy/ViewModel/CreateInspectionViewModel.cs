@@ -7,6 +7,9 @@ namespace Sculpy.ViewModel
 {
     public class CreateInspectionViewModel : INotifyPropertyChanged
     {
+
+        public Sculpture Sculpture { get; set; }
+
         private Inspection _newInspection;
 
         public Inspection NewInspection
@@ -21,7 +24,7 @@ namespace Sculpy.ViewModel
 
         public CreateInspectionViewModel()
         {
-            NewInspection = new Inspection();
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -61,6 +61,26 @@ namespace WebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        
+        [Route("api/CreateSculptureMaterials/{sculptureId:int}")]
+        [HttpPost]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult CreateSculptureMaterials(int sculptureId, List<int> materialIds)
+        {
+            const string sql = "INSERT INTO Sculpture_Material(Sculpture_ID, Material_ID) VALUES(@P0, @P1)";
+            var parameterList = new List<object>();
+            foreach (var materialId in materialIds)
+            {
+                parameterList.Add(sculptureId);
+                parameterList.Add(materialId);
+                var parameters1 = parameterList.ToArray();
+                db.Database.ExecuteSqlCommand(sql, parameters1);
+                parameterList.Clear();
+            }
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
     }
 }
