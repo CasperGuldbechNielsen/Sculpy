@@ -35,6 +35,37 @@ namespace WebService.Controllers
             return query2;
         }
 
+        [Route("api/UpdateSculptureTypes/{sculptureId:int}")]
+        [HttpPut]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult UpdateSculptureTypes(int sculptureId, List<int> tyesIds)
+        {
+            var collection = db.Sculpture_Type_Linking.Where(st => st.Sculpture_ID == sculptureId);
+            if (collection.Count() != 0)
+            {
+                foreach (var entry in collection)
+                {
+                    db.Sculpture_Type_Linking.Remove(entry);
+                }
+                db.SaveChanges();
+            }
+
+            const string sql = "INSERT INTO Sculpture_Type_Linking(Sculpture_ID, Sculpture_Type_ID) VALUES(@P0, @P1)";
+            var parameterList = new List<object>();
+            foreach (var typeId in tyesIds)
+            {
+                parameterList.Add(sculptureId);
+                parameterList.Add(typeId);
+                var parameters1 = parameterList.ToArray();
+                db.Database.ExecuteSqlCommand(sql, parameters1);
+                parameterList.Clear();
+            }
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
         //TODO this is not working because I don't know te type of the response.
         [Route("api/SculptureTypes")]
         [HttpGet]
@@ -49,7 +80,8 @@ namespace WebService.Controllers
                 {
                     SculptureId = st.Sculpture_ID,
                     SculptureType = t.Sculpture_Type1
-                };
+                }; // or select t;
+
 
             var dictionary = new Dictionary<int,string>();
 

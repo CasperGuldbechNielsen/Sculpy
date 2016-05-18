@@ -4,8 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.UI.Popups;
+using Newtonsoft.Json;
 using Sculpy.Model;
 
 namespace Sculpy.Persistancy
@@ -22,7 +25,7 @@ namespace Sculpy.Persistancy
 
         public PersistenceFacade()
         {
-            handler = new HttpClientHandler {UseDefaultCredentials = true};
+            handler = new HttpClientHandler { UseDefaultCredentials = true };
         }
 
         /// <summary>
@@ -171,5 +174,215 @@ namespace Sculpy.Persistancy
                 return null;
             }
         }
-    }
+
+        public async Task CreateSculptureAsync(Sculpture sculpture)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(sculpture);
+                var sculptureContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PostAsync("Api/Sculptures", sculptureContent);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public async Task DeleteSculptureAsync(int id)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/Sculptures/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+            }
+        }
+
+        public async Task UpdateSculptureAsync(Sculpture sculpture)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json= JsonConvert.SerializeObject(sculpture);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/Sculptures/" + sculpture.ID, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                
+
+            }
+        }
+
+        public async Task<List<Material>> GetAllMaterials()
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync("api/Materials").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var materialList = await response.Content.ReadAsAsync<List<Material>>();
+                        return materialList;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
+
+        public async Task UpdateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(materialIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/UpdateSculptureMaterials/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public async Task CreateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(materialIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PostAsync("api/CreateSculptureMaterials/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public async Task UpdateSculptureTypesAsync(int sculptureId, List<int> typeIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(typeIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PutAsync("api/UpdateSculptureTypes/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        public async Task CreateInspectionAsync(Inspection inspection)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(inspection);
+                var inspectionContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PutAsync($"Api/CreateInspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+
+            
+        }
+
+        public async Task UpdateEditedInspection(Inspection inspection)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(inspection);
+                var inspectionContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                try
+                {
+                    var response = await client.PutAsync("api/Inspections/" + inspection.ID, inspectionContent);
+                }
+                catch (Exception ex)
+                {
+
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+    }  
 }

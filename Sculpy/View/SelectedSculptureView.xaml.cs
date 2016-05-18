@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 using Sculpy.Model;
 using Sculpy.ViewModel;
 
@@ -55,7 +56,12 @@ namespace Sculpy.View
 
         private void SelectedInspectionButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CreateInspectionView));
+            Frame.Navigate(typeof(CreateInspectionView), ViewModel.PassedSculpture);
+        }
+
+        private void DeleteSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SculptureHandler.DeleteSculpture(ViewModel.PassedSculpture.ID);
         }
     }
 }

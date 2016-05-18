@@ -64,8 +64,7 @@ namespace Sculpy.View
 
         private void AddSculptureButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var sculpture = new Sculpture();
-            Frame.Navigate(typeof(CreateSculptureView), sculpture);
+            Frame.Navigate(typeof(CreateSculptureView));
         }
 
         private void MetalCheckBox_OnChecked(object sender, RoutedEventArgs e)

@@ -58,8 +58,6 @@ namespace Sculpy.ViewModel
             //In the InspectionHandler why are we passing the SelectedSculptureViewModel?
             InspectionHandler = new InspectionHandler(SelectedSculptureViewModel);
             
-            DeleteCommand = new RelayCommand(() => InspectionHandler.DeleteInspection(SelectedInspection.ID));
-            CreateCommand = new RelayCommand(() => InspectionHandler.CreateInspection());
 
         }
 

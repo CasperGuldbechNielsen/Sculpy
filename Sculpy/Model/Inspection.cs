@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.String;
 
 namespace Sculpy.Model
 {
@@ -32,15 +33,29 @@ namespace Sculpy.Model
 
         public Inspection()
         {
+            
+        }
 
+        public Inspection(int sculptureId)
+        {
+            this.Sculpture_ID = sculptureId;
+            this.ID = InspectionCatalogSingleton.Instance.Inspections.Count + 1;
+            this.Damage_Picture = Empty;
+            this.Damage_Type = Empty;
+            this.Inspection_Date = DateTime.Today;
+            this.Inspection_Note = Empty;
+            this.Inspection_Title = Empty;
+            this.Treatment_Plan = Empty;
+            this.Treatment_Type = Empty;
         }
 
         public override string ToString()
         {
-            return string.Format("Inspection-ID: {0}\n" +
+            return Format("Inspection-ID: {0}\n" +
                                  "Inspection Date: {1}\n" +
                                  "Inspection Note: {2}\n" +
                                  "Sculpture-ID: {3}\n", ID, Inspection_Date, Inspection_Note, Sculpture_ID);
         }
+
     }
 }

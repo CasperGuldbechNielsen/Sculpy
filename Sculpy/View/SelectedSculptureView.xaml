@@ -18,18 +18,17 @@
         </Style>
 
         <converter:DateToStringConverter x:Key="DateToStringConverter"/>
-        
+        <converter:MaterialTypeIdToMaterialTypeName x:Key="MaterialTypeIdToMaterialTypeName"/>
     </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
-            <AppBarButton x:Name="editSculptureButton"
-                          Click="EditSculptureButton_OnClick" Icon="Edit"/>
+            <AppBarButton Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="deleteSculptureButton" Label="Delete sculpture"/>
+                <AppBarButton Label="Delete sculpture" Command="{Binding DeleteCommand}"/>
                 <AppBarSeparator/>
-                <AppBarButton x:Name="settingsButton" Label="Settings" Click="SettingsButton_OnClick"/>
+                <AppBarButton Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -53,9 +52,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Image Width="175" Height="120" Grid.Row="0"
-                   Source="../Assets/Sculpture.bmp"></Image>
-
+            
             <StackPanel Margin="70,10,70,0" Grid.Row="1">
                 <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}"></TextBlock>
                 <TextBlock Text="{Binding PassedSculpture.Sculpture_Placement}" 
@@ -79,7 +76,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Material_Type_ID}"
+                                <TextBlock Text="{Binding Material_Type_ID, Converter={StaticResource MaterialTypeIdToMaterialTypeName}}"
                                        Style="{StaticResource TextBlockStyle}" Margin="0,0,10,0"></TextBlock>
                                 <TextBlock Text="{Binding Material_Name}" Style="{StaticResource TextBlockStyle}"
                                        ></TextBlock>
@@ -97,6 +94,11 @@
                        Text="{Binding PassedSculpture.Sculpture_Address}" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="Title"></TextBlock>
             <TextBlock Name="Description" FontSize="30"
                        Text="{Binding PassedSculpture.Sculpture_Description}" TextWrapping="Wrap" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="Subtitle"></TextBlock>
+            <Image Name="SculpturPhoto" Source="{Binding PassedSculpture.Sculpture_Picture, Mode=TwoWay}" Width="350" Height="350" RelativePanel.Below="Description" RelativePanel.AlignLeftWithPanel="True" Margin="0,10"></Image>
+            <TextBlock Name="HeritageBlock" 
+                       Text="Cultural Heritage:" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="SculpturPhoto" />
+            <TextBlock Name="Heritage" 
+                       Text="{Binding PassedSculpture.Cultural_Heritage, Mode=TwoWay}" Style="{StaticResource TextBlockStyle}" RelativePanel.Below="HeritageBlock" />
         </RelativePanel>
 
         <RelativePanel Name="RightConent" Grid.Column="2" Padding="0,40">
