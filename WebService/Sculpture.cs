@@ -28,6 +28,8 @@ namespace WebService
         [StringLength(30)]
         public string Sculpture_Inspection_Frequency { get; set; }
 
-        public byte[] Sculpture_Picture { get; set; }
+        public string Sculpture_Picture { get; set; }
+
+        public string Culture_Heritage { get; set; }
     }
 }

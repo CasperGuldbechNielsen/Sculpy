@@ -44,11 +44,20 @@ namespace Sculpy.ViewModel
             var tag = checkBox.Tag.ToString();
             var material = new Material(tag);
 
-            if (PassedSculpture.SculptureMaterials.All(material1 => material1.Material_Name != material.Material_Name))
+            if (PassedSculpture.SculptureMaterials != null && PassedSculpture.SculptureMaterials.Count > 0)
+            {
+                if (PassedSculpture.SculptureMaterials.All(material1 => material1.Material_Name != material.Material_Name))
+                {
+                    PassedSculpture.SculptureMaterials.Add(material);
+                    MaterialCollection.Add(material);
+                }
+            }
+            else
             {
                 PassedSculpture.SculptureMaterials.Add(material);
                 MaterialCollection.Add(material);
             }
+                
         }
 
         public void MaterialCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
@@ -69,12 +78,13 @@ namespace Sculpy.ViewModel
         {
             var checkBox = (CheckBox)sender;
             var tag = checkBox.Tag.ToString();
-            foreach (var material in PassedSculpture.SculptureMaterials.Where(material => material.Material_Name == tag))
-            {
-                // TODO mind-blowing for me 
-                checkBox.IsChecked = true;
-                break;
-            }
+            if (PassedSculpture.SculptureMaterials != null && PassedSculpture.SculptureMaterials.Count > 0)
+                foreach (var material in PassedSculpture.SculptureMaterials.Where(material => material.Material_Name == tag))
+                {
+                    // TODO mind-blowing for me 
+                    checkBox.IsChecked = true;
+                    break;
+                }
         }
 
 
@@ -82,7 +92,7 @@ namespace Sculpy.ViewModel
         {
             var checkBox = (CheckBox)sender;
             var type = checkBox.Tag.ToString();
-            
+
             if (PassedSculpture.SculptureTypes.All(type1 => type1 != type))
             {
                 PassedSculpture.SculptureTypes.Add(type);

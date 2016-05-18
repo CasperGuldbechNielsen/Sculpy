@@ -287,6 +287,29 @@ namespace Sculpy.Persistancy
             }
         }
 
+        public async Task CreateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(materialIds);
+
+                var content = new StringContent(json, Encoding.UTF8, "Application/json");
+
+                try
+                {
+                    var updateResponse = await client.PostAsync("api/CreateSculptureMaterials/" + sculptureId, content);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
         public async Task UpdateSculptureTypesAsync(int sculptureId, List<int> typeIds)
         {
             using (var client = new HttpClient(handler))
@@ -323,13 +346,15 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = await client.PostAsync($"Api/InspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
+                    var response = await client.PutAsync($"Api/CreateInspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
                 }
                 catch (Exception ex)
                 {
                     await new MessageDialog(ex.Message).ShowAsync();
                 }
             }
+
+            
         }
     }  
 }

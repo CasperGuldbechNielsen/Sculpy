@@ -34,8 +34,8 @@ namespace Sculpy.View
         {
             var sculpture = e.Parameter;
             ViewModel.PassedSculpture = (Sculpture)sculpture;
-            ViewModel.PassedSculpture?.SculptureMaterials.ForEach(material => ViewModel.MaterialCollection.Add(material));
-            ViewModel.PassedSculpture?.SculptureTypes.ForEach(type => ViewModel.TypeCollection.Add(type));
+            ViewModel.PassedSculpture?.SculptureMaterials?.ForEach(material => ViewModel.MaterialCollection.Add(material));
+            ViewModel.PassedSculpture?.SculptureTypes?.ForEach(type => ViewModel.TypeCollection.Add(type));
         }
 
         private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)

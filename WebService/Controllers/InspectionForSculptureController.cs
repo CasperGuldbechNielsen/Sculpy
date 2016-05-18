@@ -17,10 +17,6 @@ namespace WebService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult CreateInspectionForSculpture(int sculptureId, Inspection inspection)
         {
-          
-            inspection.Sculpture_ID = sculptureId;
-            inspection.ID = 23;
-            inspection.Inspection_Date = DateTime.Now;
             db.Inspections.Add(inspection);
             db.SaveChanges();
 
