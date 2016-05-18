@@ -59,9 +59,10 @@ namespace Sculpy.View
             Frame.Navigate(typeof(CreateInspectionView), ViewModel.PassedSculpture);
         }
 
-        private void DeleteSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        private async void DeleteSculptureButton_OnClick(object sender, RoutedEventArgs e)
         {
-            SculptureHandler.DeleteSculpture(ViewModel.PassedSculpture.ID);
+            DeleteSculptureContentDialog.Visibility = Visibility.Visible;
+            ContentDialogResult result = await DeleteSculptureContentDialog.ShowAsync();
         }
     }
 }

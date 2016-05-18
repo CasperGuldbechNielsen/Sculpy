@@ -1,4 +1,5 @@
 ﻿using Windows.Foundation.Metadata;
+using Windows.UI.Xaml.Controls;
 using Sculpy.Model;
 using Sculpy.ViewModel;
 

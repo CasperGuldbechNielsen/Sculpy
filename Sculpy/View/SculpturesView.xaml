@@ -108,6 +108,9 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        <ProgressRing RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"
+                      Visibility="Visible" Name="ProgressRing" Height="50" Width="50" IsActive="False"/>
+        
         <Button x:Name="FilterButton"
             Content="&#xE71C;" FontFamily="Segoe MDL2 Assets"
             RelativePanel.AlignLeftWith="SculptureListView"

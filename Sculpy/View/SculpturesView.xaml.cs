@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
@@ -131,9 +132,13 @@ namespace Sculpy.View
             SculpturesHandler.SortCollection(tag);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            SculpturesHandler.ResetCollectionAsync();
+            ProgressRing.IsActive = true;
+            SculptureListView.Opacity = 0.3;
+            await SculpturesHandler.ResetCollectionAsync();
+            ProgressRing.IsActive = false;
+            SculptureListView.Opacity = 1;
         }
     }
 }

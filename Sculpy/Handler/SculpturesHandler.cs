@@ -94,13 +94,13 @@ namespace Sculpy.Handler
 
         }
 
-        public static async void ResetCollectionAsync()
+        public static async Task ResetCollectionAsync()
         {
             var list = await new PersistenceFacade().GetAllSculptures();
 
             foreach (var sculpture in list)
             {
-                if (sculpture.ID < 15)
+                if (sculpture.ID < 15 || sculpture.ID>200)
                 {
                     sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
                     sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);

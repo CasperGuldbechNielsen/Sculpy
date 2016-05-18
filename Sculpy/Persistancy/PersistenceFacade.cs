@@ -59,6 +59,34 @@ namespace Sculpy.Persistancy
             }
         }
 
+        public async Task<Sculpture> GetOnlyOneSculptures(int sculptureId)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = client.GetAsync($"api/Sculptures/{sculptureId}").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var sculpture = await response.Content.ReadAsAsync<Sculpture>();
+                        return sculpture;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                return null;
+            }
+        }
+
+
         public async Task<List<Inspection>> GetInspetionsFromSelectedSculpture(int sculptureId)
         {
             using (var client = new HttpClient(handler))

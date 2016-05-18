@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Sculpy.Annotations;
 
 namespace Sculpy.Model
 {
@@ -52,6 +53,7 @@ namespace Sculpy.Model
             this.Sculpture_Picture = null;
             this.SculptureMaterials = new List<Material>();
             this.SculptureTypes = new List<string>();
+            this.Cultural_Heritage = null;
         }
         /// <summary>
         /// This method overrides ToString() method in order to display the sculpture the way we want

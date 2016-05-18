@@ -40,7 +40,12 @@ namespace WebService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult UpdateSculptureTypes(int sculptureId, List<int> tyesIds)
         {
-            var collection = db.Sculpture_Type_Linking.Where(st => st.Sculpture_ID == sculptureId);
+            var collection = new List<Sculpture_Type_Linking>();
+            if (db.Sculpture_Type_Linking != null && db.Sculpture_Type_Linking.Any())
+            {
+                collection = db.Sculpture_Type_Linking.Where(st => st.Sculpture_ID == sculptureId).ToList();
+
+            }
             if (collection.Count() != 0)
             {
                 foreach (var entry in collection)
