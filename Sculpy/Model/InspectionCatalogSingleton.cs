@@ -17,25 +17,13 @@ namespace Sculpy.Model
 
         private InspectionCatalogSingleton()
         {
-            LoadInspections();
+
         }
 
         /// <summary>
-        /// Creates and instance of PersistenceFacade and gets all inspections
+        /// Load all Inspections from the persistanceFacade
         /// </summary>
-        private void LoadInspections()
-        {
-            //Inspections = new ObservableCollection<Inspection>
-            //{
-            //    new Inspection(1, "24/03/2015", "General inspection", "Lorem Ipsum aaaaaaaaaaaaaaaaal the way. You not it!", 1, "Null"),
-            //    new Inspection(1, "12/10/2014", "Follow-up inspection", "Lorem Ipsum aaaaaaaaaaaaaaaaal the way. You not it!", 1, "Null"),
-            //    new Inspection(1, "02/01/2012", "General inspection", "Lorem Ipsum aaaaaaaaaaaaaaaaal the way. You not it!", 1, "Null"),
-            //};
-            //RoomViewModel.RoomsCollection = new ObservableCollection<Room>(new Persistency.PersistenceFacade().GetRoomsAsync(id.Hotel_Number).Result);
-            //Inspections = new ObservableCollection<Inspection>(new Persistancy.PersistenceFacade().GetInspetionsFromSelectedSculpture().Result);
-        }
-
-        public async void LoadAllSculptures()
+        public async void LoadAllInscpections()
         {
             Inspections = await new PersistenceFacade().GetAllInspections();
         }

@@ -143,6 +143,11 @@ namespace Sculpy.Persistancy
             }
         }
 
+
+        /// <summary>
+        /// Retrieve all inspections in the database
+        /// </summary>
+        /// <returns>ObservableCollection of Inspections</returns>
         public async Task<ObservableCollection<Inspection>> GetAllInspections()
         {
             using (var client = new HttpClient(handler))

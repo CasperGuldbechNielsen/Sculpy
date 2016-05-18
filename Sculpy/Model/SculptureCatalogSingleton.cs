@@ -18,7 +18,10 @@ namespace Sculpy.Model
         {
             LoadSculptures();
         }
-
+        /// <summary>
+        /// Load all sculptures from PersistanceFacade
+        /// </summary>
+        /// <returns>ObservableCollection of Sculptures</returns>
         private async Task LoadSculptures()
         {
             Sculptures = await new PersistenceFacade().GetAllSculptures();
