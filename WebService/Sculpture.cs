@@ -30,6 +30,6 @@ namespace WebService
 
         public string Sculpture_Picture { get; set; }
 
-        public string Culture_Heritage { get; set; }
+        public string Cultural_Heritage { get; set; }
     }
 }

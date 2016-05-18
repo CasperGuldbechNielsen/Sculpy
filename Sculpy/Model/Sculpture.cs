@@ -15,6 +15,7 @@ namespace Sculpy.Model
         public string Sculpture_Description { get; set; }
         public string Sculpture_Inspection_Frequency { get; set; }
         public string Sculpture_Picture { get; set; }
+        public string Cultural_Heritage { get; set; }
         public DateTime LastInspection { get; set; }
 
         public List<string> SculptureTypes { get; set; }
@@ -23,7 +24,7 @@ namespace Sculpy.Model
 
 
         public Sculpture(int ID, string Sculpture_Name, string Sculpture_Placement, string Sculpture_Address,
-            string Sculpture_Description, string Sculpture_Inspection_Frequency, string Sculpture_Picture)
+            string Sculpture_Description, string Sculpture_Inspection_Frequency, string Sculpture_Picture, string Cultural_Heritage)
         {
             this.ID = ID;
             this.Sculpture_Name = Sculpture_Name;
@@ -32,6 +33,7 @@ namespace Sculpy.Model
             this.Sculpture_Description = Sculpture_Description;
             this.Sculpture_Inspection_Frequency = Sculpture_Inspection_Frequency;
             this.Sculpture_Picture = Sculpture_Picture;
+            this.Cultural_Heritage = Cultural_Heritage;
         }
 
         public Sculpture()
