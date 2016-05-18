@@ -74,7 +74,9 @@
             <AutoSuggestBox x:Name="SearchBox" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"
 				FontSize="25"
 				VerticalAlignment="Center" Width="300" VerticalContentAlignment="Center" 
-				
+				TextChanged="SearchBox_OnTextChanged"
+                            UpdateTextOnSelect="True"
+                SuggestionChosen="SearchBox_OnSuggestionChosen"
 				RelativePanel.AlignRightWithPanel="True"
 				Margin="0,10,20,0"
 				QueryIcon="Find" PlaceholderText="enter a search term"/>

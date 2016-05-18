@@ -36,8 +36,13 @@ namespace WebService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult UpdateSculptureMaterials(int sculptureId, List<int> materialIds)
         {
-            var collection = db.Sculpture_Material.Where(sm => sm.Sculpture_ID == sculptureId);
-            if (collection.Count()!=0)
+            var collection = new List<Sculpture_Material>();
+            if (db.Sculpture_Material != null && db.Sculpture_Material.Any())
+            {
+                collection = db.Sculpture_Material.Where(sm => sm.Sculpture_ID == sculptureId).ToList();
+            }
+            
+            if (collection.Count() != 0)
             {
                 foreach (var entry in collection)
                 {
@@ -45,7 +50,7 @@ namespace WebService.Controllers
                 }
                 db.SaveChanges();
             }
-            
+
             const string sql = "INSERT INTO Sculpture_Material(Sculpture_ID, Material_ID) VALUES(@P0, @P1)";
             var parameterList = new List<object>();
             foreach (var materialId in materialIds)

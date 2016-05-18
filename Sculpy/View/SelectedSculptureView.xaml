@@ -26,7 +26,7 @@
             <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
             <AppBarButton Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Delete sculpture" Command="{Binding DeleteCommand}"/>
+                <AppBarButton Label="Delete sculpture" Click="DeleteSculptureButton_OnClick"/>
                 <AppBarSeparator/>
                 <AppBarButton Label="Settings" Click="SettingsButton_OnClick"/>
             </CommandBar.SecondaryCommands>
@@ -44,7 +44,27 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid>
+        <ContentDialog Name="DeleteSculptureContentDialog"
+                Visibility="Visible" VerticalAlignment="Center"
+                Grid.Column="1"
+                Background="{ThemeResource SystemControlBackgroundAccentBrush}"
+                Title="DELETE SCULPTURE"
+                PrimaryButtonText="delete"
+                Foreground="Black"
+                FontWeight="ExtraLight"
+                SecondaryButtonText="cancel"
+                BorderBrush="White"
+                BorderThickness="1"
+                PrimaryButtonCommand="{Binding DeleteCommand}">
+            <StackPanel>
+                <TextBlock Text="Are you sure you want to delete this sculpture from the list?"
+                          FontSize="16" Foreground="Black" FontWeight="ExtraLight"
+                          TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+        </ContentDialog>
+
+
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -52,7 +72,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            
+
             <StackPanel Margin="70,10,70,0" Grid.Row="1">
                 <TextBlock Text="Placement:" Style="{StaticResource TextBlockStyle}"></TextBlock>
                 <TextBlock Text="{Binding PassedSculpture.Sculpture_Placement}" 
