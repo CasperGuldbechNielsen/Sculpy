@@ -31,7 +31,7 @@ namespace Sculpy.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var Inspection = (Inspection) e.Parameter;
+            var Inspection = (Inspection)e.Parameter;
             ViewModel.SelectedInspection = Inspection;
         }
 
@@ -40,11 +40,13 @@ namespace Sculpy.View
             Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.SelectedInspection);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        // TODO: When navigating back to the SelectecSculptureView the selected sculpture isn't shown
+        private void DeleteInspectionButton_OnClick(object sender, RoutedEventArgs e)
         {
             InspectionHandler.DeleteInspection(ViewModel.SelectedInspection.ID);
 
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
+       
         }
     }
 }
