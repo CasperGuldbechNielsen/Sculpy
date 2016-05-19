@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Sculpy.Handler;
 using Sculpy.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -30,13 +31,22 @@ namespace Sculpy.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var Inspection = (Inspection) e.Parameter;
+            var Inspection = (Inspection)e.Parameter;
             ViewModel.SelectedInspection = Inspection;
         }
 
         private void EditInspectionButton_Onclick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.SelectedInspection);
+        }
+
+        // TODO: When navigating back to the SelectecSculptureView the selected sculpture isn't shown
+        private void DeleteInspectionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            InspectionHandler.DeleteInspection(ViewModel.SelectedInspection.ID);
+
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
+       
         }
     }
 }

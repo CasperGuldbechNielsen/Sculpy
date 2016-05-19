@@ -412,5 +412,25 @@ namespace Sculpy.Persistancy
                 }
             }
         }
+
+        public async Task DeleteInspectionAsync(int id)
+        {
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/Inspections/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+
+            }
+        } 
     }  
 }
