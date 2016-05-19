@@ -43,6 +43,8 @@ namespace Sculpy.View
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             InspectionHandler.DeleteInspection(ViewModel.SelectedInspection.ID);
+
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
         }
     }
 }
