@@ -132,13 +132,19 @@ namespace Sculpy.View
             SculpturesHandler.SortCollection(tag);
         }
 
-        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private  void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            // Delegate method to call the reset.
             ProgressRing.IsActive = true;
             SculptureListView.Opacity = 0.3;
-            await SculpturesHandler.ResetCollectionAsync();
+            ResetCollection();
             ProgressRing.IsActive = false;
             SculptureListView.Opacity = 1;
+        }
+
+        public async Task ResetCollection()
+        {
+            await SculpturesHandler.ResetCollectionAsync();
         }
     }
 }
