@@ -197,6 +197,7 @@
     <Compile Include="Controllers\SculptureMaterialController.cs" />
     <Compile Include="Controllers\SculpturesController.cs" />
     <Compile Include="Controllers\SculptureTypesController.cs" />
+    <Compile Include="Controllers\Sculpture_TypeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Damage.cs" />
     <Compile Include="Global.asax.cs">

@@ -90,7 +90,7 @@ namespace Sculpy.Handler
                     sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.Sculpture_Name).ToList();
                     break;
                 case "inspection":
-                    sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.LastInspection).ToList();
+                    sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.LastInspection.Date).ToList();
                     break;
                 case "address":
                     sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.Sculpture_Address).ToList();
