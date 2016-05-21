@@ -25,8 +25,9 @@ namespace Sculpy.ViewModel
         public ICommand DeleteCommand { get; set; }
 
         public ICommand CreateCommand { get; set; }
+        public Sculpture Sculpture { get; set; }
 
-        
+
         private Inspection _selectedInspection;
 
         public Inspection SelectedInspection
@@ -57,8 +58,6 @@ namespace Sculpy.ViewModel
 
             //In the InspectionHandler why are we passing the SelectedSculptureViewModel?
             InspectionHandler = new InspectionHandler(SelectedSculptureViewModel);
-            
-
         }
 
         

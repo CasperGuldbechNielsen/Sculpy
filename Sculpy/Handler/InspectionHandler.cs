@@ -20,9 +20,9 @@ namespace Sculpy.Handler
             //TODO Call ResetCollectionAsync method here??
         }
 
-        public void DeleteInspection(int id)
+        public static async void DeleteInspection(int id)
         {
-
+            await new Persistancy.PersistenceFacade().DeleteInspectionAsync(id);
         }
 
         
