@@ -321,14 +321,14 @@
             RelativePanel.RightOf="SculptureListView"
             Style="{StaticResource WindowListViewButton}">
 
-            <CheckBox Content="Name" Tag="Name" Style="{StaticResource FilterWindowCheckBox}"
+            <CheckBox Content="Name" Tag="name" Style="{StaticResource FilterWindowCheckBox}"
                       Margin="10,10,0,10" Checked="SortCheckBox_OnChecked"
                                   />
-            <CheckBox Content="Inspection Date" Margin="10,10,10,10"
-                              Tag="InspectionDate"
+            <CheckBox Content="Last Inspection" Margin="10,10,10,10"
+                              Tag="inspection" Checked="SortCheckBox_OnChecked"
                                   Style="{StaticResource FilterWindowCheckBox}"/>
-            <CheckBox Content="Zipcode" Margin="10,10,0,10"
-                              Tag="Zip"
+            <CheckBox Content="Address" Margin="10,10,0,10"
+                              Tag="address" Checked="SortCheckBox_OnChecked"
                                   Style="{StaticResource FilterWindowCheckBox}"/>
         </StackPanel>
     </RelativePanel>

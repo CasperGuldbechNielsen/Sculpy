@@ -45,7 +45,7 @@
         </Grid.ColumnDefinitions>
 
         <ContentDialog Name="DeleteSculptureContentDialog"
-                Visibility="Visible" VerticalAlignment="Center"
+                Visibility="Collapsed" VerticalAlignment="Center"
                 Grid.Column="1"
                 Background="{ThemeResource SystemControlBackgroundAccentBrush}"
                 Title="DELETE SCULPTURE"

@@ -82,8 +82,22 @@ namespace Sculpy.Handler
 
         public static void SortCollection(string criteria)
         {
-            var sortedCollection =
-                CatalogSingleton.Sculptures.OrderBy(x => x.Sculpture_Name).ToList();
+            var sortedCollection = new List<Sculpture>();
+
+            switch (criteria)
+            {
+                case "name":
+                    sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.Sculpture_Name).ToList();
+                    break;
+                case "inspection":
+                    sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.LastInspection.Date).ToList();
+                    break;
+                case "address":
+                    sortedCollection = CatalogSingleton.Sculptures.OrderBy(x => x.Sculpture_Address).ToList();
+                    break;
+                default: throw new Exception(criteria);
+            }
+            
 
             CatalogSingleton.Sculptures.Clear();
 
