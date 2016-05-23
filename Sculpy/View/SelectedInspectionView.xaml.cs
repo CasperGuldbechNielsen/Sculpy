@@ -40,7 +40,7 @@ namespace Sculpy.View
             Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.SelectedInspection);
         }
 
-        // TODO: When navigating back to the SelectecSculptureView the selected sculpture isn't shown
+        // TODO: When navigating back to the SelectecSculptureView the previously selected sculpture isn't shown
         private void DeleteInspectionButton_OnClick(object sender, RoutedEventArgs e)
         {
             InspectionHandler.DeleteInspection(ViewModel.SelectedInspection.ID);
