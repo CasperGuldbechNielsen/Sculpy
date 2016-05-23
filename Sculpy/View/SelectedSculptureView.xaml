@@ -23,8 +23,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="syncButton" Icon="Sync" Label="Syncronize"/>
-            <AppBarButton Click="EditSculptureButton_OnClick" Icon="Edit"/>
+            <AppBarButton Label="Edit sculpture"  Click="EditSculptureButton_OnClick" Icon="Edit"/>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Delete sculpture" Click="DeleteSculptureButton_OnClick"/>
                 <AppBarSeparator/>

@@ -31,7 +31,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Icon="Add" Name="AcceptButton" Click="AcceptButton_OnClick"/>
+            <AppBarButton Icon="Accept" Name="AcceptButton" Click="AcceptButton_OnClick"/>
             <AppBarButton Icon="Cancel" Name="CancelButton" Click="CancelButton_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>
