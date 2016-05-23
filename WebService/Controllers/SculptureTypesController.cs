@@ -69,36 +69,5 @@ namespace WebService.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-
-        //TODO this is not working because I don't know te type of the response.
-        [Route("api/SculptureTypes")]
-        [HttpGet]
-        [ResponseType(typeof(object))]
-        public IQueryable<object> GetAllSculptureTypes()
-        {
-            var query1 =
-                from st in db.Sculpture_Type_Linking
-                from t in db.Sculpture_Type
-                where st.Sculpture_Type_ID == t.ID
-                select new
-                {
-                    SculptureId = st.Sculpture_ID,
-                    SculptureType = t.Sculpture_Type1
-                }; // or select t;
-
-
-            var dictionary = new Dictionary<int,string>();
-
-            foreach (var obj in query1)
-            {
-                dictionary.Add(obj.SculptureId,obj.SculptureType);
-            }
-
-
-            return query1;
-        }
-
-
     }
 }

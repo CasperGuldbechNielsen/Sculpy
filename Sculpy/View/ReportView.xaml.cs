@@ -46,9 +46,6 @@ namespace Sculpy.View
 
         private void CheckAll_OnChecked(object sender, RoutedEventArgs e)
         {
-
-            // TODO: Create the method for selecting all items in the listview.
-
             //for (int i = 0; i < Reports.Items.Count; i++)
             //{
             //    Reports.Items[i].
