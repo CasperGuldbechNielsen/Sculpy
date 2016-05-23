@@ -66,10 +66,6 @@ namespace Sculpy.ViewModel
             }
         }
 
-
-
-
-
         /// <summary>
         /// Implementation for the INotifyPropertyChanged interface.
         /// </summary>

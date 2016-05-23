@@ -14,7 +14,7 @@ namespace Sculpy.Model
 
         public ObservableCollection<Sculpture> Sculptures { get; set; }
 
-        public SculptureCatalogSingleton()
+        private SculptureCatalogSingleton()
         {
             LoadSculptures();
         }
