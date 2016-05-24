@@ -36,6 +36,8 @@ namespace Sculpy.View
             if (sculpture != null) ViewModel.NewInspection = new Inspection(sculpture.ID);
         }
 
+        // TODO Currently no binding on comboboes which means that Damage, Treatment and Treatment plan isn't saved. Also: When creating the new inspection by pressing save, the inspection doesn't also appear on the listview with inspection on the SelectedSculptureView
+
         private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.NewInspection.Sculpture_ID = ViewModel.Sculpture.ID;

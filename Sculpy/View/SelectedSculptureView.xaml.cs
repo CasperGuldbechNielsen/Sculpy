@@ -59,6 +59,8 @@ namespace Sculpy.View
             Frame.Navigate(typeof(CreateInspectionView), ViewModel.PassedSculpture);
         }
 
+        // TODO Sometimes it only deletes from the view, but not the database. Also, when you confirm that you want to delete it doesn't go back to the SculpturesView
+
         private async void DeleteSculptureButton_OnClick(object sender, RoutedEventArgs e)
         {
             DeleteSculptureContentDialog.Visibility = Visibility.Visible;

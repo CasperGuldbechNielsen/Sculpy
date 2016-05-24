@@ -65,6 +65,8 @@
 
         </RelativePanel>
 
+        
+        
         <RelativePanel Grid.Column="1" Padding="50">
             <TextBlock Name="DateTextBlock" 
                        Text="Date"

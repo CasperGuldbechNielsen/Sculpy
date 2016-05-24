@@ -15,7 +15,6 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton Name="AcceptButton" Icon="Accept" Label="Save" Click="AcceptButton_OnClick"/>
-            <!-- TODO: Confirmation box before cancel -->
             <AppBarButton Name="CancelButton" Icon="Cancel" Label="Cancel" Click="CancelButton_OnClick"/>
         </CommandBar>
     </Page.BottomAppBar>
@@ -40,7 +39,8 @@
                      Style="{StaticResource TextBoxStyle}"
                      Text="{Binding NewInspection.Inspection_Note, Mode=TwoWay}"/>
         </StackPanel>
-
+        
+        
         <RelativePanel Grid.Column="1" Padding="50">
             <TextBlock Name="DateTextBlock" 
                        Text="Date"

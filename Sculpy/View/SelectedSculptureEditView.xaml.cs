@@ -74,6 +74,8 @@ namespace Sculpy.View
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
 
+        // TODO Changes made are saved even though you press cancel
+
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);

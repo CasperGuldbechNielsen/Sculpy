@@ -34,6 +34,8 @@ namespace Sculpy.View
             ViewModel.SelectedInspection = Inspection;
         }
 
+        // TODO It should be comboboxes for Damage, Treatment and Treatment Frequency  Also, when you press save the edit is ssaved by the UI doesn't go back to the SelectedInspectionView  
+
         private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
             await new Persistancy.PersistenceFacade().UpdateEditedInspection(ViewModel.SelectedInspection);
