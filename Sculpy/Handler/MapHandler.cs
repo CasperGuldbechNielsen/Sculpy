@@ -9,32 +9,41 @@ namespace Sculpy.Handler
 {
     public class MapHandler
     {
-        MapViewModel mapViewModel { get; set; }
+        /// <summary>
+        /// Here we declared a new property thorugh which we refere the ViewModel associated to the Map class.
+        /// </summary>
+        private MapViewModel MapViewModel { get; }
 
+        /// <summary>
+        /// In the constructor we instantiate the ViewModel property.
+        /// </summary>
+        /// <param name="mapViewModel"></param>
         public MapHandler(MapViewModel mapViewModel)
         {
-            this.mapViewModel = mapViewModel;
+            this.MapViewModel = mapViewModel;
         }
+
+        /// <summary>
+        /// This method will direct the map to show our current location.
+        /// </summary>
         public async void CurrentLocation()
         {
             try
             {
-                mapViewModel.mapMessage = true;
+                MapViewModel.MapMessage = true;
                 var position = (await new Geolocator().GetGeopositionAsync()).Coordinate.Point;
-                mapViewModel.MyLocation = position;
-                mapViewModel.showLocation = true;
-                mapViewModel.zoomLevel = 17;
-                mapViewModel.mapcenter = position;
-                mapViewModel.mapMessage = false;
+                MapViewModel.MyLocation = position;
+                MapViewModel.ShowLocation = true;
+                MapViewModel.ZoomLevel = 17;
+                MapViewModel.Mapcenter = position;
+                MapViewModel.MapMessage = false;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageDialog ErrorMessage = new MessageDialog("There is no connection to the location service.");
-                ErrorMessage.ShowAsync();
-                mapViewModel.mapMessage = false;
+                var errorMessage = new MessageDialog("There is no connection to the location service.");
+                await errorMessage.ShowAsync();
+                MapViewModel.MapMessage = false;
             }
-            
         }
-
     }
 }

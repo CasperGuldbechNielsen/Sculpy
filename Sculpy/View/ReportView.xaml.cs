@@ -34,22 +34,16 @@ namespace Sculpy.View
             Frame.Navigate(typeof(SettingsView));
         }
 
+        /// <summary>
+        /// This method adds all the selected inspections to a collection.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Reports_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            List<Inspection> mySelectedItems = new List<Inspection>();
-
-            foreach (var item in Reports.SelectedItems)
-                mySelectedItems.Add((Inspection)item);
+            var mySelectedItems = Reports.SelectedItems.Cast<Inspection>().ToList();
 
             ViewModel.SelectedInspections = mySelectedItems;
-        }
-
-        private void CheckAll_OnChecked(object sender, RoutedEventArgs e)
-        {
-            //for (int i = 0; i < Reports.Items.Count; i++)
-            //{
-            //    Reports.Items[i].
-            //}
         }
     }
 }

@@ -99,12 +99,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Converter\BooleanToVisibilityConverter .cs" />
+    <Compile Include="Converter\DateTimeToDateTimeOffsetConverter .cs" />
     <Compile Include="Converter\DateToStringConverter.cs" />
     <Compile Include="Converter\MaterialTypeIdToMaterialTypeName.cs" />
     <Compile Include="Handler\InspectionHandler.cs" />
     <Compile Include="Handler\MapHandler.cs" />
-    <Compile Include="Handler\MarkerHandler.cs" />
     <Compile Include="Handler\ReportHandler.cs" />
     <Compile Include="Handler\SculptureHandler.cs" />
     <Compile Include="Handler\SculpturesHandler.cs" />
@@ -124,7 +123,6 @@
     <Compile Include="ViewModel\SelectedInspectionViewModel.cs" />
     <Compile Include="ViewModel\SelectedSculptureEditViewModel.cs" />
     <Compile Include="ViewModel\SelectedSculptureViewModel.cs" />
-    <Compile Include="ViewModel\MainPageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\SculpturesViewModel.cs" />
     <Compile Include="View\CreateInspectionView.xaml.cs">

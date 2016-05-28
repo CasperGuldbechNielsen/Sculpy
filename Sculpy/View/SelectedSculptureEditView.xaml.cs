@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Sculpy.Handler;
 using Sculpy.Model;
+using Sculpy.Persistancy;
 using Sculpy.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -30,21 +31,32 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// When we navigate to this page, the bindings have to be set to the values which are passed with the sculpture parameter.
+        /// </summary>
+        /// <param name="e">This holds the parameter of type Sculpture.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var sculpture = e.Parameter;
-            ViewModel.PassedSculpture = (Sculpture)sculpture;
-            ViewModel.PassedSculpture?.SculptureMaterials?.ForEach(material => ViewModel.MaterialCollection.Add(material));
-            ViewModel.PassedSculpture?.SculptureTypes?.ForEach(type => ViewModel.TypeCollection.Add(type));
+            ViewModel.UnchangedSculpture = (Sculpture)sculpture;
+            ViewModel.UnchangedSculpture?.SculptureMaterials?.ForEach(material => ViewModel.MaterialCollection.Add(material));
+            ViewModel.UnchangedSculpture?.SculptureTypes?.ForEach(type => ViewModel.TypeCollection.Add(type));
+            ViewModel.PassedSculpture = new Sculpture();
+            ViewModel.PassedSculpture = ViewModel.UnchangedSculpture;
         }
 
+        /// <summary>
+        /// This method is called when the user accepts to save the edited sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
-            await new Persistancy.PersistenceFacade().UpdateSculptureAsync(ViewModel.PassedSculpture);
+            await new PersistenceFacade().UpdateSculptureAsync(ViewModel.PassedSculpture);
 
             var parameterList = new List<int>();
             ViewModel.PassedSculpture.SculptureMaterials.ForEach(material => parameterList.Add(material.ID));
-            await new Persistancy.PersistenceFacade().UpdateSculptureMaterialsAsync(ViewModel.PassedSculpture.ID, parameterList);
+            await new PersistenceFacade().UpdateSculptureMaterialsAsync(ViewModel.PassedSculpture.ID, parameterList);
 
             var parameterList2 = new List<string>();
             ViewModel.PassedSculpture.SculptureTypes.ForEach(type => parameterList2.Add(type));
@@ -69,15 +81,23 @@ namespace Sculpy.View
                         break;
                 }
             });
-            await new Persistancy.PersistenceFacade().UpdateSculptureTypesAsync(ViewModel.PassedSculpture.ID, parameterList);
-
+            await new PersistenceFacade().UpdateSculptureTypesAsync(ViewModel.PassedSculpture.ID, parameterList);
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
-
-        // TODO Changes made are saved even though you press cancel
-
-        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        
+        /// <summary>
+        /// If the user decides to not save the changes to a sculpture,
+        /// he can navigate back to the SelectedSculpture Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
+            ViewModel.PassedSculpture = new PersistenceFacade().GetOnlyOneSculptures(ViewModel.PassedSculpture.ID).Result;
+            ViewModel.PassedSculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(ViewModel.PassedSculpture.ID);
+            ViewModel.PassedSculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(ViewModel.PassedSculpture.ID);
+            var inspections = await new PersistenceFacade().GetInspetionsFromSelectedSculpture(ViewModel.PassedSculpture.ID);
+            if(inspections.Any())ViewModel.PassedSculpture.LastInspection = inspections.Max(x => x.Inspection_Date);
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.PassedSculpture);
         }
     }

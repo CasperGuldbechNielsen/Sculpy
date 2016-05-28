@@ -17,10 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Sculpy.View
 {
+    /// <summary>
+    /// This class is a UserControl and represents the layout of one item from the ListView of Sculptures from the SculpturesView Page.
+    /// </summary>
     public sealed partial class ListItemUserControl : UserControl
     {
-
-
+        /// <summary>
+        /// We need to set the Bindings also in order to access the Model.
+        /// </summary>
         public Model.Sculpture Sculpture => this.DataContext as Model.Sculpture;
 
         public ListItemUserControl()

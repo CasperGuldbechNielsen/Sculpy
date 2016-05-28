@@ -6,11 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:Sculpy.ViewModel"
+    xmlns:converter="using:Sculpy.Converter"
     mc:Ignorable="d">
-    
+
     <Page.DataContext>
         <viewModel:CreateInspectionViewModel x:Name="ViewModel"/>
     </Page.DataContext>
+
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter"/>
+    </Page.Resources>
     
     <Page.BottomAppBar>
         <CommandBar>
@@ -24,7 +29,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-    
+
 
 
         <StackPanel Grid.Column="0" Padding="50">
@@ -39,32 +44,34 @@
                      Style="{StaticResource TextBoxStyle}"
                      Text="{Binding NewInspection.Inspection_Note, Mode=TwoWay}"/>
         </StackPanel>
-        
-        
+
+
         <RelativePanel Grid.Column="1" Padding="50">
             <TextBlock Name="DateTextBlock" 
                        Text="Date"
                        Style="{StaticResource TextBlockStyle}"/>
             <DatePicker Name="DatePicker"
                        RelativePanel.Below="DateTextBlock"
-                        Margin="0,0,0,30"/>
+                       Date="{x:Bind ViewModel.NewInspection.Inspection_Date, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                       Margin="0,0,0,30"/>
             <TextBlock Name="DamageTextBlock" 
                        Text="Damage"
                        Style="{StaticResource TextBlockStyle}"
                        RelativePanel.Below="DatePicker"/>
             <ComboBox Name="DamageComboBox" 
                       PlaceholderText="Select from list" 
-                      RelativePanel.Below="DamageTextBlock" 
+                      RelativePanel.Below="DamageTextBlock"
+                      SelectedItem="{Binding ComboBoxItemDetail, Mode=TwoWay}"
                       Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Biological growth"/>
-                <ComboBoxItem Content="Weathering"/>
-                <ComboBoxItem Content="Construction damage"/>
-                <ComboBoxItem Content="Defective joint"/>
-                <ComboBoxItem Content="Discoloration"/>
-                <ComboBoxItem Content="Cracks"/>
-                <ComboBoxItem Content="Lost parts"/>
-                <ComboBoxItem Content="Other"/>
+                <ComboBoxItem Content="None" Tag="Damage"/>
+                <ComboBoxItem Content="Biological growth" Tag="Damage"/>
+                <ComboBoxItem Content="Weathering" Tag="Damage"/>
+                <ComboBoxItem Content="Construction damage" Tag="Damage"/>
+                <ComboBoxItem Content="Defective joint" Tag="Damage"/>
+                <ComboBoxItem Content="Discoloration" Tag="Damage"/>
+                <ComboBoxItem Content="Cracks" Tag="Damage"/>
+                <ComboBoxItem Content="Lost parts" Tag="Damage"/>
+                <ComboBoxItem Content="Other" Tag="Damage"/>
             </ComboBox>
             <TextBlock Name="TreatmentTextBlock" 
                        Text="Treatment"
@@ -73,12 +80,13 @@
             <ComboBox Name="TreatmentComboBox" 
                       PlaceholderText="Select from list" 
                       RelativePanel.Below="TreatmentTextBlock"
+                      SelectedItem="{Binding ComboBoxItemDetail, Mode=TwoWay}"
                       Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Wash"/>
-                <ComboBoxItem Content="Wax"/>
-                <ComboBoxItem Content="Rebuild"/>
-                <ComboBoxItem Content="Other"/>
+                <ComboBoxItem Content="None" Tag="Treatment"/>
+                <ComboBoxItem Content="Wash" Tag="Treatment"/>
+                <ComboBoxItem Content="Wax" Tag="Treatment"/>
+                <ComboBoxItem Content="Rebuild" Tag="Treatment"/>
+                <ComboBoxItem Content="Other" Tag="Treatment"/>
             </ComboBox>
             <TextBlock Name="FrequencyTextBlock" 
                        Text="Treatment frequency"
@@ -87,12 +95,13 @@
             <ComboBox Name="FrequencyComboBox" 
                       PlaceholderText="Select from list" 
                       RelativePanel.Below="FrequencyTextBlock"
+                      SelectedItem="{Binding ComboBoxItemDetail, Mode=TwoWay}"
                       Style="{StaticResource ComboBoxStyle}">
-                <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="Immediately"/>
-                <ComboBoxItem Content="Look after in 10 years"/>
-                <ComboBoxItem Content="Treatment plan"/>
-                <ComboBoxItem Content="Other"/>
+                <ComboBoxItem Content="None" Tag="Frequency"/>
+                <ComboBoxItem Content="Immediately" Tag="Frequency"/>
+                <ComboBoxItem Content="Look after in 10 years" Tag="Frequency"/>
+                <ComboBoxItem Content="Treatment plan" Tag="Frequency"/>
+                <ComboBoxItem Content="Other" Tag="Frequency"/>
             </ComboBox>
         </RelativePanel>
 

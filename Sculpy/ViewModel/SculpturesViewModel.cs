@@ -18,6 +18,9 @@ namespace Sculpy.ViewModel
 {
     public class SculpturesViewModel:INotifyPropertyChanged
     {      
+        /// <summary>
+        /// A reference to the Catalog of sculptures.
+        /// </summary>
         public SculptureCatalogSingleton SculptureCatalogSingleton { get; set; }
 
         public SculpturesViewModel()
@@ -25,6 +28,9 @@ namespace Sculpy.ViewModel
             SculptureCatalogSingleton = SculptureCatalogSingleton.Instance;
         }
        
+        /// <summary>
+        /// This property hold the details passed by the parameter when navigating to the SculpturesView Page.
+        /// </summary>
         private Sculpture _selectedSculpture;
         public Sculpture SelectedSculpture
         {
@@ -36,6 +42,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This property extract the placement criteria for filtering and also calls the Filter method for the collection of sculptures.
+        /// </summary>
         private string _placementFilter;
         public ComboBoxItem PlacementFilter
         {
@@ -46,6 +55,10 @@ namespace Sculpy.ViewModel
             }
         }
 
+
+        /// <summary>
+        /// This property extract the type of sculpture criteria for filtering and also calls the Filter method for the collection of sculptures.
+        /// </summary>
         private string _typeFilter;
         public ComboBoxItem TypeFilter
         {
@@ -56,6 +69,10 @@ namespace Sculpy.ViewModel
             }
         }
 
+
+        /// <summary>
+        /// This property extract the placement criteria for sorting and also calls the Filter method for the collection of sculptures.
+        /// </summary>
         private string _sortCriteria;
         public MenuFlyoutItem SortCriteria
         {
@@ -65,10 +82,6 @@ namespace Sculpy.ViewModel
                 SculpturesHandler.SortCollection(_sortCriteria);
             }
         }
-
-
-
-
 
         /// <summary>
         /// Implementation for the INotifyPropertyChanged interface.

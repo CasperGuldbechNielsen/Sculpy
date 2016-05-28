@@ -19,6 +19,9 @@ namespace Sculpy.ViewModel
 {
     class SelectedSculptureEditViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// This property contains the parameter of type Sculpture which is passed when we nagivate to SelectedSculptureEditView page.
+        /// </summary>
         private Sculpture _passedSculpture;
         public Sculpture PassedSculpture
         {
@@ -30,6 +33,8 @@ namespace Sculpy.ViewModel
             }
         }
 
+        public Sculpture UnchangedSculpture { get; set; }
+
         public ObservableCollection<Material> MaterialCollection { get; set; } = new ObservableCollection<Material>();
         public ObservableCollection<string> TypeCollection { get; set; } = new ObservableCollection<string>();
 
@@ -37,6 +42,7 @@ namespace Sculpy.ViewModel
 
         /// <summary>
         /// Compiled Bindings or Bindings to Event - new way of binding appeared with C#6-2015.
+        /// This method is binded to a Check event and we are able to save all the materials which the user selects.
         /// </summary>
         public void MaterialCheckBox_OnChecked(object sender, RoutedEventArgs args)
         {
@@ -54,12 +60,17 @@ namespace Sculpy.ViewModel
             }
             else
             {
-                PassedSculpture.SculptureMaterials.Add(material);
+                PassedSculpture.SculptureMaterials?.Add(material);
                 MaterialCollection.Add(material);
             }
-                
         }
 
+        /// <summary>
+        /// This method is binded to the Unchecked event of the CheckBox control.
+        /// This method removes unchecked materials from the collection of materials related to that Sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void MaterialCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -74,6 +85,12 @@ namespace Sculpy.ViewModel
             collection.ForEach(material1 => MaterialCollection.Add(material1));
         }
 
+        /// <summary>
+        /// This method is binded to the IsEnabled method of the CheckBox control.
+        /// This method checkes the CheckBox if the material is already owned by the Sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void MaterialCheckBox_IsEnabled(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -81,13 +98,15 @@ namespace Sculpy.ViewModel
             if (PassedSculpture.SculptureMaterials != null && PassedSculpture.SculptureMaterials.Count > 0)
                 foreach (var material in PassedSculpture.SculptureMaterials.Where(material => material.Material_Name == tag))
                 {
-                    // TODO mind-blowing for me 
                     checkBox.IsChecked = true;
                     break;
                 }
         }
 
-
+        /// <summary>
+        /// Compiled Bindings or Bindings to Event - new way of binding appeared with C#6-2015.
+        /// This method is binded to a Check event and we are able to save all the type of sculpture which the user selects.
+        /// </summary>
         public void TypeCheckBox_OnChecked(object sender, RoutedEventArgs args)
         {
             var checkBox = (CheckBox)sender;
@@ -100,6 +119,12 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This method is binded to the Unchecked event of the CheckBox control.
+        /// This method removes unchecked types of the sculpture from the collection of types related to that Sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void TypeCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -113,6 +138,12 @@ namespace Sculpy.ViewModel
             collection.ForEach(type1 => TypeCollection.Add(type1));
         }
 
+        /// <summary>
+        /// This method is binded to the IsEnabled method of the CheckBox control.
+        /// This method checkes the CheckBox if the type is already saved for that Sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void TypeCheckBox_IsEnabled(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -124,7 +155,9 @@ namespace Sculpy.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// This property extracts the Placement property from the ComboBox.
+        /// </summary>
         public ComboBoxItem PlacementBoxItem
         {
             set { PassedSculpture.Sculpture_Placement = value?.Tag?.ToString(); }
@@ -135,13 +168,10 @@ namespace Sculpy.ViewModel
         {
 
         }
-
-        public SelectedSculptureEditViewModel(SculptureHandler handler)
-        {
-            this.Handler = handler;
-        }
-
-
+        
+        /// <summary>
+        /// Implementation for the INotifyPropertyChanged interface.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

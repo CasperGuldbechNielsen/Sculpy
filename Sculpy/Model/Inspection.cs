@@ -4,10 +4,13 @@ using static System.String;
 namespace Sculpy.Model
 {
     /// <summary>
-    /// This class represents inspections in the database
+    /// This class represents the inspection entity from the database.
     /// </summary>
     public class Inspection
     {
+        /// <summary>
+        /// Here we have all the properties of an inspection object.
+        /// </summary>
         public int ID { get; set; }
         public DateTime Inspection_Date { get; set; }
         public string Inspection_Note { get; set; }
@@ -17,7 +20,15 @@ namespace Sculpy.Model
         public string Treatment_Type { get; set; }
         public string Damage_Type { get; set; }
         public string Treatment_Plan { get; set; }
-        
+
+        /// <summary>
+        /// This class has three overloaded contructors.
+        /// </summary>
+        public Inspection()
+        {
+
+        }
+
         public Inspection(int id, DateTime inspectionDate, string inspectionNote, int sculptureId, string damagePicture, string inspectionTitle, string treatmentType, string damageType, string treatmentPlan)
         {
             ID = id;
@@ -29,11 +40,6 @@ namespace Sculpy.Model
             Treatment_Type = treatmentType;
             Damage_Type = damageType;
             Treatment_Plan = treatmentPlan;
-        }
-
-        public Inspection()
-        {
-            
         }
 
         public Inspection(int sculptureId)
@@ -51,11 +57,8 @@ namespace Sculpy.Model
 
         public override string ToString()
         {
-            return Format("Inspection-ID: {0}\n" +
-                                 "Inspection Date: {1}\n" +
-                                 "Inspection Note: {2}\n" +
-                                 "Sculpture-ID: {3}\n", ID, Inspection_Date, Inspection_Note, Sculpture_ID);
+            return $"Inspection-ID: {ID}\n" + $"Inspection Date: {Inspection_Date}\n" +
+                   $"Inspection Note: {Inspection_Note}\n" + $"Sculpture-ID: {Sculpture_ID}\n";
         }
-
     }
 }

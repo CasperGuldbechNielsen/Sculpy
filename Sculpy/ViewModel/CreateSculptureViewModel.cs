@@ -15,9 +15,11 @@ using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
-    public class CreateSculptureViewModel
+    public class CreateSculptureViewModel : INotifyPropertyChanged
     {
-       
+        /// <summary>
+        /// This property holds the values for the new created sculpture.
+        /// </summary>
         private Sculpture _newSculpture;
         public Sculpture NewSculpture
         {
@@ -29,11 +31,17 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// With this property we extract the details from the XAML control.
+        /// </summary>
         public ComboBoxItem PlacementBoxItem
         {
             set { NewSculpture.Sculpture_Placement = value?.Tag?.ToString(); }
         }
 
+        /// <summary>
+        /// This method is associated with a CheckBox and it add materials to the new created sculpture when they are checked.
+        /// </summary>
         public void MaterialCheckBox_OnChecked(object sender, RoutedEventArgs args)
         {
             var checkBox = (CheckBox)sender;
@@ -52,6 +60,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This method is associated with a CheckBox and it removes materials from the new created sculpture when they are checked.
+        /// </summary>
         public void MaterialCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -64,7 +75,9 @@ namespace Sculpy.ViewModel
             collection.ForEach(material1 => NewSculpture.SculptureMaterials.Add(material1));
         }
 
-
+        /// <summary>
+        /// This method is associated with a CheckBox and it add sculpture types to the new created sculpture when they are checked.
+        /// </summary>
         public void TypeCheckBox_OnChecked(object sender, RoutedEventArgs args)
         {
             var checkBox = (CheckBox)sender;
@@ -84,6 +97,9 @@ namespace Sculpy.ViewModel
             
         }
 
+        /// <summary>
+        /// This method is associated with a CheckBox and it removes sculpture types from the new created sculpture when they are checked.
+        /// </summary>
         public void TypeCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
         {
             var checkBox = (CheckBox)sender;
@@ -100,6 +116,9 @@ namespace Sculpy.ViewModel
            NewSculpture = new Sculpture(SculptureCatalogSingleton.Instance.Sculptures.Count + 1);
         }
 
+        /// <summary>
+        /// Implementation for the INotifyPropertyChanged interface.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

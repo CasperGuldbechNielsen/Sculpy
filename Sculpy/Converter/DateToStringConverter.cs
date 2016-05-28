@@ -7,6 +7,9 @@ using Windows.UI.Xaml.Data;
 
 namespace Sculpy.Converter
 {
+    /// <summary>
+    /// This class converts a DateTime object to a string.
+    /// </summary>
     class DateToStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

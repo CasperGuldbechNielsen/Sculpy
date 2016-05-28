@@ -14,11 +14,21 @@ using SculptureCatalogSingleton = Sculpy.Model.SculptureCatalogSingleton;
 
 namespace Sculpy.Handler
 {
+    /// <summary>
+    /// This class contains some of the methods associated to the operations on the entire sculpture collection.
+    /// </summary>
     public class SculpturesHandler
     {
+        /// <summary>
+        /// This property represents a reference to the Catalog of all the sculptures.
+        /// </summary>
         private static SculptureCatalogSingleton CatalogSingleton { get; } = SculptureCatalogSingleton.Instance;
 
-        public static void FilterCollectionByPlacement(string criteria)
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of sculptures by a chosen placement type.
+        /// </summary>
+        /// <param name="criteria">This parameter holds the value of the chosen placement type.</param>
+        public static async void FilterCollectionByPlacement(string criteria)
         {
             if (criteria != "All")
             {
@@ -34,11 +44,15 @@ namespace Sculpy.Handler
             }
             else
             {
-                ResetCollectionAsync();
+                await ResetCollectionAsync();
             }
         }
 
-        public static void FilterCollectionByType(string criteria)
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of sculptures by a chosen type of a sculpture.
+        /// </summary>
+        /// <param name="criteria">This parameter holds the value of the chosen type of a sculpture.</param>
+        public static async void FilterCollectionByType(string criteria)
         {
             if (criteria != "All")
             {
@@ -55,11 +69,15 @@ namespace Sculpy.Handler
             }
             else
             {
-                ResetCollectionAsync();
+                await ResetCollectionAsync();
             }
         }
 
-        public static void FilterCollectionByMaterial(string criteria)
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of sculptures by a chosen material.
+        /// </summary>
+        /// <param name="criteria">This parameter holds the value of the chosen material.</param>
+        public static async void FilterCollectionByMaterial(string criteria)
         {
             if (criteria != "All")
             {
@@ -76,13 +94,17 @@ namespace Sculpy.Handler
             }
             else
             {
-                ResetCollectionAsync();
+                await ResetCollectionAsync();
             }
         }
 
+        /// <summary>
+        /// This method is called whenever the user wants to sort the collection of sculpture by a specific criteria.
+        /// </summary>
+        /// <param name="criteria">This parameter holds the value of the chosen criteria by which the list is sorted.</param>
         public static void SortCollection(string criteria)
         {
-            var sortedCollection = new List<Sculpture>();
+            List<Sculpture> sortedCollection;
 
             switch (criteria)
             {
@@ -97,7 +119,6 @@ namespace Sculpy.Handler
                     break;
                 default: throw new Exception(criteria);
             }
-            
 
             CatalogSingleton.Sculptures.Clear();
 
@@ -105,21 +126,20 @@ namespace Sculpy.Handler
             {
                 CatalogSingleton.Sculptures.Add(sculpture);
             }
-
         }
 
+        /// <summary>
+        /// This method gets again all the sculpture from the database and refreshes the Catalog of sculptures.
+        /// </summary>
+        /// <returns></returns>
         public static async Task ResetCollectionAsync()
         {
             var list = await new PersistenceFacade().GetAllSculptures();
 
-            foreach (var sculpture in list)
+            foreach (var sculpture in list.Where(sculpture => sculpture.ID < 15 || sculpture.ID > 200))
             {
-                if (sculpture.ID < 15 || sculpture.ID>200)
-                {
-                    sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
-                    sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
-                    //sculpture.Inspections = await new PersistenceFacade().GetInspetionsFromSelectedSculpture(sculpture.ID);
-                }
+                sculpture.SculptureTypes = await new PersistenceFacade().GetSculptureTypesAsync(sculpture.ID);
+                sculpture.SculptureMaterials = await new PersistenceFacade().GetSculptureMaterialsAsync(sculpture.ID);
             }
 
             CatalogSingleton.Sculptures.Clear();
@@ -129,6 +149,5 @@ namespace Sculpy.Handler
                 CatalogSingleton.Sculptures.Add(sculpture);
             }
         }
-
     }
 }

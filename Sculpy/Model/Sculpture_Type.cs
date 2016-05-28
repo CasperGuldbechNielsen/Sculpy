@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Sculpy.Model
 {
+
+    /// <summary>
+    /// This class represents the Type of a sculpture.
+    /// </summary>
     public class Sculpture_Type
     {
         public int ID { get; set; }

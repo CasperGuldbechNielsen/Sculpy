@@ -14,24 +14,30 @@ namespace Sculpy.ViewModel
 {
     public class ReportViewModel : INotifyPropertyChanged
     {
-        public InspectionCatalogSingleton inspectionCatalogSingleton { get; set; }
-        public Handler.ReportHandler ReportHandler { get; set; }
+        public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
+        public ReportHandler ReportHandler { get; set; }
 
         // Invoked when user clicks Draw Report button
         public ICommand DrawReportCommand { get; set; }
 
+        /// <summary>
+        /// In the constructor we instantiate some of the fields.
+        /// </summary>
         public ReportViewModel()
         {
             ReportHandler = new ReportHandler(this); // Create new instance of reportHandler and pass in this viewmodel
-            inspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
+            InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
             // Load all inspections from the database to populate the listview
-            inspectionCatalogSingleton.LoadAllInscpections();
+            InspectionCatalogSingleton.LoadAllInscpections();
             // Create an action that pass the command to invoke the DrawReport method in reportHandler, pass in the parameter _selectedInspections
             DrawReportCommand = new RelayCommand(() => ReportHandler.DrawReport(_selectedInspections)); 
             // Create a new empty list to pass in as a parameter to the above command
             _selectedInspections = new List<Inspection>();
         }
 
+        /// <summary>
+        /// This property is binded to a selected item in the ListView of inspection.
+        /// </summary>
         private List<Inspection> _selectedInspections; 
         public List<Inspection> SelectedInspections
         {
@@ -46,6 +52,9 @@ namespace Sculpy.ViewModel
             }
         } 
 
+        /// <summary>
+        /// This property will filter the collection of inspection by the Period of Time saved in the Tag of the ComboBox.
+        /// </summary>
         private string _periodFilter;
         public ComboBoxItem PeriodFilter
         {
@@ -56,6 +65,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This property will filter the collection of inspection by the Treatment saved in the Tag of the ComboBox.
+        /// </summary>
         private string _suggestedTreatmentFilter;
         public ComboBoxItem SuggestedTreatmentFilter
         {
@@ -66,6 +78,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This property will filter the collection of inspection by the Treatment Frequency saved in the Tag of the ComboBox.
+        /// </summary>
         private string _treatmentFrequencyFilter;
         public ComboBoxItem TreatmentFrequencyFilter
         {
@@ -76,6 +91,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This property will filter the collection of inspection by the Damage saved in the Tag of the ComboBox.
+        /// </summary>
         private string _damageFilter;
         public ComboBoxItem DamageFilter
         {
@@ -86,6 +104,9 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// Implementation of the INotifyPropertyChanged interface.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

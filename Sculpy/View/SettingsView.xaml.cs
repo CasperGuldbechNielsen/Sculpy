@@ -27,6 +27,11 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// We will navigate back to the previous page when this method is called.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();

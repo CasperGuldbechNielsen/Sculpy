@@ -31,6 +31,12 @@ namespace Sculpy.View
         {
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// All this methods change the Visibility of certain cotrollers.
+        /// </summary>
+        #region Visibility methods.
+
         private void FilterButton_OnClick(object sender, RoutedEventArgs e)
         {
             FilterWindow.Visibility = FilterWindow.Visibility == Visibility.Collapsed
@@ -49,23 +55,8 @@ namespace Sculpy.View
                 : Visibility.Collapsed;
 
             SortButton.Foreground = SortingWindow.Visibility == Visibility.Collapsed
-               ? SortButton.Foreground = new SolidColorBrush(Colors.White)
-               : SortingWindow.BorderBrush;
-        }
-
-        private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.SelectedSculpture);
-        }
-
-        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingsView));
-        }
-
-        private void AddSculptureButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateSculptureView));
+                ? SortButton.Foreground = new SolidColorBrush(Colors.White)
+                : SortingWindow.BorderBrush;
         }
 
         private void MetalCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -73,28 +64,6 @@ namespace Sculpy.View
             MetalGrid.Visibility = MetalGrid.Visibility == Visibility.Collapsed
                 ? Visibility.Visible
                 : Visibility.Collapsed;
-
-        }
-
-        private void PlacementFilterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var checkBox = (CheckBox)sender;
-            var tag = checkBox.Tag.ToString();
-            SculpturesHandler.FilterCollectionByPlacement(tag);
-        }
-
-        private void TypeFilterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var checkBox = (CheckBox)sender;
-            var tag = checkBox.Tag.ToString();
-            SculpturesHandler.FilterCollectionByType(tag);
-        }
-
-        private void MaterialFilterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var checkBox = (CheckBox)sender;
-            var tag = checkBox.Tag.ToString();
-            SculpturesHandler.FilterCollectionByMaterial(tag);
         }
 
         private void PlacementToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
@@ -125,26 +94,77 @@ namespace Sculpy.View
                 : Visibility.Collapsed;
         }
 
+        #endregion
+
+        /// <summary>
+        /// All of these methods are called when the navigation to other pages is required.
+        /// </summary>
+        #region Navigation methods.
+
+        private void SculptureListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Frame.Navigate(typeof (SelectedSculptureView), ViewModel.SelectedSculpture);
+        }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (SettingsView));
+        }
+
+        private void AddSculptureButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (CreateSculptureView));
+        }
+
+        #endregion
+      
+        /// <summary>
+        /// These methods are called whenver the user selects a criteria to filter or sort the list of Sculptures.
+        /// </summary>
+        #region Filter and Sorting methods.
+        private void PlacementFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox) sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByPlacement(tag);
+        }
+
+        private void TypeFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox) sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByType(tag);
+        }
+
+        private void MaterialFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox) sender;
+            var tag = checkBox.Tag.ToString();
+            SculpturesHandler.FilterCollectionByMaterial(tag);
+        }
+
         private void SortCheckBox_OnChecked(object sender, RoutedEventArgs e)
         {
-            var checkBox = (CheckBox)sender;
+            var checkBox = (CheckBox) sender;
             var tag = checkBox.Tag.ToString();
             SculpturesHandler.SortCollection(tag);
         }
 
-        private  void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        #endregion
+
+        /// <summary>
+        /// This method starts the Progress Ring when the sculptures are requested from the Database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             // Delegate method to call the reset.
             ProgressRing.IsActive = true;
             SculptureListView.Opacity = 0.3;
-            ResetCollection();
+            await SculpturesHandler.ResetCollectionAsync();
             ProgressRing.IsActive = false;
             SculptureListView.Opacity = 1;
-        }
-
-        public async Task ResetCollection()
-        {
-            await SculpturesHandler.ResetCollectionAsync();
         }
     }
 }

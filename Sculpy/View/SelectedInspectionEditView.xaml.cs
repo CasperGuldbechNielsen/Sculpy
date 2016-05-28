@@ -30,17 +30,26 @@ namespace Sculpy.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var Inspection = (Inspection)e.Parameter;
-            ViewModel.SelectedInspection = Inspection;
-        }
+            var inspection = (Inspection)e.Parameter;
+            ViewModel.SelectedInspection = inspection;
+        }       
 
-        // TODO It should be comboboxes for Damage, Treatment and Treatment Frequency  Also, when you press save the edit is ssaved by the UI doesn't go back to the SelectedInspectionView  
-
+        /// <summary>
+        /// When an inspection is edited this method is called in order to update the inspection in the Database.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
             await new Persistancy.PersistenceFacade().UpdateEditedInspection(ViewModel.SelectedInspection);
+            Frame.Navigate(typeof (SelectedInspectionView), ViewModel.SelectedInspection);
         }
 
+        /// <summary>
+        /// If the user wants to cancel the edit inspection operation, he will go back to the SelectedInspection Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SelectedInspectionView), ViewModel.SelectedInspection);
