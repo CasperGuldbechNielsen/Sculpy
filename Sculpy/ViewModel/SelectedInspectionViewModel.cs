@@ -13,23 +13,24 @@ using Sculpy.Model;
 
 namespace Sculpy.ViewModel
 {
-    class SelectedInspectionViewModel:INotifyPropertyChanged
+    class SelectedInspectionViewModel : INotifyPropertyChanged
     {
-
+        /// <summary>
+        /// This property represents a reference to the Catalog of inspections.
+        /// </summary>
         public InspectionCatalogSingleton InspectionCatalogSingleton { get; set; }
 
+        /// <summary>
+        /// This property represents a reference to the handler related to inspections.
+        /// </summary>
         public InspectionHandler InspectionHandler { get; set; }
 
-        public SelectedSculptureViewModel SelectedSculptureViewModel { get; set; }
-
-        public ICommand DeleteCommand { get; set; }
-
-        public ICommand CreateCommand { get; set; }
-        public Sculpture Sculpture { get; set; }
-
+        public SelectedSculptureViewModel SelectedSculptureViewModel { get; set; }   
 
         private Inspection _selectedInspection;
-
+        /// <summary>
+        /// This property will save an inspection when the user selects one from the list.
+        /// </summary>
         public Inspection SelectedInspection
         {
             get { return _selectedInspection; }
@@ -40,27 +41,30 @@ namespace Sculpy.ViewModel
             }
         }
 
+        /// <summary>
+        /// This property holds the inspection which is passed when the user navigates to SelectedInspectionView page.
+        /// </summary>
         private Inspection _passedInspection;
         public Inspection PassedInspection
         {
             get { return _passedInspection; }
-            set {
+            set
+            {
                 _passedInspection = value;
                 OnPropertyChanged();
             }
         }
-
-
-
+        
         public SelectedInspectionViewModel()
         {
             InspectionCatalogSingleton = InspectionCatalogSingleton.Instance;
 
-            //In the InspectionHandler why are we passing the SelectedSculptureViewModel?
             InspectionHandler = new InspectionHandler(SelectedSculptureViewModel);
         }
 
-        
+        /// <summary>
+        /// Implementation for the INotifyPropertyChanged interface.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

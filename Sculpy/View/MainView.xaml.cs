@@ -31,6 +31,12 @@ namespace Sculpy.View
             MainFrame.Navigate(typeof(SculpturesView));
         }
 
+        /// <summary>
+        /// This method is called when a button from the header is pressed.
+        /// Through this we navigate to other pages.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonHeader_OnClick(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -46,20 +52,37 @@ namespace Sculpy.View
                 case 3:
                     MainFrame.Navigate(typeof(ReportView));
                     break;
+                default:
+                    break;
             }
         }
 
+        /// <summary>
+        /// This method updates the list which is suggested in the AutoSuggestBox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void SearchBox_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             var allItems = SculptureCatalogSingleton.Instance.Sculptures;
 
             var listOfSculptureNames = allItems.Select(place => place.Sculpture_Name).ToList();
 
-            var autoSuggestBox = (AutoSuggestBox)sender;
-            var filtered = listOfSculptureNames.Where(p => p.StartsWith(autoSuggestBox.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
-            autoSuggestBox.ItemsSource = filtered;
+            string[] filtered = {};
+
+            if (listOfSculptureNames != null && listOfSculptureNames.Any())
+            {
+               filtered = listOfSculptureNames.Where(p => p.StartsWith(sender.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
+            }
+
+            sender.ItemsSource = filtered;
         }
 
+        /// <summary>
+        /// This method is executed when the user chooses one item from the suggested list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void SearchBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var sculptureName = args.SelectedItem as string;

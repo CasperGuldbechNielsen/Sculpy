@@ -32,10 +32,6 @@
         </Style>
     </Page.Resources>
 
-    <Page.DataContext>
-        <viewModel:MainPageViewModel x:Name="ViewModel"/>
-    </Page.DataContext>
-
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

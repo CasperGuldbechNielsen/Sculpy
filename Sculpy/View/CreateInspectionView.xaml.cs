@@ -29,6 +29,10 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// This method is called when we navigate to this page.
+        /// </summary>
+        /// <param name="e">This parameter holds the value which was passed from the SelectedSculpturePage.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var sculpture = (Sculpture)e.Parameter;
@@ -36,16 +40,27 @@ namespace Sculpy.View
             if (sculpture != null) ViewModel.NewInspection = new Inspection(sculpture.ID);
         }
 
-        // TODO Currently no binding on comboboes which means that Damage, Treatment and Treatment plan isn't saved. Also: When creating the new inspection by pressing save, the inspection doesn't also appear on the listview with inspection on the SelectedSculptureView
-
-        private void AcceptButton_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// When the user decides to create the inspection, this method will be called.
+        /// Here we call the handler to create a new inspection,
+        /// we refresh the catalog of inspections
+        /// and we navigate back to the SelectedSculpture Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.NewInspection.Sculpture_ID = ViewModel.Sculpture.ID;
             InspectionHandler.CreateInspection(ViewModel.NewInspection);
-
-            Frame.Navigate(typeof (SelectedSculptureView), ViewModel.Sculpture);
+            InspectionCatalogSingleton.Instance.Inspections = await new Persistancy.PersistenceFacade().GetAllInspections();
+            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
         }
 
+        /// <summary>
+        /// This method is called when the user wants to cancel the operation fo creating a new inspection.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);

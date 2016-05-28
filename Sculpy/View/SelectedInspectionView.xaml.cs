@@ -29,10 +29,14 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// This method is executed when we navigate to this page.
+        /// </summary>
+        /// <param name="e">This parameter holds the inspection which was selected from the list.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var Inspection = (Inspection)e.Parameter;
-            ViewModel.SelectedInspection = Inspection;
+            var inspection = (Inspection)e.Parameter;
+            ViewModel.SelectedInspection = inspection;
         }
 
         private void EditInspectionButton_Onclick(object sender, RoutedEventArgs e)
@@ -40,13 +44,15 @@ namespace Sculpy.View
             Frame.Navigate(typeof(SelectedInspectionEditView), ViewModel.SelectedInspection);
         }
 
-        // TODO: When navigating back to the SelectecSculptureView the selected sculpture isn't shown
-        private void DeleteInspectionButton_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Through this method we send a delete request to the Web Service.
+        /// </summary>
+        private async void DeleteInspectionButton_OnClick(object sender, RoutedEventArgs e)
         {
             InspectionHandler.DeleteInspection(ViewModel.SelectedInspection.ID);
-
-            Frame.Navigate(typeof(SelectedSculptureView), ViewModel.Sculpture);
-       
+            var sculpture = SculptureCatalogSingleton.Instance.Sculptures.First(s => s.ID == ViewModel.SelectedInspection.Sculpture_ID);
+            InspectionCatalogSingleton.Instance.Inspections = await new Persistancy.PersistenceFacade().GetAllInspections();
+            Frame.Navigate(typeof(SelectedSculptureView), sculpture);
         }
     }
 }

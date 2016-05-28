@@ -14,18 +14,32 @@ namespace Sculpy.Handler
 {
     public class ReportHandler
     {
+        /// <summary>
+        /// This property represents a reference to the Catalog of all inspections which implements the Singleton Pattern.
+        /// </summary>
         private static InspectionCatalogSingleton CatalogSingleton { get; } = InspectionCatalogSingleton.Instance;
 
-        public ReportViewModel reportViewModel { get; set; }
+        /// <summary>
+        /// This property is a reference to the ViewModel associated to the Report Page.
+        /// </summary>
+        public ReportViewModel ReportViewModel { get; set; }
 
+        /// <summary>
+        /// In the constructor of this page we need to instantiate the ViewModel class.
+        /// </summary>
+        /// <param name="reportViewModel"></param>
         public ReportHandler(ReportViewModel reportViewModel)
         {
-            this.reportViewModel = reportViewModel;
+            this.ReportViewModel = reportViewModel;
         }
+
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of inspections on a specific period of time.
+        /// </summary>
+        /// <param name="periodFilter">This parameter will hold that specific period of time chosen by the user.</param>
         internal static void FilterCollectionByPeriod(int periodFilter)
         {
             var today = DateTime.Now;
-
             switch (periodFilter)
             {
                 // Filter for a day
@@ -72,9 +86,15 @@ namespace Sculpy.Handler
                         CatalogSingleton.Inspections.Add(sculpture);
                     }
                     break;
+                default:
+                    break;
             }
         }
 
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of inspections by a chosen damage type.
+        /// </summary>
+        /// <param name="damageFilter">This parameter holds the value of the chosen damage type.</param>
         internal static void FilterCollectionByDamage(string damageFilter)
         {
             var filteredCollection =
@@ -88,6 +108,10 @@ namespace Sculpy.Handler
             }
         }
 
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of inspections by a chosen treatment frequency.
+        /// </summary>
+        /// <param name="treatmentFrequencyFilter">This parameter holds the value of the chosen treatment frequency.</param>
         internal static void FilterCollectionByTreatmentFrequency(string treatmentFrequencyFilter)
         {
             var filteredCollection =
@@ -101,6 +125,10 @@ namespace Sculpy.Handler
             }
         }
 
+        /// <summary>
+        /// This method is called whenever the user wants to filter the Catalog of inspections by a chosen treatment type.
+        /// </summary>
+        /// <param name="suggestedTreatmentFilter">This parameter holds the value of the chosen treatment type.</param>
         internal static void FilterCollectionBySuggestedTreatment(string suggestedTreatmentFilter)
         {
             var filteredCollection =
@@ -121,7 +149,7 @@ namespace Sculpy.Handler
         public async void DrawReport(List<Inspection> inspections)
         {
             // Create an empty string builder to make the report string
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
 
             // Loop through the inspections passed in as parameter
             // to build the string for the report
@@ -134,17 +162,16 @@ namespace Sculpy.Handler
                 builder.AppendLine("\n");
             }
 
-            string result = builder.ToString();
-
-            // Open the folder
+            var result = builder.ToString();
+            // Open the folder:
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            // Create the file
+            // Create the file:
             Windows.Storage.StorageFile sampleFile = await storageFolder.CreateFileAsync("Report.txt", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            // Save the file
+            // Save the file:
             await Windows.Storage.FileIO.WriteTextAsync(sampleFile, result, UnicodeEncoding.Utf8);
 
             MessageDialog dialog = new MessageDialog("A report has been saved to your harddrive.");
-            dialog.ShowAsync();
+            await dialog.ShowAsync();
         }
     }
 }

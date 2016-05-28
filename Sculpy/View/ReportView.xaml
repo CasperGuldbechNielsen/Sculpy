@@ -41,12 +41,12 @@
                       Content="Select All"
                       RelativePanel.AlignRightWithPanel="True"
                       Margin="0,10,0,0" HorizontalAlignment="Stretch"
-                      Checked="CheckAll_OnChecked"/>
+                      />
             <ListView x:Name="Reports"
                       Margin="0,5,0,0"
                       RelativePanel.Below="ListViewHeader"
                       SelectionMode="Multiple"
-                      ItemsSource="{Binding inspectionCatalogSingleton.Inspections}"
+                      ItemsSource="{Binding InspectionCatalogSingleton.Inspections}"
                       SelectionChanged="Reports_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>

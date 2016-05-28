@@ -28,26 +28,35 @@ namespace Sculpy.View
     /// </summary>
     public sealed partial class MapView : Page
     {
-        private double _latitude = 55.67610;
-        private double _longitude = 12.56834;
-
+        public readonly double Latitude = 55.67610;
+        private const double Longitude = 12.56834;
 
         public MapView()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// This method sets the location on the Map.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SculptureMap_OnLoaded(object sender, RoutedEventArgs e)
         {
             var center =
                 new Geopoint(new BasicGeoposition()
                 {
-                    Latitude = _latitude,
-                    Longitude = _longitude
+                    Latitude = Latitude,
+                    Longitude = Longitude
                 });
             await sculptureMap.TrySetSceneAsync(MapScene.CreateFromLocationAndRadius(center, 3500), MapAnimationKind.Bow);
         }
 
+        /// <summary>
+        /// Through this method we navigate to the Settings Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SettingsView));

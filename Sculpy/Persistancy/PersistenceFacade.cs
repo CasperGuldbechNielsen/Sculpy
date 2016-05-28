@@ -14,18 +14,19 @@ using Sculpy.Model;
 namespace Sculpy.Persistancy
 {
     /// <summary>
-    /// This class handles all the communication with the WebService 
-    /// to connect to the database
+    /// This class handles the entire communication with the WebService in order to operate on the Database.
     /// </summary>
     public class PersistenceFacade
     {
-
+        /// <summary>
+        /// This field hold the URL conncetion to the Web Service.
+        /// </summary>
         private const string ServerUrl = "http://skulpywebapi.azurewebsites.net";
-        private readonly HttpClientHandler handler;
+        private readonly HttpClientHandler _handler;
 
         public PersistenceFacade()
         {
-            handler = new HttpClientHandler { UseDefaultCredentials = true };
+            _handler = new HttpClientHandler { UseDefaultCredentials = true };
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Sculpy.Persistancy
         /// <returns>A list of sculptures</returns>
         public async Task<ObservableCollection<Sculpture>> GetAllSculptures()
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -49,7 +50,6 @@ namespace Sculpy.Persistancy
                         var hotelList = await response.Content.ReadAsAsync<ObservableCollection<Sculpture>>();
                         return hotelList;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -59,9 +59,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method requests the Web Service for a single sculpture.
+        /// </summary>
+        /// <param name="sculptureId">The Id of the desired sculpture has to be known.</param>
+        /// <returns></returns>
         public async Task<Sculpture> GetOnlyOneSculptures(int sculptureId)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -76,7 +81,6 @@ namespace Sculpy.Persistancy
                         var sculpture = await response.Content.ReadAsAsync<Sculpture>();
                         return sculpture;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -86,10 +90,14 @@ namespace Sculpy.Persistancy
             }
         }
 
-
+        /// <summary>
+        /// This method sends a request to the WebService in order to get all the inspections associated with a sculpture.
+        /// </summary>
+        /// <param name="sculptureId">That specific scultpure is recognize by the passed ID.</param>
+        /// <returns>It returns all the inspections related to a specific sculpture.</returns>
         public async Task<List<Inspection>> GetInspetionsFromSelectedSculpture(int sculptureId)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -115,9 +123,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method gets all the types of a specific sculpture.
+        /// </summary>
+        /// <param name="sculptureId">It requires only the ID of that specific sculpture.</param>
+        /// <returns>It returns the list of all the types of that sculpture.</returns>
         public async Task<List<string>> GetSculptureTypesAsync(int sculptureId)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -143,9 +156,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method gets all the materials of a specific sculpture.
+        /// </summary>
+        /// <param name="sculptureId">It requires only the ID of that specific sculpture.</param>
+        /// <returns>It returns the list of all the materials of that sculpture.</returns>
         public async Task<List<Material>> GetSculptureMaterialsAsync(int sculptureId)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -171,14 +189,13 @@ namespace Sculpy.Persistancy
             }
         }
 
-
         /// <summary>
         /// Retrieve all inspections in the database
         /// </summary>
         /// <returns>ObservableCollection of Inspections</returns>
         public async Task<ObservableCollection<Inspection>> GetAllInspections()
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -203,9 +220,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method is called whenver the user creates a new sculpture.
+        /// </summary>
+        /// <param name="sculpture">This parameter holds all the information about the new created sculpture which is going to be inserted into the Database.</param>
+        /// <returns></returns>
         public async Task CreateSculptureAsync(Sculpture sculpture)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -225,9 +247,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method is called whenver the user deletes an existing sculpture.
+        /// </summary>
+        /// <param name="id">It's required only the ID of hte suclpture for this operation.</param>
+        /// <returns></returns>
         public async Task DeleteSculptureAsync(int id)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -245,15 +272,20 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method is called whenver the user edits an existing sculpture.
+        /// </summary>
+        /// <param name="sculpture">This parameter holds all the information about the modified sculpture which is going to be updated in the Database.</param>
+        /// <returns></returns>
         public async Task UpdateSculptureAsync(Sculpture sculpture)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var json= JsonConvert.SerializeObject(sculpture);
+                var json = JsonConvert.SerializeObject(sculpture);
 
                 var content = new StringContent(json, Encoding.UTF8, "Application/json");
 
@@ -265,14 +297,16 @@ namespace Sculpy.Persistancy
                 {
                     await new MessageDialog(ex.Message).ShowAsync();
                 }
-                
-
             }
         }
 
+        /// <summary>
+        /// This method gets all the available Materials from the Database.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Material>> GetAllMaterials()
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -287,7 +321,6 @@ namespace Sculpy.Persistancy
                         var materialList = await response.Content.ReadAsAsync<List<Material>>();
                         return materialList;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -297,9 +330,13 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method gets all the available Sculpture Types from the Database.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Sculpture_Type>> GetAllSculptureTypes()
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -314,7 +351,6 @@ namespace Sculpy.Persistancy
                         var list = await response.Content.ReadAsAsync<List<Sculpture_Type>>();
                         return list;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -324,9 +360,15 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method updates the materials of a specific sculpture when the user chooses to update a sculpture.
+        /// </summary>
+        /// <param name="sculptureId">This operation requires the ID of the Sculpture.</param>
+        /// <param name="materialIds">This parameter holds all the IDs of the materials which that sculpture has.</param>
+        /// <returns></returns>
         public async Task UpdateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -347,9 +389,15 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method sends a request to the Database to add all the materials for a new created sculpture.
+        /// </summary>
+        /// <param name="sculptureId">This operation requires the ID of the Sculpture.</param>
+        /// <param name="materialIds">This parameter contains all the IDs of the materials associated to this specific sculpture.</param>
+        /// <returns></returns>
         public async Task CreateSculptureMaterialsAsync(int sculptureId, List<int> materialIds)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -370,9 +418,15 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method updates the types of a specific sculpture when the user chooses to update a sculpture.
+        /// </summary>
+        /// <param name="sculptureId">This operation requires the ID of the Sculpture.</param>
+        /// <param name="typeIds">This parameter holds all the IDs of the types which that sculpture is.</param>
+        /// <returns></returns>
         public async Task UpdateSculptureTypesAsync(int sculptureId, List<int> typeIds)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -393,9 +447,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// This method is called whenver a new inspection is going to be created.
+        /// </summary>
+        /// <param name="inspection">This parameter holds the values of the new created inspection.</param>
+        /// <returns></returns>
         public async Task CreateInspectionAsync(Inspection inspection)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -406,20 +465,26 @@ namespace Sculpy.Persistancy
 
                 try
                 {
-                    var response = await client.PutAsync($"Api/CreateInspectionForSculpture/{inspection.Sculpture_ID}", inspectionContent);
+                    var response =
+                        await
+                            client.PutAsync($"Api/CreateInspectionForSculpture/{inspection.Sculpture_ID}",
+                                inspectionContent);
                 }
                 catch (Exception ex)
                 {
                     await new MessageDialog(ex.Message).ShowAsync();
                 }
             }
-
-            
         }
 
+        /// <summary>
+        /// Through this method an existing inspection is able to be edited and updated inside the Database.
+        /// </summary>
+        /// <param name="inspection">We are passing the related details for updating the inspection in the database.</param>
+        /// <returns></returns>
         public async Task UpdateEditedInspection(Inspection inspection)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -440,9 +505,14 @@ namespace Sculpy.Persistancy
             }
         }
 
+        /// <summary>
+        /// By calling this method a specific inspection is going to be deleted. 
+        /// </summary>
+        /// <param name="id">We are passing the ID of the inspection.</param>
+        /// <returns></returns>
         public async Task DeleteInspectionAsync(int id)
         {
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(_handler))
             {
                 client.BaseAddress = new Uri(ServerUrl);
                 client.DefaultRequestHeaders.Clear();
@@ -458,6 +528,78 @@ namespace Sculpy.Persistancy
                 }
 
             }
-        } 
-    }  
+        }
+
+        /// <summary>
+        /// This method is called when a sculpture is deleted in order to remove any reference from the Database of a sculpture before we delete it.
+        /// </summary>
+        /// <param name="id">This parameter holds the value of the Sculpture which is going to be deleted.</param>
+        /// <returns></returns>
+        public async Task DeleteSculptureTypesAsync(int id)
+        {
+            using (var client = new HttpClient(_handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/DeleteSculptureTypes/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        /// <summary>
+        /// This method is called when a sculpture is deleted in order to remove any reference from the Database of a sculpture before we delete it.
+        /// </summary>
+        /// <param name="id">This parameter holds the value of the Sculpture which is going to be deleted.</param>
+        /// <returns></returns>
+        public async Task DeleteSculptureMaterialsAsync(int id)
+        {
+            using (var client = new HttpClient(_handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/DeleteSculptureMaterials/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+
+        /// <summary>
+        /// This method is called when a sculpture is deleted in order to remove any reference from the Database of a sculpture before we delete it.
+        /// </summary>
+        /// <param name="id">This parameter holds the value of the Sculpture which is going to be deleted.</param>
+        /// <returns></returns>
+        public async Task DeleteSculptureInspectionsAsync(int id)
+        {
+            using (var client = new HttpClient(_handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                try
+                {
+                    var response = await client.DeleteAsync("api/DeleteInspectionForSculpture/" + id);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+    }
 }

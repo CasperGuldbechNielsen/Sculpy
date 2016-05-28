@@ -14,10 +14,16 @@ namespace Sculpy.ViewModel
 {
     public class MapViewModel : INotifyPropertyChanged
     {
-        public ICommand setLocationCommand { get; set; }
+        /// <summary>
+        /// This field is a command which is binded to the XAML View.
+        /// </summary>
+        public ICommand SetLocationCommand { get; set; }
 
+        /// <summary>
+        /// This property sets the Map to the center.
+        /// </summary>
         private Geopoint _mapcenter;
-        public Geopoint mapcenter
+        public Geopoint Mapcenter
         {
             get { return _mapcenter; }
             set
@@ -28,8 +34,10 @@ namespace Sculpy.ViewModel
         }
 
         private double _zoomlevel;
-
-        public double zoomLevel
+        /// <summary>
+        /// This property handles the zoom level of the Map.
+        /// </summary>
+        public double ZoomLevel
         {
             get { return _zoomlevel;}
             set
@@ -40,7 +48,9 @@ namespace Sculpy.ViewModel
         }
 
         private Geopoint _myLocation;
-
+        /// <summary>
+        /// This property holds the current location of the user.
+        /// </summary>
         public Geopoint MyLocation
         {
             get { return _myLocation; }
@@ -54,7 +64,7 @@ namespace Sculpy.ViewModel
 
         private bool _mapmessage;
 
-        public bool mapMessage
+        public bool MapMessage
         {
             get { return _mapmessage;}
             set
@@ -66,7 +76,7 @@ namespace Sculpy.ViewModel
 
         private bool _showLocation;
 
-        public bool showLocation
+        public bool ShowLocation
         {
             get { return _showLocation; }
             set
@@ -75,17 +85,19 @@ namespace Sculpy.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        /// <summary>
+        /// This is a reference to the handler for Map.
+        /// </summary>
         MapHandler MapHandler { get; set; }
 
         public MapViewModel()
         {
             MapHandler = new MapHandler(this);
 
-            setLocationCommand = new RelayCommand(MapHandler.CurrentLocation);
+            SetLocationCommand = new RelayCommand(MapHandler.CurrentLocation);
 
-            mapMessage = false;
-            showLocation = false;
+            MapMessage = false;
+            ShowLocation = false;
             _showLocation = false;
         }
 

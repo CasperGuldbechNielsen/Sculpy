@@ -4,15 +4,20 @@ using Sculpy.Persistancy;
 
 namespace Sculpy.Model
 {
+    /// <summary>
+    /// This class contains the collection of all the inspections.
+    /// It also implements the Singleton Pattern.
+    /// </summary>
     public class InspectionCatalogSingleton
     {
-        private static InspectionCatalogSingleton instance = new InspectionCatalogSingleton();
+        /// <summary>
+        /// Through this property we are able to access the collection of inspections. 
+        /// </summary>
+        public static InspectionCatalogSingleton Instance { get; } = new InspectionCatalogSingleton();
 
-        public static InspectionCatalogSingleton Instance
-        {
-            get { return instance; }
-        }
-
+        /// <summary>
+        /// This holds all the inspection objects.
+        /// </summary>
         public ObservableCollection<Inspection> Inspections { get; set; }
 
         private InspectionCatalogSingleton()
@@ -21,16 +26,11 @@ namespace Sculpy.Model
         }
 
         /// <summary>
-        /// Load all Inspections from the persistanceFacade
+        /// Load all Inspections from the Database through the Persistency Facade class.
         /// </summary>
         public async void LoadAllInscpections()
         {
             Inspections = await new PersistenceFacade().GetAllInspections();
-        }
-
-        public void Add(int iD, string title, DateTime inspection_Date, string inspection_Note, int sculpture_ID, string damage_Picture, string inspection_title, string treatment_type, string damage_type, string treatment_plan)
-        {
-            Inspections.Add(new Inspection(iD, inspection_Date, inspection_Note, sculpture_ID, damage_Picture, inspection_title, treatment_type, damage_type, treatment_plan));
         }
     }
 }

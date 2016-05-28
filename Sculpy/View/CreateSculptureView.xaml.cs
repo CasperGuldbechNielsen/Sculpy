@@ -29,15 +29,17 @@ namespace Sculpy.View
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// This method is called when the user wants to create a new sculpture.
+        /// We are gathering all the information from the ViewModel related to the new sculpture 
+        /// and we call the handler to proceed with the creation of the new sculpture.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void AcceptButton_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.NewSculpture.ID = SculptureCatalogSingleton.Instance.Sculptures.Last().ID + 1;
             SculptureHandler.CreateSculpture(ViewModel.NewSculpture);
-
-            //SculptureCatalogSingleton.Instance.Sculptures.Last().SculptureMaterials =
-            //    ViewModel.NewSculpture.SculptureMaterials;
-            //SculptureCatalogSingleton.Instance.Sculptures.Last().SculptureTypes =
-            //    ViewModel.NewSculpture.SculptureTypes;
 
             var parameterList = new List<int>();
             ViewModel.NewSculpture.SculptureMaterials.ForEach(material => parameterList.Add(material.ID));
@@ -67,10 +69,14 @@ namespace Sculpy.View
                 }
             });
             await new Persistancy.PersistenceFacade().UpdateSculptureTypesAsync(ViewModel.NewSculpture.ID, parameterList);
-            SculpturesHandler.ResetCollectionAsync();
             Frame.Navigate(typeof(SculpturesView));
         }
 
+        /// <summary>
+        /// Through this method we navigate back to the SculpturesView Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (Frame.CanGoBack)
