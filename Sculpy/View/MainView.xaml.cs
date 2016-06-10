@@ -62,6 +62,15 @@ namespace Sculpy.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
+        private void SearchBox_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            var allItems = SculptureCatalogSingleton.Instance.Sculptures.Take(20);
+            var listOfSculptureNames = allItems.Select(place => place.Sculpture_Name).ToList();
+            var autoSuggestBox = (AutoSuggestBox)sender;
+            var filtered = listOfSculptureNames.Where(p => p.StartsWith(autoSuggestBox.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
+            autoSuggestBox.ItemsSource = filtered;
+        }
+
         private void SearchBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var sculptureName = args.SelectedItem as string;

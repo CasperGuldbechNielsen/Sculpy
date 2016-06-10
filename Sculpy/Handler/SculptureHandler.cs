@@ -15,7 +15,8 @@ namespace Sculpy.Handler
     {
         /// <summary>
         /// In this method we delete a sculpture from the database.
-        /// We treated also the scenario where if we want to delete a sculpture, we have to take care of all its references across the tables in the database.
+        /// We treated also the scenario when there are references related to a sculpture which is going to be deleted,
+        /// ,so we had to take care of all its references across the tables in the database.
         /// </summary>
         /// <param name="id">In order to delete a sculpture we need to have only its ID.</param>
         /// <returns></returns>

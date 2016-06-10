@@ -11,6 +11,11 @@
     x:Class="Sculpy.View.MapView"
     mc:Ignorable="d">
 
+    
+    <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    
     <Page.DataContext>
         <viewModel:MapViewModel/>
     </Page.DataContext>
@@ -23,7 +28,7 @@
             <AppBarButton x:Name="GetGeolocationButton" Icon="Target" Label="Where am I?" Command="{Binding SetLocationCommand}"/>
             <AppBarSeparator/>
             <CommandBar.Content>
-                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="{Binding MapMessage, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock x:Name="StatusMessage" Text="Finding your location..." Margin="20,10,0,0" Visibility="{Binding MapMessage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </CommandBar.Content>
         </CommandBar>
     </Page.BottomAppBar>
@@ -45,7 +50,8 @@
 			Loaded="SculptureMap_OnLoaded"
             Center="{Binding Mapcenter, Mode=TwoWay}">
             <maps:MapItemsControl>
-                <Ellipse Fill="Red" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}"/>
+                <Ellipse Fill="Red" Height="10" Width="10" maps:MapControl.NormalizedAnchorPoint="0.5,1" maps:MapControl.Location="{Binding MyLocation}"
+                         Visibility="{Binding ShowLocation, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </maps:MapItemsControl>
         </maps:MapControl>
 
